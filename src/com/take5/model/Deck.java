@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Deck {
-    private LinkedList<Card> cards = new LinkedList<>();
+    private LinkedList<Card> listOfCards = new LinkedList<>();
     String fileName;
 
     public Deck(String fileName) throws FileNotFoundException {
@@ -19,25 +19,25 @@ public class Deck {
     public Card[] get10(){
         Card[] newCards = new Card[10];
         for(int i = 0; i < 10; i++){
-            newCards[i] = this.cards.remove(0);
+            newCards[i] = this.listOfCards.remove(0);
         }
 
         return newCards;
     }
 
     public int getCardsLeft(){
-        return cards.size();
+        return listOfCards.size();
     }
 
     public void refillAndShuffle(){
-        cards.clear();
+        listOfCards.clear();
 
         try {
             loadCards(this.fileName);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        Collections.shuffle(cards);
+        Collections.shuffle(listOfCards);
     }
 
 
@@ -52,7 +52,7 @@ public class Deck {
             scR.useDelimiter("#");
             int number = scR.nextInt();
             int bulls = scR.nextInt();
-            cards.add(new Card(number,bulls));
+            listOfCards.add(new Card(number,bulls));
         }
     }
 }
