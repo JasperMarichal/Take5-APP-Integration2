@@ -1,7 +1,5 @@
 package com.take5.model;
 
-import com.take5.model.Card;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;

@@ -14,4 +14,9 @@ public class AiPlayer extends Player{
                 .get();
 
     }
+
+    @Override
+    void placeCard() {
+
+    }
 }
