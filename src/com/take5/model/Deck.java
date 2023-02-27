@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Deck {
-    private LinkedList<Card> listOfCards = new LinkedList<>();
+    private LinkedList<Card> cards = new LinkedList<>();
     String fileName;
 
     public Deck(String fileName) throws FileNotFoundException {
@@ -17,31 +17,33 @@ public class Deck {
     public Card[] get10(){
         Card[] newCards = new Card[10];
         for(int i = 0; i < 10; i++){
-            newCards[i] = this.listOfCards.remove(0);
+            newCards[i] = this.cards.remove(0);
         }
 
         return newCards;
     }
 
     public int getCardsLeft(){
-        return listOfCards.size();
+        return cards.size();
     }
 
     public void refillAndShuffle(){
-        listOfCards.clear();
+        cards.clear();
 
         try {
             loadCards(this.fileName);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        Collections.shuffle(listOfCards);
+        Collections.shuffle(cards);
     }
 
 
+
     private void loadCards(String fileName) throws FileNotFoundException {
-        File cards = new File(fileName);
-        Scanner scF = new Scanner(cards);
+
+        File cards1 = new File(fileName);
+        Scanner scF = new Scanner(cards1);
 
         while (scF.hasNext()) {
 
@@ -50,7 +52,25 @@ public class Deck {
             scR.useDelimiter("#");
             int number = scR.nextInt();
             int bulls = scR.nextInt();
-            listOfCards.add(new Card(number,bulls));
+            cards.add(new Card(number,bulls));
         }
     }
+
+    public LinkedList<Card> getCards() {
+        return cards;
+    }
+
+
+    public ArrayList<Card> draw10(){
+        ArrayList<Card> drawn= new ArrayList<>();
+        for (int i=0; i<10; i++){
+
+            drawn.add(cards.get(i));
+
+
+        }
+        return drawn;
+    }
+
+
 }

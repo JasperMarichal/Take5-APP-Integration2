@@ -28,7 +28,7 @@ public class Card {
         return number;
     }
 
-    public int getBulls(Card card) {
+    public int getBulls() {
         return bulls;
     }
 

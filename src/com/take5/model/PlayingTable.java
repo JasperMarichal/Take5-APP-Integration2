@@ -1,13 +1,14 @@
 package com.take5.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.FileNotFoundException;
+import java.util.*;
 
 public class PlayingTable {
     final int cardRowsSize = 4;
     Deck deck;
     Player[] players;
-    List<Card>[] cardRows;
+    ArrayList<Card>[] cardRows;
+
 
     public Card[] getLastCards(){
         Card[] lastCards = new Card[cardRowsSize];
@@ -16,15 +17,30 @@ public class PlayingTable {
         }
         return lastCards;
     }
-    public PlayingTable(){
+
+    public Deck getDeck() {
+        return deck;
+    }
+
+    public PlayingTable() {
         players = new Player[2];
-        cardRows = new List<>[cardRowsSize];
-        for (int i = 0; i < cardRowsSize; i++){
+        cardRows = new ArrayList[cardRowsSize];
+        for (int i = 0; i < cardRowsSize; i++) {
             cardRows[i] = new ArrayList<Card>();
         }
 
-    }
 
+        try {
+            Deck deck1 = new Deck("src/Cards");
+            this.deck=deck1;
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+    }
     void addCard(Card card, int rowIndex){
         cardRows[rowIndex].add(card);
     }
@@ -34,4 +50,8 @@ public class PlayingTable {
         cardRows[rowIndex].clear();
         return output;
     }
+
+
+
+
 }
