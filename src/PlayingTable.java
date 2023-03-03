@@ -38,7 +38,7 @@ public class PlayingTable {
         cardRows = new ArrayList[cardRowsSize];
 
         try {
-            Deck deck1 = new Deck("C:\\Users\\vasil\\Desktop\\Web\\Take5PrototipFX\\src\\main\\java\\Cards");
+            Deck deck1 = new Deck("src/Cards");
             this.deck=deck1;
 
         } catch (FileNotFoundException e) {
