@@ -9,7 +9,6 @@ public class Deck {
     String fileName;
 
     public Deck(String fileName) throws FileNotFoundException {
-
         this.fileName = fileName;
         refillAndShuffle();
     }
@@ -19,7 +18,6 @@ public class Deck {
         for(int i = 0; i < 10; i++){
             newCards[i] = this.cards.remove(0);
         }
-
         return newCards;
     }
 
@@ -29,7 +27,6 @@ public class Deck {
 
     public void refillAndShuffle(){
         cards.clear();
-
         try {
             loadCards(this.fileName);
         } catch (FileNotFoundException e) {
@@ -38,15 +35,12 @@ public class Deck {
 //        Collections.shuffle(cards);
     }
 
-
-
     private void loadCards(String fileName) throws FileNotFoundException {
 
         File cards1 = new File(fileName);
         Scanner scF = new Scanner(cards1);
 
         while (scF.hasNext()) {
-
             String record = scF.nextLine();
             Scanner scR = new Scanner(record);
             scR.useDelimiter("#");
@@ -60,22 +54,16 @@ public class Deck {
         return cards;
     }
 
-
     public ArrayList<Card> draw10(){
         ArrayList<Card> drawn= new ArrayList<>();
         for (int i=0; i<10; i++){
-
             drawn.add(cards.get(i));
-
-
         }
         return drawn;
     }
-            public Card deal1(){
-                Card c=cards.get(0);
-                cards.remove(0);
-                return c;
-
-            }
-
+    public Card deal1(){
+        Card c=cards.get(0);
+        cards.remove(0);
+        return c;
+    }
 }

@@ -2,17 +2,15 @@ import java.awt.*;
 import java.io.File;
 
 public class Card {
-
     private int number;
     private int bulls;
     private Image image;
     String URL;
-public String getURL(){
-    int numberForImg= getNumber();
-    URL= "C:\\Users\\vasil\\Desktop\\Web\\Take5PrototipFX\\src\\main\\resources\\com\\example\\take5prototipfx\\Card" + numberForImg + ".png";
-    return URL;
-}
-
+    public String getURL(){
+        int numberForImg= getNumber();
+        URL= "C:\\Users\\vasil\\Desktop\\Web\\Take5PrototipFX\\src\\main\\resources\\com\\example\\take5prototipfx\\Card" + numberForImg + ".png";
+        return URL;
+    }
 
     public void setURL(String URL) {
         this.URL = URL;
@@ -26,15 +24,11 @@ public String getURL(){
         this.setBulls(bulls);
         this.setNumber(number);
 
-            File img = new File("C:\\Users\\vasil\\Desktop\\Web\\Take5PrototipFX\\src\\main\\resources\\com\\example\\take5prototipfx\\Card" + number + ".png");
-
-
-
+        File img = new File("C:\\Users\\vasil\\Desktop\\Web\\Take5PrototipFX\\src\\main\\resources\\com\\example\\take5prototipfx\\Card" + number + ".png");
     }
 
     public Card() {
     }
-
 
     public void setNumber(int number) {
         this.number = number;
@@ -51,9 +45,6 @@ public String getURL(){
     public int getBulls() {
         return bulls;
     }
-
-
-
 
 }
 //

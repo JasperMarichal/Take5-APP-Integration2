@@ -19,9 +19,6 @@ public class AiPlayer extends Player{
         return lowestCard;
     }
 
-
-
-
     @Override
     void placeCard(Card card, int row) {
 

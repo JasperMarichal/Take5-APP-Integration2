@@ -21,8 +21,6 @@ public abstract class Player{
         this.name = name;
     }
 
-
-
     public void setCounterPoints(int counterPoints) {
         this.counterPoints = counterPoints;
     }
@@ -44,8 +42,6 @@ public abstract class Player{
         return hand;
     }
 
-
-
     public Card[] get10FromHandToScan() {
         Card[] newCards = new Card[10];
         for (int i = 0; i < 10; i++) {
@@ -58,8 +54,6 @@ public abstract class Player{
         return counterPoints;
     }
 
-
-
     abstract Card chooseCard(int chosen);
 
     abstract void placeCard(Card card, int row);
@@ -68,9 +62,4 @@ public abstract class Player{
     public void draw(Deck deck){
         hand.cards.addAll(List.of(deck.get10()));
     }
-
-
-
-
-
 }

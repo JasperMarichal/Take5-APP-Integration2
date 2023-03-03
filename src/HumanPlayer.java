@@ -3,8 +3,6 @@ public class HumanPlayer extends Player {
         super(name, counterPoints);
     }
 
-
-
     @Override
     Card chooseCard(int chosen) {
         Card c = hand.cards.get(chosen);
@@ -19,15 +17,11 @@ public class HumanPlayer extends Player {
 
     @Override
     void placeCard(Card card,  int row) {
-
     table.addCard(card, row);
-
     }
 
     @Override
     void placeCardOnSide(Card card) {
         table.chosenCards[0].add(card);
     }
-
-
 }

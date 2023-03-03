@@ -12,11 +12,6 @@ public class PlayingTable {
     Button[] buttons;
   public  ArrayList<Card>[] chosenCards;
 
-
-
-
-
-
     public Card[] getLastCards(){
         Card[] lastCards = new Card[cardRowsSize];
         for (int i = 0; i < cardRowsSize; i++){
@@ -25,10 +20,8 @@ public class PlayingTable {
         return lastCards;
     }
 
-
     public void addToChosen(Card card){
         chosenCards[0].add(card);
-
     }
 
     public Deck getDeck() {
@@ -42,9 +35,7 @@ public class PlayingTable {
         players[0].setTable(this);
         players[1].setTable(this);
 
-
         cardRows = new ArrayList[cardRowsSize];
-
 
         try {
             Deck deck1 = new Deck("C:\\Users\\vasil\\Desktop\\Web\\Take5PrototipFX\\src\\main\\java\\Cards");
@@ -53,8 +44,6 @@ public class PlayingTable {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-
-
         for (int i = 0; i < cardRowsSize; i++) {
             cardRows[i] = new ArrayList<Card>();
             cardRows[i].add(deck.deal1());
@@ -71,15 +60,11 @@ public class PlayingTable {
         return output;
     }
 
-
     public void showRows(){
         for (int i = 0; i < cardRowsSize; i++) {
                     System.out.println(cardRows[i].get(0).getNumber());
         }
     }
-
-
-
 
     public void dmgCalculation (int rowIndex,Player humanPlayer){
         DmgCalculator dmgCalculator= new DmgCalculator();
@@ -91,11 +76,9 @@ public class PlayingTable {
         }
         getAllCardsFromRow(rowIndex);
 
-                System.out.println(humanPlayer.getName() + " now you have: " + humanPlayer.getCounterPoints() + " left.");
-                System.out.println("The chosen card is: " + humanPlayer.chooseCard(1).getNumber() );
+        System.out.println(humanPlayer.getName() + " now you have: " + humanPlayer.getCounterPoints() + " left.");
+        System.out.println("The chosen card is: " + humanPlayer.chooseCard(1).getNumber() );
 
-                humanPlayer.placeCard(humanPlayer.chooseCard(1), rowIndex);
-
+        humanPlayer.placeCard(humanPlayer.chooseCard(1), rowIndex);
     }
-
 }
