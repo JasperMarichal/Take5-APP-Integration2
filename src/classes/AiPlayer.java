@@ -1,3 +1,5 @@
+package classes;
+
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -10,7 +12,7 @@ public class AiPlayer extends Player{
     @Override
     public Card chooseCard(int chosen){
         // choose lowest playable card
-        //Card[] rowsLastCards = table.getLastCards();
+        //classes.Card[] rowsLastCards = table.getLastCards();
         Card lowestCard = Arrays
                 .stream(table.getLastCards())
                 .min(Comparator.comparing(Card::getNumber))

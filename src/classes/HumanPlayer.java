@@ -1,3 +1,5 @@
+package classes;
+
 public class HumanPlayer extends Player {
     public HumanPlayer(String name, int counterPoints) {
         super(name, counterPoints);
@@ -10,7 +12,7 @@ public class HumanPlayer extends Player {
     }
 
 //    @Override
-//    Card chooseCard() {
+//    classes.Card chooseCard() {
 //
 //        return null;
 //    }

@@ -1,3 +1,9 @@
+package main;
+
+import classes.AiPlayer;
+import classes.HumanPlayer;
+import classes.PlayingTable;
+
 public class MainPrototype {
 
 
@@ -6,8 +12,8 @@ public class MainPrototype {
                 new HumanPlayer("Vasil",64)
                 , new AiPlayer("Bot1",64));
 
-//        Player player= new HumanPlayer("Someone" );
-//        Player player1AI= new AiPlayer("Bot1");
+//        classes.Player player= new classes.HumanPlayer("Someone" );
+//        classes.Player player1AI= new classes.AiPlayer("Bot1");
 
         System.out.println(playingTable.getDeck());
         playingTable.players[0].draw(playingTable.getDeck());

@@ -1,3 +1,5 @@
+package classes;
+
 import java.awt.*;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -6,7 +8,7 @@ import java.util.List;
 public class PlayingTable {
     final int cardRowsSize = 4;
     Deck deck;
-    Player[] players;
+    public Player[] players;
     ArrayList<Card>[] cardRows;
 
     Button[] buttons;

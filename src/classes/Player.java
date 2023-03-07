@@ -1,3 +1,5 @@
+package classes;
+
 import java.util.List;
 
 public abstract class Player{
@@ -57,6 +59,7 @@ public abstract class Player{
     abstract Card chooseCard(int chosen);
 
     abstract void placeCard(Card card, int row);
+
     abstract void placeCardOnSide(Card card);
 
     public void draw(Deck deck){

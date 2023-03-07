@@ -1,3 +1,5 @@
+package classes;
+
 import java.awt.*;
 import java.io.File;
 
@@ -8,7 +10,7 @@ public class Card {
     String URL;
     public String getURL(){
         int numberForImg= getNumber();
-        URL= "C:\\Users\\vasil\\Desktop\\Web\\Take5PrototipFX\\src\\main\\resources\\com\\example\\take5prototipfx\\Card" + numberForImg + ".png";
+        URL = "resources/take5prototipfx/Card" + numberForImg + ".png";
         return URL;
     }
 
@@ -24,7 +26,7 @@ public class Card {
         this.setBulls(bulls);
         this.setNumber(number);
 
-        File img = new File("C:\\Users\\vasil\\Desktop\\Web\\Take5PrototipFX\\src\\main\\resources\\com\\example\\take5prototipfx\\Card" + number + ".png");
+        File img = new File("resources/take5prototipfx/Card" + number + ".png");
     }
 
     public Card() {

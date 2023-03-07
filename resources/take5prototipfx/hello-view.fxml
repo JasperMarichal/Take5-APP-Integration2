@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+
+<VBox alignment="TOP_LEFT" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.take5prototipfx.HelloController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <Label fx:id="welcomeText"/>
+
+    <Button fx:id="helloButton" style=" -fx-border-style: none; -fx-border-width: 2px; -fx-border-insets: 0; -fx-font-size:4px; -fx-background-image: url('Card1.png')" onAction="#onHelloButtonClick" prefHeight="80" prefWidth="80"/>
+
+</VBox>
