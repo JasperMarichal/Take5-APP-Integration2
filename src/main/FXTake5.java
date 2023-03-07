@@ -31,13 +31,14 @@ public class FXTake5 extends Application {
 
         Button button= new Button();
 
-        PlayingTable playingTable = new PlayingTable(new HumanPlayer("Vasil",64),
-                new AiPlayer("Bot1",64));
+        PlayingTable playingTable = new PlayingTable(
+                new HumanPlayer("Vasil",64)
+                , new AiPlayer("Bot1",64));
 
         playingTable.players[0].draw(playingTable.getDeck());
         playingTable.players[1].draw(playingTable.getDeck());
 
-//        System.out.println(playingTable.players[1].getHand());
+        //System.out.println(playingTable.players[1].getHand());
 
         //playingTable.addCard(playingTable.getDeck().deal1(), 0);
         //playingTable.addCard(playingTable.getDeck().deal1(), 1);
@@ -50,15 +51,15 @@ public class FXTake5 extends Application {
 
         playingTable.showRows();
 
-
         Card b= new Card();
-        Image card;//= new Image(c.getURL().toString());
-        try {
+        Image card= new Image(c.getURL().toString());
+        /*try {
            card = new Image(c.getURL());
         } catch (IllegalArgumentException e) {
             System.err.println("Error loading image: " + e.getMessage());
             card = new Image("C:\\Users\\Jasper School\\OneDrive - Karel de Grote Hogeschool\\Desktop\\Integration 2\\S2-10\\resources\\take5prototipfx\\Card1.png");
-        }
+            System.out.println(c.getURL());
+        }*/
         ImageView imageView = new ImageView(card);
         imageView.setFitHeight(160);
         imageView.setFitWidth(110);
@@ -70,8 +71,6 @@ public class FXTake5 extends Application {
             System.out.println(finalCard.getUrl().toString());
 //                b.setURL(imageView.getImage().getUrl().toString());
 //            System.out.println(b.getURL());
-
-
         });
 
 //        button.setGraphic(imageView);

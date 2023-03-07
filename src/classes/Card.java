@@ -10,7 +10,7 @@ public class Card {
     String URL;
     public String getURL(){
         int numberForImg= getNumber();
-        URL = "resources/take5prototipfx/Card" + numberForImg + ".png";
+        URL = "file:resources/take5prototipfx/Card" + numberForImg + ".png";
         return URL;
     }
 
@@ -26,7 +26,7 @@ public class Card {
         this.setBulls(bulls);
         this.setNumber(number);
 
-        File img = new File("resources/take5prototipfx/Card" + number + ".png");
+        File img = new File("file:resources/take5prototipfx/Card" + number + ".png");
     }
 
     public Card() {
