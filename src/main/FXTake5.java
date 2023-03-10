@@ -60,6 +60,7 @@ public class FXTake5 extends Application {
             card = new Image("C:\\Users\\Jasper School\\OneDrive - Karel de Grote Hogeschool\\Desktop\\Integration 2\\S2-10\\resources\\take5prototipfx\\Card1.png");
             System.out.println(c.getURL());
         }*/
+
         ImageView imageView = new ImageView(card);
         imageView.setFitHeight(160);
         imageView.setFitWidth(110);
