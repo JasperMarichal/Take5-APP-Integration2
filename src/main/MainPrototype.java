@@ -3,14 +3,15 @@ package main;
 import classes.AiPlayer;
 import classes.HumanPlayer;
 import classes.PlayingTable;
+import javafx.scene.layout.BorderPane;
 
 public class MainPrototype {
 
 
     public static void main(String[] args) {
-        PlayingTable playingTable = new PlayingTable(
-                new HumanPlayer("Vasil",64)
-                , new AiPlayer("Bot1",64));
+        HumanPlayer hp= new HumanPlayer("Vasil",64);
+        AiPlayer AI= new AiPlayer("Bot 1", 64);
+        PlayingTable playingTable = new PlayingTable(hp, AI,new BorderPane());
 
 //        classes.Player player= new classes.HumanPlayer("Someone" );
 //        classes.Player player1AI= new classes.AiPlayer("Bot1");

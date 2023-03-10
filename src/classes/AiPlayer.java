@@ -13,10 +13,11 @@ public class AiPlayer extends Player{
     public Card chooseCard(int chosen){
         // choose lowest playable card
         //classes.Card[] rowsLastCards = table.getLastCards();
-        Card lowestCard = Arrays
-                .stream(table.getLastCards())
-                .min(Comparator.comparing(Card::getNumber))
-                .get();
+        Card lowestCard = null;
+//        = Arrays
+//                .stream(table.getLastCards())
+//                .min(Comparator.comparing(Card::getNumber))
+//                .get();
 
         return lowestCard;
     }

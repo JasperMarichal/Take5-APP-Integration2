@@ -1,35 +1,60 @@
 package classes;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 import java.awt.*;
 import java.io.File;
 
 public class Card {
+
     private int number;
     private int bulls;
-    private Image image;
     String URL;
+    ImageView imageView;
     public String getURL(){
         int numberForImg= getNumber();
-        URL = "file:resources/take5prototipfx/Card" + numberForImg + ".png";
+        URL= "C:\\Users\\vasil\\Desktop\\Web\\Take5PrototipFX\\src\\main\\resources\\com\\example\\take5prototipfx\\Card" + numberForImg + ".png";
         return URL;
     }
 
-    public void setURL(String URL) {
-        this.URL = URL;
+
+    public Card getCard(String url){
+        Card card = null;
+        if (url==this.getURL()) {
+            card = this;
+        }
+        return card;
     }
 
-    public Image getImage() {
-        return image;
+
+    public void setURL(String URL) {
+        this.URL = URL;
     }
 
     public Card(int number, int bulls) {
         this.setBulls(bulls);
         this.setNumber(number);
 
-        File img = new File("file:resources/take5prototipfx/Card" + number + ".png");
+
     }
 
     public Card() {
+    }
+
+    public javafx.scene.image.Image getImage(){
+        String imageUrl = this.getURL();
+        return new Image(imageUrl);
+    }
+
+    public ImageView getImageView() {
+        if (imageView == null){
+            imageView = new ImageView(getImage());
+            imageView.setFitHeight(160);
+            imageView.setFitWidth(110);
+        }
+
+        return imageView;
     }
 
     public void setNumber(int number) {
@@ -47,6 +72,8 @@ public class Card {
     public int getBulls() {
         return bulls;
     }
+
+
 
 }
 //

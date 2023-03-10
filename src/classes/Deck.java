@@ -3,6 +3,7 @@ package classes;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -34,7 +35,7 @@ public class Deck {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-//        Collections.shuffle(cards);
+        Collections.shuffle(cards);
     }
 
     private void loadCards(String fileName) throws FileNotFoundException {
