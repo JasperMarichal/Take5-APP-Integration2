@@ -53,8 +53,8 @@ public class take5view {
           borderPane2=borderPane;
         Scene sceneForMenu= new Scene(getBorderPane2());
         stage.setScene(sceneForMenu);
-        stage.setHeight(600);
-        stage.setWidth(600);
+        stage.setHeight(900);
+        stage.setWidth(1500);
         stage.show();
 
          button.addEventHandler(MouseEvent.MOUSE_CLICKED, event2 ->{
@@ -75,12 +75,12 @@ public class take5view {
         VBox cardHolder= new VBox();
         // TODO: clear pane
         // append player one cards
-        for (int i = 0; i < playingTable.getPlayers()[0].getHand().getCards().size(); i++){
+
+            for (int i = 0; i < playingTable.getPlayers()[0].getHand().getCards().size(); i++){
             System.out.println(playingTable.getPlayers()[0].getHand().getCards().get(i));
 
 
             ImageView currentCardView =  getImageView( playingTable.getPlayers()[0].getHand().getCards().get(i).getURL());
-            ImageView currentCardView2AI =  getImageView( playingTable.getPlayers()[1].getHand().getCards().get(i).getURL());
             javafx.scene.image.Image img= new javafx.scene.image.Image(urlBack);
             currentCardView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
                 String s= currentCardView.getImage().getUrl();
@@ -99,6 +99,7 @@ public class take5view {
                 playingTable.getBottomImages().getChildren().remove(currentCardView);
                 currentImageWithoutClickEvent.setFitWidth(80);
                 currentImageWithoutClickEvent.setFitHeight(100);
+
                 if (i1!= null){
                 playingTable.getCardRows()[i1].add(playingTable.getCardScanner().scanAndRetrieveCardForPlay(s));
                 ((HBox)rows.getChildren().get(i1)).getChildren().add(currentImageWithoutClickEvent);}
@@ -170,8 +171,7 @@ public class take5view {
 
             playingTable.getTopImages().getChildren().add(opponentsCards);
             playingTable.getBottomImages().getChildren().add(currentCardView);
-            HBox.setMargin(currentCardView, new javafx.geometry.Insets(0, 10 , 0, 0));
-
+            HBox.setMargin(currentCardView, new javafx.geometry.Insets(10, 10 , 10, 10));
         }
 
 

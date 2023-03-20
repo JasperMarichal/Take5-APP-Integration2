@@ -1,9 +1,5 @@
 package model;
 
-import javafx.geometry.Insets;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -201,6 +197,20 @@ public class PlayingTable {final int cardRowsSize = 4;
         humanPlayer.placeCard(humanPlayer.chooseCard(1), rowIndex);
 
 
+    }
+
+
+
+
+
+
+    public Card cardChecker(Card c, Card b){
+        if (c.getNumber()<b.getNumber()){
+            return c;
+
+        }
+
+        else return b;
     }
 
 }

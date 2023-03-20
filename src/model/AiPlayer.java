@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -11,17 +12,12 @@ public class AiPlayer extends Player{
     }
 
     @Override
-    public Card chooseCard(int chosen){
-//        // choose lowest playable card
-//        //classes.Card[] rowsLastCards = table.getLastCards();
-        Card lowestCard = null;
-//        = Arrays
-//                .stream(table.getLastCards())
-//                .min(Comparator.comparing(Card::getNumber))
-//                .get();
-//
-        return lowestCard;
+    Card chooseCard(int chosen) {
+        return null;
     }
+
+
+
     public int getLowestCardRow() {
         int lowest = Integer.MAX_VALUE;
         int lowestIndex = 0;
