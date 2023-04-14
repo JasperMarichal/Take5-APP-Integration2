@@ -10,8 +10,6 @@ import model.PlayingTable;
 
 public class HboxBuilder {
 
-
-
     public VBox buildRows(PlayingTable playingTable){
         HBox firstRow= new HBox();
         HBox secondRow= new HBox();
@@ -27,7 +25,6 @@ public class HboxBuilder {
 //               CenterImages.getChildren().add(imgv);
 //               rows.getChildren().add(imgv);
             HBox.setMargin(firstRow, new Insets(0,10,0,0));
-
 
 //            VBox.setMargin(rows, new Insets(10, 0, 0, 0));
         }
@@ -66,10 +63,7 @@ public class HboxBuilder {
         return rows;
     }
 
-
     public void removefromHand(BorderPane borderPane){
 
     }
-
-
 }

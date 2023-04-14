@@ -14,13 +14,13 @@ public class FXTake5 extends Application {
     }
     take5view b1= new take5view();
     @Override
-    public void start(Stage stage) {        HumanPlayer hp= new HumanPlayer("Vasil",64);
+    public void start(Stage stage) {
+        HumanPlayer hp= new HumanPlayer("Vasil",64);
         AiPlayer AI= new AiPlayer("Bot 1", 64);
         PlayingTable playingTable = new PlayingTable(hp, AI,new BorderPane() );
         Card c= new Card(1,2);
         playingTable.getPlayers()[0].draw(playingTable.getDeck());
 
         b1.buildScene1(playingTable, stage);
-
     }
 }

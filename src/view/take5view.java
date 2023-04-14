@@ -1,8 +1,9 @@
 package view;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -14,55 +15,75 @@ import main.FXTake5;
 import model.Card;
 import model.PlayingTable;
 
-
 public class take5view {
     static BorderPane borderPane1;
     static BorderPane borderPane2;
-
     public  BorderPane getBorderPane2() {
         return borderPane2;
     }
-
     static String urlBack = "file:resources/take5prototipfx/bacground1Finished.jpg";
     static HboxBuilder h1 = new HboxBuilder();
 
-
-
-
-
     public void getImage(Card card){
         Image image= new Image(card.getURL());
-
     }
     public static ImageView getImageView(String URL) {
-
       Image image= new Image(URL);
       ImageView imageView= new ImageView(image);
             imageView.setFitHeight(160);
             imageView.setFitWidth(110);
 
-
         return imageView;
     }
 
-
     public void buildScene1(PlayingTable playingTable, Stage stage){
         BorderPane borderPane = new BorderPane();
-         Button button= new Button();
-         borderPane.setCenter(button);
-          borderPane2=borderPane;
-        Scene sceneForMenu= new Scene(getBorderPane2());
+        VBox vbox = new VBox();
+
+        Label nameLabel = new Label("Name:");
+        TextField nameField = new TextField();
+        vbox.getChildren().addAll(nameLabel, nameField);
+
+        Label difficultyLabel = new Label("Difficulty:");
+        ComboBox<String> difficultyBox = new ComboBox<>();
+        difficultyBox.getItems().addAll("Easy", "Medium", "Hard");
+        vbox.getChildren().addAll(difficultyLabel, difficultyBox);
+
+        Button playButton = new Button("Play!");
+
+        vbox.getChildren().add(playButton);
+
+        borderPane.setCenter(vbox);
+        vbox.getChildren().forEach(node -> {
+            if (node instanceof Labeled) {
+                ((Labeled) node).setStyle("-fx-font-size: 20px;");
+                ((Labeled) node).setAlignment(Pos.CENTER);
+            }
+            if (node instanceof Control) {
+                ((Control) node).setStyle("-fx-font-size: 20px;");
+            }
+        });
+        borderPane2 = borderPane;
+        Scene sceneForMenu = new Scene(getBorderPane2(), 1100, 650);
         stage.setScene(sceneForMenu);
-        stage.setHeight(900);
-        stage.setWidth(1500);
+
         stage.show();
 
-         button.addEventHandler(MouseEvent.MOUSE_CLICKED, event2 ->{
+         playButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event2 ->{
+             // Get user input
+             String name = nameField.getText();
+             String difficulty = difficultyBox.getValue();
 
+             /* Create playing table
+             //playingTable.setPlayerName(name);
+             playingTable.setDifficulty(difficulty);*/
+
+             // Show playing table
              buildBorderPane(playingTable);
              Scene scene1 = new Scene(getBorderPane1());
+             stage.setHeight(700);
+             stage.setWidth(1200);
              stage.setScene(scene1);
-
         });
     }
     public static void buildBorderPane(PlayingTable playingTable){
@@ -153,17 +174,10 @@ public class take5view {
                     ((HBox)rows.getChildren().get(2)).getChildren().add(forThirdRow);
                     ((HBox)rows.getChildren().get(3)).getChildren().add(forFourTHRow);
 
-
-
-
                 }
                 playingTable.getTopImages().getChildren().remove(1);
             }
-
-
             );
-
-
 
             ImageView opponentsCards= new ImageView(img);
             opponentsCards.setFitHeight(160);
@@ -174,17 +188,14 @@ public class take5view {
             HBox.setMargin(currentCardView, new javafx.geometry.Insets(10, 10 , 10, 10));
         }
 
-
-
         VBox.setMargin(rows, new Insets(10, 0, 0, 0));
         playingTable.getBorderPane().setBottom(playingTable.getBottomImages());
         playingTable.getBorderPane().setTop(playingTable.getTopImages());
 
-                borderPane1= playingTable.getBorderPane();
+        borderPane1= playingTable.getBorderPane();
     }
-
 
     public BorderPane getBorderPane1() {
         return borderPane1;
     }
-}
+    }

@@ -16,8 +16,6 @@ public class AiPlayer extends Player{
         return null;
     }
 
-
-
     public int getLowestCardRow() {
         int lowest = Integer.MAX_VALUE;
         int lowestIndex = 0;

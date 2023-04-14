@@ -17,7 +17,6 @@ public class Card {
         return URL;
     }
 
-
     public Card getCard(String url){
         Card card = null;
         if (url==this.getURL()) {
@@ -26,7 +25,6 @@ public class Card {
         return card;
     }
 
-
     public void setURL(String URL) {
         this.URL = URL;
     }
@@ -34,8 +32,6 @@ public class Card {
     public Card(int number, int bulls) {
         this.setBulls(bulls);
         this.setNumber(number);
-
-
     }
 
     public Card() {
@@ -66,8 +62,6 @@ public class Card {
         return bulls;
     }
 
-
-
 }
 //
 //public void print() {
@@ -78,12 +72,3 @@ public class Card {
 //}
 //    }
 //
-
-
-
-
-
-
-
-
-
