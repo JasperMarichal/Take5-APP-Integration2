@@ -12,6 +12,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class PlayingTable {final int cardRowsSize = 4;
+
+
+    private CardChecker cardChecker= new CardChecker(this);
+    static int counterForLatch=0;
     Deck deck;
     Integer maximumNumberOfCard=null;
      CardScanner cardScanner = new CardScanner();
@@ -28,6 +32,13 @@ public class PlayingTable {final int cardRowsSize = 4;
 
     take5view take5view= new take5view();
 
+    public  int getCounterForLatch() {
+        return counterForLatch;
+    }
+
+    public  void setCounterForLatch(int counterForLatch) {
+        PlayingTable.counterForLatch = counterForLatch;
+    }
 
     public int getCardRowsSize() {
         return cardRowsSize;
@@ -49,6 +60,11 @@ public class PlayingTable {final int cardRowsSize = 4;
         return urlBack;
     }
 
+
+    public void CollectCardRows (int index){
+        cardRows[index].clear();
+
+    }
     public ArrayList<Card>[] getChosenCards() {
         return chosenCards;
     }
@@ -76,10 +92,25 @@ public class PlayingTable {final int cardRowsSize = 4;
     public Integer getPlayableRows(Card card) {
         Integer[] checkedNumbers = new Integer[4];
         int cnumber = card.getNumber();
-        int numberForChecking1 = cardRows[0].get(cardRows[0].size()-1).getNumber();
-        int numberForChecking2 = cardRows[1].get(cardRows[1].size()-1).getNumber();
-        int numberForChecking3 = cardRows[2].get(cardRows[2].size()-1).getNumber();
-        int numberForChecking4 = cardRows[3].get(cardRows[3].size()-1).getNumber();
+        int numberForChecking1=-5;
+        int numberForChecking2=-5;
+        int numberForChecking3=-5;
+        int numberForChecking4=-5;
+
+
+
+        if (cardRows[0].size()<5){
+          numberForChecking1 = cardRows[0].get(cardRows[0].size()-1).getNumber();
+        }
+        if (cardRows[1].size()<5){
+            numberForChecking2 = cardRows[1].get(cardRows[1].size()-1).getNumber();
+        }
+        if (cardRows[2].size()<5){
+            numberForChecking3 = cardRows[2].get(cardRows[2].size()-1).getNumber();
+        }
+        if (cardRows[3].size()<5){
+            numberForChecking4 = cardRows[3].get(cardRows[3].size()-1).getNumber();
+        }
         int numberDifference1checked;
         int numberDifference2checked;
         int numberDifference3checked;
@@ -98,9 +129,7 @@ public class PlayingTable {final int cardRowsSize = 4;
         if (numberForChecking4 < cnumber) {
             integers.add(numberForChecking4);
         }
-        if (integers.isEmpty()){
-            return null;
-        }
+
 
         maximumNumberOfCard = Collections.max(integers);
         Integer thatWeNeed = null;
@@ -110,8 +139,12 @@ public class PlayingTable {final int cardRowsSize = 4;
             }
 //            System.out.println(thatWeNeed);
         }
-        return thatWeNeed;
-
+        if (integers.isEmpty()){
+            return null;
+        }
+        else {
+            return thatWeNeed;
+        }
     }
 
     public int getMaximumNumberOfCard() {
@@ -129,7 +162,7 @@ public class PlayingTable {final int cardRowsSize = 4;
 
     public void refreshPane(){
 
-        view.take5view.buildBorderPane(this);
+//        view.take5view.buildBorderPane(this);
 
     }
 
@@ -159,6 +192,9 @@ public class PlayingTable {final int cardRowsSize = 4;
             cardRows[i].add(deck.deal1());
         }
     }
+
+
+
 
     public void addCard(Card card, int rowIndex){
         cardRows[rowIndex].add(card);

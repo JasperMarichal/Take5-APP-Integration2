@@ -18,8 +18,9 @@ public class HumanPlayer extends Player {
 //    }
 
     @Override
-    void placeCard(Card card,  int row) {
+    public void placeCard(Card card, int row) {
     table.addCard(card, row);
+    hand.cards.remove(card);
     }
 
     @Override

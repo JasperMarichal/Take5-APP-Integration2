@@ -58,7 +58,7 @@ public abstract class Player{
 
     abstract Card chooseCard(int chosen);
 
-    abstract void placeCard(Card card, int row);
+    abstract public void placeCard(Card card, int row);
 
     abstract void placeCardOnSide(Card card);
 
