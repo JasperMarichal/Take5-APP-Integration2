@@ -18,20 +18,14 @@ public class CardScanner {
         for (int i= 0; i<4; i++) {
             int number= playingTable.cardRows[i].get(playingTable.cardRows[i].size()-1).getNumber();
             listOfNumbers.add(number);
-
-
-
         }
-
     }
-
 
     public Card scanAndRetrieveCardForPlay(String url){
         Card c1 = null;
         try {
             Deck deck1 = new Deck("src/Cards");
             this.deck=deck1;
-
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -47,23 +41,17 @@ public class CardScanner {
                 char[] charArray1 = url.toCharArray();
                 char[] charArray2 = s2.toCharArray();
 
-
                 // if sorted char arrays are same
                 // then the string is anagram
                 boolean result = Arrays.equals(charArray1, charArray2);
 
                 if (result == true) {
                     c1 = deck.getCards().get(i);
-
                 }
-
             }
-
         }
-
 
         System.out.println(c1);
         return c1;
-
     }
 }
