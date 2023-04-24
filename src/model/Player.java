@@ -13,12 +13,33 @@ public abstract class Player{
         this.table = table;
     }
 
+
+
+    public int getTheSelectedCardFromHand(Card card){
+        int y = 0;
+        for (int i=0; i<this.hand.cards.size(); i++){
+            if (this.hand.cards.get(i).getNumber()==card.getNumber()){
+                 y=i;
+            }
+
+        }
+        return y;
+    }
+
+
+    public void playCardForHuman(Card card, int cardrow){
+        int index = getTheSelectedCardFromHand(card);
+        Card c= this.getHand().getCards().get(index);
+        table.addCard(c, cardrow);
+        this.getHand().getCards().remove(c);
+    }
     public Player(String name, int counterPoints) {
         this.name = name;
         this.hand= new Hand();
         this.counterPoints=counterPoints;
     }
     public void playCard(int index, int cardrow){
+//        int index = getTheSelectedCardFromHand(card);
         Card c= this.getHand().getCards().get(index);
         table.addCard(c, cardrow);
         this.getHand().getCards().remove(c);
@@ -38,14 +59,14 @@ public abstract class Player{
 
     public Hand getHand() {
 
-        System.out.println("This is the hand of player:" + getName());
-        for (int i= 0; i<hand.cards.size(); i++) {
-
-            System.out.print(hand.cards.get(i).getNumber()+ "   ");
-            System.out.print(hand.cards.get(i).getBulls());
-            System.out.println();
-
-        }
+//        System.out.println("This is the hand of player:" + getName());
+//        for (int i= 0; i<hand.cards.size(); i++) {
+//
+//            System.out.print(hand.cards.get(i).getNumber()+ "   ");
+//            System.out.print(hand.cards.get(i).getBulls());
+//            System.out.println();
+//
+//        }
         return hand;
     }
 
