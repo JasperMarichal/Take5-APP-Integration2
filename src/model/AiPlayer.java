@@ -45,10 +45,10 @@ public class AiPlayer extends Player {
         int minCardHand = 105;
         int minCardHandIndex = -1;
 
-        for (int i = 0; i < hand.getCards().size(); i++) {
-            if (hand.getCards().get(i).getNumber() < minCardHand &&
-                    hand.getCards().get(i).getNumber() > minCardCol) {
-                minCardHand = hand.getCards().get(i).getNumber();
+        for (int i = 0; i < this.getHand().getCards().size(); i++) {
+            if (this.getHand().getCards().get(i).getNumber() < minCardHand &&
+                    this.getHand().getCards().get(i).getNumber() > minCardCol) {
+                minCardHand = this.getHand().getCards().get(i).getNumber();
                 minCardHandIndex = i;
             }
         }
@@ -67,14 +67,10 @@ public class AiPlayer extends Player {
         return min;
 
     }
-    public void playCard(int index, int cardrow){
-        Card c= hand.getCards().get(index);
-        table.addCard(c, cardrow);
-        hand.cards.remove(c);
-    }
+
 
     public Card getCard(int number) {
-        return hand.getCards().get(number);
+        return this.getHand().getCards().get(number);
 
 
     }

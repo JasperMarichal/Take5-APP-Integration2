@@ -73,6 +73,8 @@ public class HboxBuilder {
             thirdRow.getChildren().clear();
 
             ForthRow.getChildren().clear();
+
+            rows.getChildren().removeAll(rows.getChildren());
             buildRows(playingTable);
         }
     public void removefromHand(BorderPane borderPane){

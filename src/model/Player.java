@@ -18,6 +18,11 @@ public abstract class Player{
         this.hand= new Hand();
         this.counterPoints=counterPoints;
     }
+    public void playCard(int index, int cardrow){
+        Card c= this.getHand().getCards().get(index);
+        table.addCard(c, cardrow);
+        this.getHand().getCards().remove(c);
+    }
 
     public void setName(String name) {
         this.name = name;

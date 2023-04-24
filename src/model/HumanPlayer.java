@@ -7,7 +7,7 @@ public class HumanPlayer extends Player {
 
     @Override
     Card chooseCard(int chosen) {
-        Card c = hand.cards.get(chosen);
+        Card c = this.getHand().cards.get(chosen);
         return c;
     }
 
@@ -19,8 +19,8 @@ public class HumanPlayer extends Player {
 
     @Override
     public void placeCard(Card card, int row) {
-    table.addCard(card, row);
-    hand.cards.remove(card);
+        table.addCard(card, row);
+        this.getHand().cards.remove(card);
     }
 
     @Override
