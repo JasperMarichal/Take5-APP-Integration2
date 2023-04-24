@@ -66,7 +66,7 @@ public class HboxBuilder {
         return rows;
     }
 
-        public void refreshRows(PlayingTable playingTable){
+        public VBox refreshRows(PlayingTable playingTable){
             firstRow.getChildren().clear();
             secondRow.getChildren().clear();
 
@@ -76,6 +76,7 @@ public class HboxBuilder {
 
             rows.getChildren().removeAll(rows.getChildren());
             buildRows(playingTable);
+            return rows;
         }
     public void removefromHand(BorderPane borderPane){
 

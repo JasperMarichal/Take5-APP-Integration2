@@ -89,6 +89,7 @@ public class PlayingTable {final int cardRowsSize = 4;
         return h1b;
     }
 
+
     public Integer getPlayableRows(Card card) {
         Integer[] checkedNumbers = new Integer[4];
         int cnumber = card.getNumber();
@@ -130,21 +131,25 @@ public class PlayingTable {final int cardRowsSize = 4;
             integers.add(numberForChecking4);
         }
 
-
-        maximumNumberOfCard = Collections.max(integers);
-        Integer thatWeNeed = null;
-        for (int i = 0; i < 4; i++) {
-            if (cardRows[i].get(cardRows[i].size() - 1).getNumber() == maximumNumberOfCard) {
-                thatWeNeed = i;
-            }
-//            System.out.println(thatWeNeed);
-        }
         if (integers.isEmpty()){
             return null;
         }
         else {
+            maximumNumberOfCard = Collections.max(integers);
+            Integer thatWeNeed = null;
+            for (int i = 0; i < 4; i++) {
+                if (cardRows[i].get(cardRows[i].size() - 1).getNumber() == maximumNumberOfCard) {
+                    thatWeNeed = i;
+                }
+//            System.out.println(thatWeNeed);
+            }
             return thatWeNeed;
         }
+
+
+
+
+
     }
 
     public int getMaximumNumberOfCard() {
@@ -153,9 +158,7 @@ public class PlayingTable {final int cardRowsSize = 4;
 
     public void addToChosen(Card card){
         chosenCards[0].add(card);
-
     }
-
     public Deck getDeck() {
         return deck;
     }
@@ -174,9 +177,7 @@ public class PlayingTable {final int cardRowsSize = 4;
         players[0].setTable(this);
         players[1].setTable(this);
 
-
         cardRows = new ArrayList[cardRowsSize];
-
 
         try {
             Deck deck1 = new Deck("src/Cards");
@@ -185,7 +186,6 @@ public class PlayingTable {final int cardRowsSize = 4;
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-
 
         for (int i = 0; i < cardRowsSize; i++) {
             cardRows[i] = new ArrayList<Card>();
@@ -206,15 +206,11 @@ public class PlayingTable {final int cardRowsSize = 4;
         return output;
     }
 
-
     public void showRows(){
         for (int i = 0; i < cardRowsSize; i++) {
             System.out.println(cardRows[i].get(0).getNumber());
         }
     }
-
-
-
 
     public void dmgCalculation (int rowIndex,Player humanPlayer){
         DmgCalculator dmgCalculator= new DmgCalculator();
@@ -231,22 +227,12 @@ public class PlayingTable {final int cardRowsSize = 4;
         System.out.println("The chosen card is: " + humanPlayer.chooseCard(1).getNumber() );
 
         humanPlayer.placeCard(humanPlayer.chooseCard(1), rowIndex);
-
-
     }
-
-
-
-
-
 
     public Card cardChecker(Card c, Card b){
         if (c.getNumber()<b.getNumber()){
             return c;
-
         }
-
         else return b;
     }
-
 }

@@ -24,6 +24,12 @@ import java.util.concurrent.CountDownLatch;
 public class take5view {
 
 
+    BorderPane borderPane;
+//     HBox bottomImages = new HBox();
+//     HBox topImages = new HBox();
+//    VBox CenterImages = new VBox();
+
+
    protected static List<ImageView> AIimages = new ArrayList<>();
     protected static  List<Card>CardsOfPlayer= new ArrayList<>();
     protected static   List<ImageView> PlayerImages = new ArrayList<>();
@@ -94,6 +100,9 @@ public class take5view {
         return h1;
     }
 
+    public void  updateRowsInPane(VBox rows) {
+        this.rows=rows;
+    }
     public void buildBorderPane(PlayingTable playingTable){
 
        rows= h1.buildRows(playingTable);

@@ -17,6 +17,39 @@ public class HumanPlayer extends Player {
 //        return null;
 //    }
 
+
+    public int getTheSelectedCardFromHand(Card card) {
+        int y = 0;
+        System.out.println(card.getNumber()+ "number of card");
+        for (int i = 0; i < hand.cards.size(); i++) {
+            System.out.println(i + "smth");
+            if (hand.cards.get(i).getNumber() == card.getNumber()) {
+                System.out.println(hand.cards.get(i).getNumber() + "hand cards");
+                System.out.println(card.getNumber() + "inputed card");
+                return i;
+            }
+
+
+
+        }
+        System.out.println(y);
+        return 0;
+    }
+
+    public int findCardPlaceInHand(Card card) {
+        int index = -1;
+        for (int i = 0; i < this.hand.cards.size(); i++) {
+
+            if (card.getNumber() == this.hand.cards.get(i).getNumber()) {
+                index = i;
+            }
+
+        }
+        return index;
+
+
+    }
+
     @Override
     public void placeCard(Card card, int row) {
         table.addCard(card, row);
