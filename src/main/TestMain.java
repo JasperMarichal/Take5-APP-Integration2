@@ -5,6 +5,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import view.MainMenu.MainPresenter;
 import view.MainMenu.MainView;
+import view.Start.StartPresenter;
+import view.Start.StartView;
 
 public class TestMain extends Application {
 
@@ -16,6 +18,8 @@ public class TestMain extends Application {
         MainView mainView = new MainView();
         MainPresenter mainPresenter = new MainPresenter(mainView);
         Scene scene = new Scene(mainView, 1200,700);
+
+
         stage.setScene(scene);
         stage.show();
 

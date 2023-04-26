@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import view.Rules.RulesPresenter;
 import view.Rules.RulesView;
@@ -22,19 +23,17 @@ public class MainPresenter {
     }
 
     private void addEventHandlers(){
+        //Set hover animation ro buttons
         setupHoverAnimation(view.getStartButton());
         setupHoverAnimation(view.getLoadButton());
         setupHoverAnimation(view.getRulesButton());
         setupHoverAnimation(view.getExitButton());
-        view.getStartButton().setOnMouseClicked(e ->{setPlayerView();});
-        view.getRulesButton().setOnMouseClicked(e ->{setRulesView();});
-        view.getExitButton().setOnMouseClicked(e ->{
-            if(exitApplication()){
-                Platform.exit();
-            } else {
-                e.consume();
-            }
-        });
+
+        //Event handlers to buttons, changing the screen
+        view.getStartButton().setOnMouseClicked(this::setStartView); //method reference
+        view.getRulesButton().setOnMouseClicked(this::setRulesView); //method reference
+        view.getExitButton().setOnMouseClicked(this::exitApplication); //method reference
+
     }
 
     private void setupHoverAnimation(Button button) {
@@ -47,18 +46,19 @@ public class MainPresenter {
         scaleOut.setToX(1);
         scaleOut.setToY(1);
 
+        // Animation is played when the mouse is hovering the button
         button.setOnMouseEntered(event -> scaleIn.play());
         button.setOnMouseExited(event -> scaleOut.play());
     }
 
-    private void setPlayerView(){
+    private void setStartView(MouseEvent e){
         StartView startView = new StartView();
         StartPresenter startPresenter = new StartPresenter(startView);
         view.getScene().setRoot(startView);
         startView.getScene().getWindow().sizeToScene();
     }
 
-    private void setRulesView(){
+    private void setRulesView(MouseEvent e){
         RulesView rulesView = new RulesView();
         RulesPresenter rulesPresenter = new RulesPresenter(rulesView);
         view.getScene().setRoot(rulesView);
@@ -66,20 +66,18 @@ public class MainPresenter {
     }
 
 
-    private boolean exitApplication(){
+    private void exitApplication(MouseEvent e){
         final Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText("Do you really want to quit this awesome application ?");
         alert.setTitle("Quit application");
         Optional<ButtonType> choice = alert.showAndWait();
-
-        return (ButtonType.OK == choice.get());
+        choice.ifPresent(buttonType -> {
+            if ((buttonType == ButtonType.OK)) {
+                Platform.exit();
+            } else {
+                e.consume();
+            }
+        });
     }
-
-
-
-
-
-
-
 
 }
