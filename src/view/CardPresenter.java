@@ -95,12 +95,12 @@ public class CardPresenter {
 
         for (int i=0; i<view.PlayerImages.size(); i++){
             System.out.println(i);
-            Card c= model.getPlayers()[1].getHand().getCards().get(i);
+            Card c= model.getPlayers()[0].getHand().getCards().get(i);
                 int y=i;
                 ImageView currentCard= (view.PlayerImages.get(i));
             ((ImageView)currentCard).addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
                     if (getCounterForLatch()==0){
-                        int humanIndex= (model.getPlayers()[1]).getTheSelectedCardFromHand(c);
+                        int humanIndex= model.getPlayers()[0].getTheSelectedCardFromHand(c);
 
                         String s=    currentCard.getImage().getUrl();
                         javafx.scene.image.Image imgForCenter= new Image(s);
@@ -112,7 +112,7 @@ public class CardPresenter {
                         currentImageWithoutClickEvent2.setFitHeight(180);
 //            cardHolder.getChildren().add(currentImageWithoutClickEvent);
                         VBox vBox = new VBox(currentImageWithoutClickEvent2);
-                        model.getBorderPane().setRight(vBox);
+//                        model.getBorderPane().setRight(vBox);
 
 
                         Integer i1= model.getPlayableRows(model.getCardScanner().scanAndRetrieveCardForPlay(s));
@@ -142,6 +142,7 @@ public class CardPresenter {
                                 view.getH1().refreshRows(model);
                             }
                             else {
+                                model.dmgCalculation(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
                                 model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
                                 System.out.println(aiCardRowSelectionForRetrival + "Proverka");
 //                                ((HBox)view.rows.getChildren().get(aiCardRowSelectionForRetrival)).getChildren().clear();
@@ -161,7 +162,7 @@ public class CardPresenter {
 
 
                             forFirstRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 ->{
-
+                                model.dmgCalculation(0, model.getPlayers()[0]);
                                 model.getAllCardsFromRow(0);
                               removeChildren(view,forFirstRow,forSecondRow,forThirdRow,forFourTHRow);
 //                                ((HBox)view.rows.getChildren().get(0)).getChildren().removeAll();
@@ -184,6 +185,8 @@ public class CardPresenter {
 
                                 }
                                 else {
+                                    model.dmgCalculation(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
+
                                     model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
                                     System.out.println(aiCardRowSelectionForRetrival + "Proverka");
 //                                    ((HBox)view.rows.getChildren().get(aiCardRowSelectionForRetrival)).getChildren().clear();
@@ -197,6 +200,7 @@ public class CardPresenter {
 
                             });
                             forSecondRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 ->{
+                                model.dmgCalculation(1, model.getPlayers()[0]);
 
                                 model.getAllCardsFromRow(1);
 
@@ -222,6 +226,8 @@ public class CardPresenter {
 
                                 }
                                 else {
+                                    model.dmgCalculation(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
+
                                     model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
                                     System.out.println(aiCardRowSelectionForRetrival + "Proverka");
 //                                    ((HBox)view.rows.getChildren().get(aiCardRowSelectionForRetrival)).getChildren().clear();
@@ -235,8 +241,9 @@ public class CardPresenter {
 
                             });
                             forThirdRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 ->{
+                                model.dmgCalculation(2, model.getPlayers()[0]);
 
-                                model.getAllCardsFromRow(3);
+                                model.getAllCardsFromRow(2);
                                 removeChildren(view,forFirstRow,forSecondRow,forThirdRow,forFourTHRow);
 //                                ((HBox)view.rows.getChildren().get(2)).getChildren().clear();
 //                                ((HBox)view.rows.getChildren().get(2)).getChildren().add(currentImageWithoutClickEvent);
@@ -256,6 +263,8 @@ public class CardPresenter {
 
                                 }
                                 else {
+                                    model.dmgCalculation(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
+
                                     model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
                                     System.out.println(aiCardRowSelectionForRetrival + "Proverka");
 //                                    ((HBox)view.rows.getChildren().get(aiCardRowSelectionForRetrival)).getChildren().clear();
@@ -269,6 +278,7 @@ public class CardPresenter {
 
                             });
                             forFourTHRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 ->{
+                                model.dmgCalculation(3, model.getPlayers()[0]);
 
                                 model.getAllCardsFromRow(3);
                                 removeChildren(view,forFirstRow,forSecondRow,forThirdRow,forFourTHRow);
@@ -295,6 +305,8 @@ public class CardPresenter {
 
                                 }
                                 else {
+                                    model.dmgCalculation(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
+
                                     model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
                                     System.out.println(aiCardRowSelectionForRetrival + "Proverka");
 //                                    ((HBox)view.rows.getChildren().get(aiCardRowSelectionForRetrival)).getChildren().clear();
@@ -318,6 +330,13 @@ public class CardPresenter {
 
 
                         model.getTopImages().getChildren().remove(1);
+                          if (model.getPlayers()[0].getHand().getCards().size()==0){
+                              model.getPlayers()[0].draw(model.getDeck());
+                              model.getPlayers()[1].draw(model.getDeck());
+                              view.refreshHands(model);
+                              addEventHandlers();
+                              model.refreshPane();
+                          }
 
                     }
 

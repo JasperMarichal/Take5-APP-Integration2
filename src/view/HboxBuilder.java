@@ -1,6 +1,7 @@
 package view;
 
 import javafx.geometry.Insets;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -18,6 +19,23 @@ public class HboxBuilder {
 
     public VBox buildRows(PlayingTable playingTable){
 
+
+
+
+        HBox Aipoints= new HBox();
+        HBox HumanPoints= new HBox();
+
+        Label Human= new Label("" +playingTable.getPlayers()[0].getCounterPoints());
+        Label Ai= new Label("" +playingTable.getPlayers()[1].getCounterPoints());
+
+        Aipoints.getChildren().add(Ai);
+        HumanPoints.getChildren().add(Human);
+        VBox vbox= new VBox();
+        vbox.getChildren().add(Ai);
+        vbox.getChildren().add(Human);
+
+
+        playingTable.getBorderPane().setRight(vbox);
         for (int x = 0; x< playingTable.getCardRows()[0].size(); x++ ) {
             Image img2 = playingTable.getCardRows()[0].get(x).getImage();
             ImageView imgv = new ImageView(img2);

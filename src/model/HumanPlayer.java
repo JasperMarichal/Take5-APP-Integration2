@@ -20,9 +20,11 @@ public class HumanPlayer extends Player {
 
     public int getTheSelectedCardFromHand(Card card) {
         int y = 0;
+        System.out.println( card.getNumber() + "podadena karta" );
         System.out.println(card.getNumber()+ "number of card");
         for (int i = 0; i < hand.cards.size(); i++) {
             System.out.println(i + "smth");
+            System.out.println(hand.cards.get(i).getNumber() + " karta vzeta ot ruka ");
             if (hand.cards.get(i).getNumber() == card.getNumber()) {
                 System.out.println(hand.cards.get(i).getNumber() + "hand cards");
                 System.out.println(card.getNumber() + "inputed card");
@@ -39,7 +41,7 @@ public class HumanPlayer extends Player {
     public int findCardPlaceInHand(Card card) {
         int index = -1;
         for (int i = 0; i < this.hand.cards.size(); i++) {
-
+            System.out.println(hand.cards.get(i) + " karta vzeta ot ruka ");
             if (card.getNumber() == this.hand.cards.get(i).getNumber()) {
                 index = i;
             }

@@ -3,6 +3,7 @@ package view;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -113,7 +114,6 @@ public class take5view {
         int counterForLatch=0;
         CountDownLatch latch = new CountDownLatch(counterForLatch);
 
-
             for (int i = 0; i < playingTable.getPlayers()[0].getHand().getCards().size(); i++){
             System.out.println(playingTable.getPlayers()[0].getHand().getCards().get(i));
                 CardsOfPlayer.add(playingTable.getPlayers()[1].getHand().getCards().get(i));
@@ -152,4 +152,52 @@ public class take5view {
     public BorderPane getBorderPane1() {
         return borderPane1;
     }
-}
+
+
+    public void refreshHands(PlayingTable playingTable){
+        for (int i=0; i<CardsOfPlayer.size(); i++){
+            CardsOfPlayer.remove(i);
+        }
+        for (int i=0; i<AIimages.size(); i++){
+            AIimages.remove(i);
+        }
+        for (int i = 0; i < playingTable.getPlayers()[0].getHand().getCards().size(); i++){
+            System.out.println(playingTable.getPlayers()[0].getHand().getCards().get(i));
+
+            CardsOfPlayer.add(playingTable.getPlayers()[1].getHand().getCards().get(i));
+            ImageView currentCardViewai =  getImageView( playingTable.getPlayers()[1].getHand().getCards().get(i).getURL());
+            ImageView currentCardView =  getImageView( playingTable.getPlayers()[0].getHand().getCards().get(i).getURL());
+            javafx.scene.image.Image img= new javafx.scene.image.Image(urlBack);
+            Card c= playingTable.getPlayers()[1].getHand().getCards().get(i);
+            PlayerImages.add(currentCardView);
+
+
+
+
+            ImageView opponentsCards= new ImageView(img);
+            opponentsCards.setFitHeight(160);
+            opponentsCards.setFitWidth(110);
+
+            playingTable.getTopImages().getChildren().add(opponentsCards);
+            playingTable.getBottomImages().getChildren().add(currentCardView);
+            HBox.setMargin(currentCardView, new javafx.geometry.Insets(10, 10 , 10, 10));
+
+
+            AIimages.add(currentCardViewai);
+        }
+
+
+
+        VBox.setMargin(rows, new Insets(10, 0, 0, 0));
+        playingTable.getBorderPane().setBottom(playingTable.getBottomImages());
+        playingTable.getBorderPane().setTop(playingTable.getTopImages());
+
+
+        borderPane1= playingTable.getBorderPane();
+    }
+
+    }
+
+
+
+

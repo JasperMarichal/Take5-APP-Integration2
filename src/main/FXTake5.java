@@ -36,11 +36,18 @@ public class FXTake5 extends Application {
         playingTable.showRows();
         playingTable.showRows();
 
-
+            for (int i=0; i<playingTable.getPlayers().length; i++){
+                System.out.println(playingTable.getPlayers()[i] + "igrach ");
+            }
         for (int i=0; i< hp.getHand().getCards().size(); i++) {
 
 
-            System.out.println(hp.getHand().getCards().get(i).getNumber() + "AI CARDS ");
+            System.out.println(hp.getHand().getCards().get(i).getNumber() + "human cards ");
+        }
+        for (int i=0; i< AI.getHand().getCards().size(); i++) {
+
+
+            System.out.println(AI.getHand().getCards().get(i).getNumber() + "AI CARDS ");
         }
 
 

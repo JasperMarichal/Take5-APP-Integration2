@@ -221,12 +221,8 @@ public class PlayingTable {final int cardRowsSize = 4;
             System.out.println(bulls);
         }
 
-        getAllCardsFromRow(rowIndex);
 
-        System.out.println(humanPlayer.getName() + " now you have: " + humanPlayer.getCounterPoints() + " left.");
-        System.out.println("The chosen card is: " + humanPlayer.chooseCard(1).getNumber() );
 
-        humanPlayer.placeCard(humanPlayer.chooseCard(1), rowIndex);
     }
 
     public Card cardChecker(Card c, Card b){
