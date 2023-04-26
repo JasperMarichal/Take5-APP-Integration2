@@ -68,8 +68,10 @@ public class MainPresenter {
 
     private boolean exitApplication(){
         final Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setContentText("Do you really want to quit this awesome application ?");
+        alert.setHeaderText("Do you really want to quit this awesome application ?");
+        alert.setTitle("Quit application");
         Optional<ButtonType> choice = alert.showAndWait();
+
         return (ButtonType.OK == choice.get());
     }
 
