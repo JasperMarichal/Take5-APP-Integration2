@@ -63,8 +63,8 @@ public class MainPresenter {
     }
 
     private void setRulesView(){
-        RulesView rulesView = new RulesView();
-        RulesPresenter rulesPresenter = new RulesPresenter(rulesView);
+        RulesView rulesView = new RulesView(view);
+        RulesPresenter rulesPresenter = new RulesPresenter(rulesView, view);
         view.getScene().setRoot(rulesView);
         rulesView.getScene().getWindow().sizeToScene();
     }

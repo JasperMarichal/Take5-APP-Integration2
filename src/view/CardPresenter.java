@@ -35,8 +35,8 @@ public class CardPresenter {
         this.view = view;
         this.stage= stage;
         view.buildScene1(model,stage);
-        addEventHandlersForButton();
-//        addEventHandlers();
+//        addEventHandlersForButton();
+        addEventHandlers();
 //        updateView(model);
 
 
@@ -110,9 +110,9 @@ public class CardPresenter {
                             ImageView currentImageWithoutClickEvent2 = new ImageView(imgForCenter);
                             currentImageWithoutClickEvent2.setFitWidth(150);
                             currentImageWithoutClickEvent2.setFitHeight(180);
-//            cardHolder.getChildren().add(currentImageWithoutClickEvent);
+//            view.cardHolder.getChildren().add(currentImageWithoutClickEvent);
                             VBox vBox = new VBox(currentImageWithoutClickEvent2);
-//                        model.getBorderPane().setRight(vBox);
+//                        model.getBorderPane().setRight();
 
 
                             Integer i1 = model.getPlayableRows(model.getCardScanner().scanAndRetrieveCardForPlay(s));

@@ -29,6 +29,11 @@ public class take5view {
     HBox topImages = new HBox();
     VBox CenterImages = new VBox();
 
+    HBox HumanImagesForRightPartOfTheBorderPane= new HBox();
+    HBox AIImagesForRightPartOfTheBorderPane= new HBox();
+
+
+
     public BorderPane getBorderPane() {
         return borderPane;
     }
@@ -106,10 +111,9 @@ public class take5view {
     }
     public void buildScene1(PlayingTable playingTable, Stage stage){
         BorderPane borderPane = new BorderPane();
-
-        borderPane.setCenter(button);
-        borderPane2=borderPane;
-        Scene sceneForMenu= new Scene(getBorderPane2());
+        buildBorderPane(playingTable);
+//        borderPane2=borderPane;
+        Scene sceneForMenu= new Scene(getBorderPane1());
         stage.setScene(sceneForMenu);
         stage.setHeight(900);
         stage.setWidth(1500);
@@ -134,6 +138,7 @@ public class take5view {
 
         rows= h1.buildRows(playingTable);
         getBorderPane().setCenter(rows);
+
 
         // TODO: clear pane
         // append player one cards
