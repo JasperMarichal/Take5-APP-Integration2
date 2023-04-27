@@ -4,9 +4,12 @@ import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
+import view.MainMenu.MainPresenter;
+import view.MainMenu.MainView;
+
 
 public class StartPresenter {
-    private StartView view;
+    private final StartView view;
 
     public StartPresenter(StartView view) {
         this.view = view;
@@ -15,7 +18,11 @@ public class StartPresenter {
     }
 
     private void addEventListeners() {
+        view.getBackButton().setOnMouseClicked(this::setMainView);
+    }
 
+    private void setMainView(MouseEvent e){
+        view.getScene().setRoot(MainPresenter.getMainView());
     }
 
     private void addAnimation(){
@@ -27,7 +34,7 @@ public class StartPresenter {
     private void fadeInTextField() {
         view.getUsername().setOpacity(0);
 
-        FadeTransition fadeIn = new FadeTransition(Duration.seconds(2.5), view.getUsername());
+        FadeTransition fadeIn = new FadeTransition(Duration.seconds(0.5), view.getUsername());
         fadeIn.setToValue(1);
         fadeIn.play();
     }

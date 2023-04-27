@@ -64,6 +64,10 @@ public class MainView extends HBox {
 
     }
 
+    public Label getTitle() {
+        return title;
+    }
+
     public Button getStartButton() {
         return startButton;
     }

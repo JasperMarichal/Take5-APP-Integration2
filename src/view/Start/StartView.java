@@ -74,7 +74,6 @@ public class StartView extends BorderPane {
     public TextField getUsername() {
         return username;
     }
-
     public Button getStartButton() {
         return startButton;
     }

@@ -15,12 +15,13 @@ import view.Start.StartView;
 import java.util.Optional;
 
 public class MainPresenter {
-    private final MainView view;
-
+    private static MainView view;
     public MainPresenter(MainView view){
-        this.view = view;
+        MainPresenter.view = view;
         addEventHandlers();
+        addAnimations();
     }
+
 
     private void addEventHandlers(){
         //Set hover animation ro buttons
@@ -78,6 +79,21 @@ public class MainPresenter {
                 e.consume();
             }
         });
+    }
+
+    private void addAnimations(){
+        ScaleTransition scale = new ScaleTransition(Duration.seconds(0.6), view.getTitle());
+        scale.setFromX(1);
+        scale.setFromY(1);
+        scale.setToX(1.2);
+        scale.setToY(1.2);
+        scale.setAutoReverse(true);
+        scale.setCycleCount(2);
+        scale.play();
+    }
+
+    public static MainView getMainView(){
+        return view;
     }
 
 }
