@@ -6,7 +6,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.text.Font;
 
 public class StartView extends BorderPane {
     VBox vbox;
@@ -27,10 +26,6 @@ public class StartView extends BorderPane {
     }
 
     private void layoutNodes() {
-        //Font
-        Font customFont = Font.loadFont(getClass().getResourceAsStream("/fonts/LuckiestGuy-Regular.ttf"), 40);
-        Font buttonFont = Font.font("Luckiest Guy",20);
-
         setCenter(vbox);
         vbox.getChildren().addAll(username,startButton);
         setBottom(backButton);
