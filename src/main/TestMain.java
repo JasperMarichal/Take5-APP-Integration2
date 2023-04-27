@@ -5,8 +5,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import view.MainMenu.MainPresenter;
 import view.MainMenu.MainView;
-import view.Start.StartPresenter;
-import view.Start.StartView;
+
 
 public class TestMain extends Application {
 
