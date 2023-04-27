@@ -21,7 +21,7 @@ public class FXTake5 extends Application {
         HumanPlayer hp= new HumanPlayer("Vasil",64);
         AiPlayer AI= new AiPlayer("Bot 1", 64);
 
-        PlayingTable playingTable = new PlayingTable(hp, AI, new BorderPane());
+        PlayingTable playingTable = new PlayingTable(hp, AI);
 
         take5view b1= new take5view();
         playingTable.getPlayers()[0].draw(playingTable.getDeck());

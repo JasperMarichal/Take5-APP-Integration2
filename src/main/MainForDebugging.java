@@ -14,7 +14,7 @@ public class MainForDebugging {
         AiPlayer AI= new AiPlayer("Bot 1", 64);
 
 
-        PlayingTable playingTable = new PlayingTable(hp1, AI,new BorderPane() );
+        PlayingTable playingTable = new PlayingTable(hp1, AI);
 
         playingTable.getPlayers()[0].draw(playingTable.getDeck());
         playingTable.getPlayers()[1].draw(playingTable.getDeck());

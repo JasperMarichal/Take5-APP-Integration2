@@ -44,7 +44,7 @@ public class CardPresenter {
 
 //    public Card getCardFromArrayListOfImageViews(List<ImageView> list , String URL ){
 
-//        for (int i=0; i<list.size(); i++){
+    //        for (int i=0; i<list.size(); i++){
 //            Card c;
 //                String s1URL=
 //            String s1 = c.getURL();
@@ -96,255 +96,265 @@ public class CardPresenter {
         for (int i=0; i<view.PlayerImages.size(); i++){
             System.out.println(i);
             Card c= model.getPlayers()[0].getHand().getCards().get(i);
-                int y=i;
-                ImageView currentCard= (view.PlayerImages.get(i));
+            int y=i;
+            ImageView currentCard= (view.PlayerImages.get(i));
             ((ImageView)currentCard).addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-                    if (getCounterForLatch()==0){
-                        int humanIndex= model.getPlayers()[0].getTheSelectedCardFromHand(c);
+                        if (getCounterForLatch() == 0) {
+                            int humanIndex = model.getPlayers()[0].getTheSelectedCardFromHand(c);
 
-                        String s=    currentCard.getImage().getUrl();
-                        javafx.scene.image.Image imgForCenter= new Image(s);
+                            String s = currentCard.getImage().getUrl();
+                            javafx.scene.image.Image imgForCenter = new Image(s);
 
 
-                        ImageView currentImageWithoutClickEvent= new ImageView(imgForCenter);
-                        ImageView currentImageWithoutClickEvent2= new ImageView(imgForCenter);
-                        currentImageWithoutClickEvent2.setFitWidth(150);
-                        currentImageWithoutClickEvent2.setFitHeight(180);
+                            ImageView currentImageWithoutClickEvent = new ImageView(imgForCenter);
+                            ImageView currentImageWithoutClickEvent2 = new ImageView(imgForCenter);
+                            currentImageWithoutClickEvent2.setFitWidth(150);
+                            currentImageWithoutClickEvent2.setFitHeight(180);
 //            cardHolder.getChildren().add(currentImageWithoutClickEvent);
-                        VBox vBox = new VBox(currentImageWithoutClickEvent2);
+                            VBox vBox = new VBox(currentImageWithoutClickEvent2);
 //                        model.getBorderPane().setRight(vBox);
 
 
-                        Integer i1= model.getPlayableRows(model.getCardScanner().scanAndRetrieveCardForPlay(s));
-                        model.getBottomImages().getChildren().remove(   currentCard);
-                        currentImageWithoutClickEvent.setFitWidth(80);
-                        currentImageWithoutClickEvent.setFitHeight(100);
-                        if (i1!= null){
+                            Integer i1 = model.getPlayableRows(model.getCardScanner().scanAndRetrieveCardForPlay(s));
+                            view.getBottomImages().getChildren().remove(currentCard);
+                            currentImageWithoutClickEvent.setFitWidth(80);
+                            currentImageWithoutClickEvent.setFitHeight(100);
+                            if (i1 != null) {
 //                            model.getCardRows()[i1].add(model.getCardScanner().scanAndRetrieveCardForPlay(s));
-                            ((HBox)view.rows.getChildren().get(i1)).getChildren().add(currentImageWithoutClickEvent);
-                            (model.getPlayers()[0]).playCard(humanIndex,i1);
-                            view.getH1().refreshRows(model);
+                                ((HBox) view.rows.getChildren().get(i1)).getChildren().add(currentImageWithoutClickEvent);
+                                (model.getPlayers()[0]).playCard(humanIndex, i1);
+                                view.getH1().refreshRows(model);
 //                    playingTable.CollectCardRows(i1);
-                            int aiCardIndex= ((AiPlayer)(model.getPlayers()[1])).cardPlayable();
-                            ImageView AIimgview=getImageView(((AiPlayer)(model.getPlayers()[1])).getCard(aiCardIndex).getURL());
-                            AIimgview.setFitHeight(100);
-                            AIimgview.setFitWidth(80);
-                            String aistring=AIimgview.getImage().getUrl();
-                            Card cAI= ((AiPlayer)(model.getPlayers()[1])).getHand().getCards().get(aiCardIndex);
-                            Integer i2= model.getPlayableRows(cAI);
-                            int aiCardRowSelectionForRetrival= ((AiPlayer)(model.getPlayers()[1])).cardRowNumberForReplacement();
-                            System.out.println(aiCardRowSelectionForRetrival + "Proverka");
-                            if (i2!= null){
+                                int aiCardIndex = ((AiPlayer) (model.getPlayers()[1])).cardPlayable();
+                                ImageView AIimgview = getImageView(((AiPlayer) (model.getPlayers()[1])).getCard(aiCardIndex).getURL());
+                                AIimgview.setFitHeight(100);
+                                AIimgview.setFitWidth(80);
+                                String aistring = AIimgview.getImage().getUrl();
+                                Card cAI = ((AiPlayer) (model.getPlayers()[1])).getHand().getCards().get(aiCardIndex);
+                                Integer i2 = model.getPlayableRows(cAI);
+                                int aiCardRowSelectionForRetrival = ((AiPlayer) (model.getPlayers()[1])).cardRowNumberForReplacement();
                                 System.out.println(aiCardRowSelectionForRetrival + "Proverka");
+                                if (i2 != null) {
+                                    System.out.println(aiCardRowSelectionForRetrival + "Proverka");
 //                                model.getCardRows()[i2].add(model.getCardScanner().scanAndRetrieveCardForPlay(aistring));
 //                                ((HBox)view.rows.getChildren().get(i2)).getChildren().add(AIimgview);
-                                ((AiPlayer)(model.getPlayers()[1])).playCard(aiCardIndex,i2);
-                                view.getH1().refreshRows(model);
-                            }
-                            else {
-                                model.dmgCalculation(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
-                                model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
-                                System.out.println(aiCardRowSelectionForRetrival + "Proverka");
+                                    ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, i2);
+                                    view.getH1().refreshRows(model);
+                                } else {
+                                    model.dmgCalculation(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
+                                    model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
+                                    System.out.println(aiCardRowSelectionForRetrival + "Proverka");
 //                                ((HBox)view.rows.getChildren().get(aiCardRowSelectionForRetrival)).getChildren().clear();
 //                                ((HBox)view.rows.getChildren().get(aiCardRowSelectionForRetrival)).getChildren().add(AIimgview);
-                                ((AiPlayer)(model.getPlayers()[1])).playCard(aiCardIndex,aiCardRowSelectionForRetrival);
-                                view.getH1().refreshRows(model);
-                                model.showRows();
-                            }
-                        }
-                        else {
-                            setCounterForLatch(1);
+                                    ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, aiCardRowSelectionForRetrival);
+                                    view.getH1().refreshRows(model);
+                                    model.showRows();
+                                }
+                            } else {
+                                setCounterForLatch(1);
 
-                            Button forFirstRow= new Button();
-                            Button forSecondRow= new Button();
-                            Button forThirdRow= new Button();
-                            Button forFourTHRow= new Button();
+                                Button forFirstRow = new Button();
+                                Button forSecondRow = new Button();
+                                Button forThirdRow = new Button();
+                                Button forFourTHRow = new Button();
 
 
-                            forFirstRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 ->{
-                                model.dmgCalculation(0, model.getPlayers()[0]);
-                                model.getAllCardsFromRow(0);
-                              removeChildren(view,forFirstRow,forSecondRow,forThirdRow,forFourTHRow);
+                                forFirstRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> {
+                                    model.dmgCalculation(0, model.getPlayers()[0]);
+                                    model.getAllCardsFromRow(0);
+                                    removeChildren(view, forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
 //                                ((HBox)view.rows.getChildren().get(0)).getChildren().removeAll();
 //                                ((HBox)view.rows.getChildren().get(0)).getChildren().add(currentImageWithoutClickEvent);
-                                (model.getPlayers()[0]).playCard(humanIndex,0);
+                                    (model.getPlayers()[0]).playCard(humanIndex, 0);
 
 
-                                int aiCardIndex= ((AiPlayer)(model.getPlayers()[1])).cardPlayable();
-                                ImageView AIimgview=getImageView(((AiPlayer)(model.getPlayers()[1])).getCard(aiCardIndex).getURL());
-                                AIimgview.setFitHeight(100);
-                                AIimgview.setFitWidth(80);
-                                String aistring=AIimgview.getImage().getUrl();
-                                Card cAI= ((AiPlayer)(model.getPlayers()[1])).getHand().getCards().get(aiCardIndex);
-                                Integer i2= model.getPlayableRows(cAI);
-                                int aiCardRowSelectionForRetrival= ((AiPlayer)(model.getPlayers()[1])).cardRowNumberForReplacement();
-                                if (i2!= null){
+                                    int aiCardIndex = ((AiPlayer) (model.getPlayers()[1])).cardPlayable();
+                                    ImageView AIimgview = getImageView(((AiPlayer) (model.getPlayers()[1])).getCard(aiCardIndex).getURL());
+                                    AIimgview.setFitHeight(100);
+                                    AIimgview.setFitWidth(80);
+                                    String aistring = AIimgview.getImage().getUrl();
+                                    Card cAI = ((AiPlayer) (model.getPlayers()[1])).getHand().getCards().get(aiCardIndex);
+                                    Integer i2 = model.getPlayableRows(cAI);
+                                    int aiCardRowSelectionForRetrival = ((AiPlayer) (model.getPlayers()[1])).cardRowNumberForReplacement();
+                                    if (i2 != null) {
 //                                    model.getCardRows()[i2].add(model.getCardScanner().scanAndRetrieveCardForPlay(aistring));
 //                                    ((HBox)view.rows.getChildren().get(i2)).getChildren().add(AIimgview);
-                                    ((AiPlayer)(model.getPlayers()[1])).playCard(aiCardIndex,i2);
+                                        ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, i2);
 
-                                }
-                                else {
-                                    model.dmgCalculation(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
+                                    } else {
+                                        model.dmgCalculation(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
 
-                                    model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
-                                    System.out.println(aiCardRowSelectionForRetrival + "Proverka");
+                                        model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
+                                        System.out.println(aiCardRowSelectionForRetrival + "Proverka");
 //                                    ((HBox)view.rows.getChildren().get(aiCardRowSelectionForRetrival)).getChildren().clear();
 //                                    ((HBox)view.rows.getChildren().get(aiCardRowSelectionForRetrival)).getChildren().add(AIimgview);
-                                    ((AiPlayer)(model.getPlayers()[1])).playCard(aiCardIndex,aiCardRowSelectionForRetrival);
+                                        ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, aiCardRowSelectionForRetrival);
 
-                                }
-                                setCounterForLatch(0);
-                                view.getH1().refreshRows(model);
-                                model.showRows();
+                                    }
+                                    setCounterForLatch(0);
+                                    view.getH1().refreshRows(model);
+                                    model.showRows();
+                                    view.refreshHands(model);
+//                            view.borderPane1.setBottom(view.bottomImages);
+                                    addEventHandlers();
 
-                            });
-                            forSecondRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 ->{
-                                model.dmgCalculation(1, model.getPlayers()[0]);
+                                });
+                                forSecondRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> {
+                                    model.dmgCalculation(1, model.getPlayers()[0]);
 
-                                model.getAllCardsFromRow(1);
+                                    model.getAllCardsFromRow(1);
 
 
-                                removeChildren(view,forFirstRow,forSecondRow,forThirdRow,forFourTHRow);
+                                    removeChildren(view, forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
 //                                ((HBox)view.rows.getChildren().get(1)).getChildren().clear();
 //                                ((HBox)view.rows.getChildren().get(1)).getChildren().add(currentImageWithoutClickEvent);
-                                (model.getPlayers()[0]).playCard(humanIndex,1);
+                                    (model.getPlayers()[0]).playCard(humanIndex, 1);
 
 
-                                int aiCardIndex= ((AiPlayer)(model.getPlayers()[1])).cardPlayable();
-                                ImageView AIimgview=getImageView(((AiPlayer)(model.getPlayers()[1])).getCard(aiCardIndex).getURL());
-                                AIimgview.setFitHeight(100);
-                                AIimgview.setFitWidth(80);
-                                String aistring=AIimgview.getImage().getUrl();
-                                Card cAI= ((AiPlayer)(model.getPlayers()[1])).getHand().getCards().get(aiCardIndex);
-                                Integer i2= model.getPlayableRows(cAI);
-                                int aiCardRowSelectionForRetrival= ((AiPlayer)(model.getPlayers()[1])).cardRowNumberForReplacement();
-                                if (i2!= null){
+                                    int aiCardIndex = ((AiPlayer) (model.getPlayers()[1])).cardPlayable();
+                                    ImageView AIimgview = getImageView(((AiPlayer) (model.getPlayers()[1])).getCard(aiCardIndex).getURL());
+                                    AIimgview.setFitHeight(100);
+                                    AIimgview.setFitWidth(80);
+                                    String aistring = AIimgview.getImage().getUrl();
+                                    Card cAI = ((AiPlayer) (model.getPlayers()[1])).getHand().getCards().get(aiCardIndex);
+                                    Integer i2 = model.getPlayableRows(cAI);
+                                    int aiCardRowSelectionForRetrival = ((AiPlayer) (model.getPlayers()[1])).cardRowNumberForReplacement();
+                                    if (i2 != null) {
 //                                    model.getCardRows()[i2].add(model.getCardScanner().scanAndRetrieveCardForPlay(aistring));
 //                                    ((HBox)view.rows.getChildren().get(i2)).getChildren().add(AIimgview);
-                                    ((AiPlayer)(model.getPlayers()[1])).playCard(aiCardIndex,i2);
+                                        ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, i2);
 
-                                }
-                                else {
-                                    model.dmgCalculation(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
+                                    } else {
+                                        model.dmgCalculation(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
 
-                                    model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
-                                    System.out.println(aiCardRowSelectionForRetrival + "Proverka");
+                                        model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
+                                        System.out.println(aiCardRowSelectionForRetrival + "Proverka");
 //                                    ((HBox)view.rows.getChildren().get(aiCardRowSelectionForRetrival)).getChildren().clear();
 //                                    ((HBox)view.rows.getChildren().get(aiCardRowSelectionForRetrival)).getChildren().add(AIimgview);
-                                    ((AiPlayer)(model.getPlayers()[1])).playCard(aiCardIndex,aiCardRowSelectionForRetrival);
-                                }
+                                        ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, aiCardRowSelectionForRetrival);
+                                    }
 
-                                setCounterForLatch(0);
-                                view.getH1().refreshRows(model);
-                                model.showRows();
+                                    setCounterForLatch(0);
+                                    view.getH1().refreshRows(model);
+                                    model.showRows();
+                                    view.refreshHands(model);
+//                            view.borderPane1.setBottom(view.bottomImages);
+                                    addEventHandlers();
 
-                            });
-                            forThirdRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 ->{
-                                model.dmgCalculation(2, model.getPlayers()[0]);
+                                });
+                                forThirdRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> {
+                                    model.dmgCalculation(2, model.getPlayers()[0]);
 
-                                model.getAllCardsFromRow(2);
-                                removeChildren(view,forFirstRow,forSecondRow,forThirdRow,forFourTHRow);
+                                    model.getAllCardsFromRow(2);
+                                    removeChildren(view, forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
 //                                ((HBox)view.rows.getChildren().get(2)).getChildren().clear();
 //                                ((HBox)view.rows.getChildren().get(2)).getChildren().add(currentImageWithoutClickEvent);
-                                (model.getPlayers()[0]).playCard(humanIndex,2);
-                                int aiCardIndex= ((AiPlayer)(model.getPlayers()[1])).cardPlayable();
-                                ImageView AIimgview=getImageView(((AiPlayer)(model.getPlayers()[1])).getCard(aiCardIndex).getURL());
-                                AIimgview.setFitHeight(100);
-                                AIimgview.setFitWidth(80);
-                                String aistring=AIimgview.getImage().getUrl();
-                                Card cAI= ((AiPlayer)(model.getPlayers()[1])).getHand().getCards().get(aiCardIndex);
-                                Integer i2= model.getPlayableRows(cAI);
-                                int aiCardRowSelectionForRetrival= ((AiPlayer)(model.getPlayers()[1])).cardRowNumberForReplacement();
-                                if (i2!= null){
+                                    (model.getPlayers()[0]).playCard(humanIndex, 2);
+                                    int aiCardIndex = ((AiPlayer) (model.getPlayers()[1])).cardPlayable();
+                                    ImageView AIimgview = getImageView(((AiPlayer) (model.getPlayers()[1])).getCard(aiCardIndex).getURL());
+                                    AIimgview.setFitHeight(100);
+                                    AIimgview.setFitWidth(80);
+                                    String aistring = AIimgview.getImage().getUrl();
+                                    Card cAI = ((AiPlayer) (model.getPlayers()[1])).getHand().getCards().get(aiCardIndex);
+                                    Integer i2 = model.getPlayableRows(cAI);
+                                    int aiCardRowSelectionForRetrival = ((AiPlayer) (model.getPlayers()[1])).cardRowNumberForReplacement();
+                                    if (i2 != null) {
 //                                    model.getCardRows()[i2].add(model.getCardScanner().scanAndRetrieveCardForPlay(aistring));
 //                                    ((HBox)view.rows.getChildren().get(i2)).getChildren().add(AIimgview);
-                                    model.getPlayers()[1].playCard(aiCardIndex,i2);
+                                        model.getPlayers()[1].playCard(aiCardIndex, i2);
 
-                                }
-                                else {
-                                    model.dmgCalculation(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
+                                    } else {
+                                        model.dmgCalculation(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
 
-                                    model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
-                                    System.out.println(aiCardRowSelectionForRetrival + "Proverka");
+                                        model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
+                                        System.out.println(aiCardRowSelectionForRetrival + "Proverka");
 //                                    ((HBox)view.rows.getChildren().get(aiCardRowSelectionForRetrival)).getChildren().clear();
 //                                    ((HBox)view.rows.getChildren().get(aiCardRowSelectionForRetrival)).getChildren().add(AIimgview);
-                                    ((AiPlayer)(model.getPlayers()[1])).playCard(aiCardIndex,aiCardRowSelectionForRetrival);
-                                }
+                                        ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, aiCardRowSelectionForRetrival);
+                                    }
 
-                                setCounterForLatch(0);
-                                view.getH1().refreshRows(model);
-                                model.showRows();
+                                    setCounterForLatch(0);
+                                    view.getH1().refreshRows(model);
+                                    model.showRows();
+                                    view.refreshHands(model);
+//                            view.borderPane1.setBottom(view.bottomImages);
+                                    addEventHandlers();
 
-                            });
-                            forFourTHRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 ->{
-                                model.dmgCalculation(3, model.getPlayers()[0]);
+                                });
+                                forFourTHRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> {
+                                    model.dmgCalculation(3, model.getPlayers()[0]);
 
-                                model.getAllCardsFromRow(3);
-                                removeChildren(view,forFirstRow,forSecondRow,forThirdRow,forFourTHRow);
+                                    model.getAllCardsFromRow(3);
+                                    removeChildren(view, forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
 //                                ((HBox)view.rows.getChildren().get(3)).getChildren().clear();
 //                                ((HBox)view.rows.getChildren().get(3)).getChildren().add(currentImageWithoutClickEvent);
-                                (model.getPlayers()[0]).playCard(humanIndex,3);
+                                    (model.getPlayers()[0]).playCard(humanIndex, 3);
 
 
-
-                                int aiCardIndex= ((AiPlayer)(model.getPlayers()[1])).cardPlayable();
-                                ImageView AIimgview=getImageView(((AiPlayer)(model.getPlayers()[1])).getCard(aiCardIndex).getURL());
-                                AIimgview.setFitHeight(100);
-                                AIimgview.setFitWidth(80);
-                                String aistring=AIimgview.getImage().getUrl();
-                                Card cAI= ((AiPlayer)(model.getPlayers()[1])).getHand().getCards().get(aiCardIndex);
-                                Integer i2= model.getPlayableRows(cAI);
-                                int aiCardRowSelectionForRetrival= ((AiPlayer)(model.getPlayers()[1])).cardRowNumberForReplacement();
-                                if (i2!= null){
-                                    System.out.println(aiCardRowSelectionForRetrival + "Proverka");
-                                    model.getCardRows()[i2].add(model.getCardScanner().scanAndRetrieveCardForPlay(aistring));
+                                    int aiCardIndex = ((AiPlayer) (model.getPlayers()[1])).cardPlayable();
+                                    ImageView AIimgview = getImageView(((AiPlayer) (model.getPlayers()[1])).getCard(aiCardIndex).getURL());
+                                    AIimgview.setFitHeight(100);
+                                    AIimgview.setFitWidth(80);
+                                    String aistring = AIimgview.getImage().getUrl();
+                                    Card cAI = ((AiPlayer) (model.getPlayers()[1])).getHand().getCards().get(aiCardIndex);
+                                    Integer i2 = model.getPlayableRows(cAI);
+                                    int aiCardRowSelectionForRetrival = ((AiPlayer) (model.getPlayers()[1])).cardRowNumberForReplacement();
+                                    if (i2 != null) {
+                                        System.out.println(aiCardRowSelectionForRetrival + "Proverka");
+                                        model.getCardRows()[i2].add(model.getCardScanner().scanAndRetrieveCardForPlay(aistring));
 //                                    ((HBox)view.rows.getChildren().get(i2)).getChildren().add(AIimgview);
-                                    ((AiPlayer)(model.getPlayers()[1])).playCard(aiCardIndex,i2);
+                                        ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, i2);
 
 
-                                }
-                                else {
-                                    model.dmgCalculation(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
+                                    } else {
+                                        model.dmgCalculation(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
 
-                                    model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
-                                    System.out.println(aiCardRowSelectionForRetrival + "Proverka");
+                                        model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
+                                        System.out.println(aiCardRowSelectionForRetrival + "Proverka");
 //                                    ((HBox)view.rows.getChildren().get(aiCardRowSelectionForRetrival)).getChildren().clear();
 //                                    ((HBox)view.rows.getChildren().get(aiCardRowSelectionForRetrival)).getChildren().add(AIimgview);
-                                    ((AiPlayer)(model.getPlayers()[1])).playCard(aiCardIndex,aiCardRowSelectionForRetrival);
+                                        ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, aiCardRowSelectionForRetrival);
 
 
-                                }
+                                    }
 
-                                setCounterForLatch(0);
-                                view.getH1().refreshRows(model);
-                                model.showRows();
+                                    setCounterForLatch(0);
+                                    view.getH1().refreshRows(model);
+                                    model.showRows();
 
-                            });
-                            view.addButtons(forFirstRow,forSecondRow,forThirdRow,forFourTHRow);
+                                    view.refreshHands(model);
+//                            view.borderPane1.setBottom(view.bottomImages);
+                                    addEventHandlers();
+                                });
+                                view.addButtons(forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
 
 
+                            }
+
+
+                            view.getTopImages().getChildren().remove(0);
 
 
                         }
 
 
-                        model.getTopImages().getChildren().remove(1);
-                          if (model.getPlayers()[0].getHand().getCards().size()==0){
-                              model.getPlayers()[0].draw(model.getDeck());
-                              model.getPlayers()[1].draw(model.getDeck());
-                              view.refreshHands(model);
-                              addEventHandlers();
-                              model.refreshPane();
-                          }
+                        for (int x = 0; x < model.getPlayers()[0].getHand().getCards().size(); x++) {
+                            System.out.println("current hand of player: " + model.getPlayers()[0].getHand().getCards().get(x).getNumber());
+                        }
+//                        if (model.getPlayers()[0].getHand().getCards().isEmpty()) {
+//                            model.getPlayers()[0].draw(model.getDeck());
+//                            model.getPlayers()[1].draw(model.getDeck());
+//                            for (int x = 0; x < model.getPlayers()[0].getHand().getCards().size(); x++) {
+//                                System.out.println("refreshed hand of player: " + model.getPlayers()[0].getHand().getCards().get(x).getNumber());
+//                            }
+                        view.refreshHands(model);
+//                            view.borderPane1.setBottom(view.bottomImages);
+                        addEventHandlers();
+
 
                     }
 
+            );
+        }
 
-                }
-
-
-        );
-    }
-
-}}
+    }}

@@ -43,7 +43,7 @@ public class StartPresenter {
         Stage stage = new Stage();
 
         // TODO: VASIL FIX THIS
-        PlayingTable playingTable = new PlayingTable(hp, AI, new BorderPane());
+        PlayingTable playingTable = new PlayingTable(hp, AI);
         take5view b1= new take5view();
 
         playingTable.getPlayers()[0].draw(playingTable.getDeck());

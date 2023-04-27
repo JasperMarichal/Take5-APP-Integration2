@@ -7,7 +7,7 @@ public abstract class Player{
     PlayingTable table;
     Hand hand;
     Card card;
-   private int counterPoints;
+    private int counterPoints;
 
     public void setTable(PlayingTable table) {
         this.table = table;
@@ -19,7 +19,7 @@ public abstract class Player{
         int y = 0;
         for (int i=0; i<this.hand.cards.size(); i++){
             if (this.hand.cards.get(i).getNumber()==card.getNumber()){
-                 y=i;
+                y=i;
             }
 
         }
@@ -37,12 +37,20 @@ public abstract class Player{
         this.name = name;
         this.hand= new Hand();
         this.counterPoints=counterPoints;
+
     }
-    public void playCard(int index, int cardrow){
+    public void playCard(int index, int cardrow) {
 //        int index = getTheSelectedCardFromHand(card);
-        Card c= this.getHand().getCards().get(index);
+        Card c = this.getHand().getCards().get(index);
         table.addCard(c, cardrow);
         this.getHand().getCards().remove(c);
+        if (this.hand.cards.isEmpty()) {
+            draw(table.getDeck());
+            table.getPlayers()[1].draw(table.getDeck());
+            for (int x = 0; x < table.getPlayers()[0].getHand().getCards().size(); x++) {
+                System.out.println("refreshed hand of player: " + table.getPlayers()[0].getHand().getCards().get(x).getNumber());
+            }
+        }
     }
 
     public void setName(String name) {
@@ -76,7 +84,7 @@ public abstract class Player{
             newCards[i] = this.hand.cards.get(i);
         }
 
-            return newCards;
+        return newCards;
     }
     public int getCounterPoints() {
         return counterPoints;

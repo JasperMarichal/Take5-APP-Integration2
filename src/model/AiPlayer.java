@@ -43,7 +43,7 @@ public class AiPlayer extends Player {
         }
 
         int minCardHand = 105;
-        int minCardHandIndex = -1;
+        int minCardHandIndex = 0;
 
         for (int i = 0; i < this.getHand().getCards().size(); i++) {
             if (this.getHand().getCards().get(i).getNumber() < minCardHand &&
@@ -74,9 +74,9 @@ public class AiPlayer extends Player {
 
 
     }
-        @Override
-        void placeCardOnSide (Card card){
+    @Override
+    void placeCardOnSide (Card card){
 
-        }
     }
+}
 

@@ -16,6 +16,7 @@ public class HboxBuilder {
     HBox thirdRow= new HBox();
     HBox ForthRow= new HBox();
     VBox rows= new VBox();
+    take5view view = new take5view();
 
     public VBox buildRows(PlayingTable playingTable){
 
@@ -31,11 +32,11 @@ public class HboxBuilder {
         Aipoints.getChildren().add(Ai);
         HumanPoints.getChildren().add(Human);
         VBox vbox= new VBox();
-        vbox.getChildren().add(Ai);
-        vbox.getChildren().add(Human);
+//        vbox.getChildren().add(Ai);
+//        vbox.getChildren().add(Human);
 
 
-        playingTable.getBorderPane().setRight(vbox);
+//            viewgetBorderPane().setRight(vbox);
         for (int x = 0; x< playingTable.getCardRows()[0].size(); x++ ) {
             Image img2 = playingTable.getCardRows()[0].get(x).getImage();
             ImageView imgv = new ImageView(img2);
@@ -84,18 +85,18 @@ public class HboxBuilder {
         return rows;
     }
 
-        public VBox refreshRows(PlayingTable playingTable){
-            firstRow.getChildren().clear();
-            secondRow.getChildren().clear();
+    public VBox refreshRows(PlayingTable playingTable){
+        firstRow.getChildren().clear();
+        secondRow.getChildren().clear();
 
-            thirdRow.getChildren().clear();
+        thirdRow.getChildren().clear();
 
-            ForthRow.getChildren().clear();
+        ForthRow.getChildren().clear();
 
-            rows.getChildren().removeAll(rows.getChildren());
-            buildRows(playingTable);
-            return rows;
-        }
+        rows.getChildren().removeAll(rows.getChildren());
+        buildRows(playingTable);
+        return rows;
+    }
     public void removefromHand(BorderPane borderPane){
 
 

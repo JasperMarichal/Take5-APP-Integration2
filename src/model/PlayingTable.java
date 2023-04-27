@@ -13,22 +13,20 @@ import java.util.List;
 
 public class PlayingTable {final int cardRowsSize = 4;
 
-
     private CardChecker cardChecker= new CardChecker(this);
     static int counterForLatch=0;
     Deck deck;
     Integer maximumNumberOfCard=null;
-     CardScanner cardScanner = new CardScanner();
-     Player[] players;
-     ArrayList<Card>[] cardRows;
+    CardScanner cardScanner = new CardScanner();
+    Player[] players;
+    ArrayList<Card>[] cardRows;
     String urlBack = "file:resources/take5prototipfx/bacground1Finished.jpg";
-     ArrayList<Card>[] chosenCards;
-     BorderPane borderPane;
-     HBox bottomImages = new HBox();
-     HBox topImages = new HBox();
-    VBox CenterImages = new VBox();
-    HboxBuilder h1b = new HboxBuilder();
-
+    ArrayList<Card>[] chosenCards;
+//     BorderPane borderPane;
+//     HBox bottomImages = new HBox();
+//     HBox topImages = new HBox();
+//    VBox CenterImages = new VBox();
+//    HboxBuilder h1b = new HboxBuilder();
 
     take5view take5view= new take5view();
 
@@ -69,25 +67,25 @@ public class PlayingTable {final int cardRowsSize = 4;
         return chosenCards;
     }
 
-    public BorderPane getBorderPane() {
-        return borderPane;
-    }
+//    public BorderPane getBorderPane() {
+//        return borderPane;
+//    }
 
-    public HBox getBottomImages() {
-        return bottomImages;
-    }
+//    public HBox getBottomImages() {
+//        return bottomImages;
+//    }
+//
+//    public HBox getTopImages() {
+//        return topImages;
+//    }
 
-    public HBox getTopImages() {
-        return topImages;
-    }
+//    public VBox getCenterImages() {
+//        return CenterImages;
+//    }
 
-    public VBox getCenterImages() {
-        return CenterImages;
-    }
-
-    public HboxBuilder getH1b() {
-        return h1b;
-    }
+//    public HboxBuilder getH1b() {
+//        return h1b;
+//    }
 
 
     public Integer getPlayableRows(Card card) {
@@ -101,7 +99,7 @@ public class PlayingTable {final int cardRowsSize = 4;
 
 
         if (cardRows[0].size()<5){
-          numberForChecking1 = cardRows[0].get(cardRows[0].size()-1).getNumber();
+            numberForChecking1 = cardRows[0].get(cardRows[0].size()-1).getNumber();
         }
         if (cardRows[1].size()<5){
             numberForChecking2 = cardRows[1].get(cardRows[1].size()-1).getNumber();
@@ -169,8 +167,8 @@ public class PlayingTable {final int cardRowsSize = 4;
 
     }
 
-    public PlayingTable(Player human, Player AI, BorderPane borderPane) {
-        this.borderPane = borderPane;
+    public PlayingTable(Player human, Player AI) {
+//        this.borderPane = borderPane;
         players = new Player[2];
         players[0]= human;
         players[1]= AI;
