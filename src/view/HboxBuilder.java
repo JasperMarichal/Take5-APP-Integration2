@@ -18,25 +18,12 @@ public class HboxBuilder {
     VBox rows= new VBox();
     take5view view = new take5view();
 
+    VBox vbox= new VBox();
     public VBox buildRows(PlayingTable playingTable){
 
 
 
 
-        HBox Aipoints= new HBox();
-        HBox HumanPoints= new HBox();
-
-        Label Human= new Label("" +playingTable.getPlayers()[0].getCounterPoints());
-        Label Ai= new Label("" +playingTable.getPlayers()[1].getCounterPoints());
-
-        Aipoints.getChildren().add(Ai);
-        HumanPoints.getChildren().add(Human);
-        VBox vbox= new VBox();
-//        vbox.getChildren().add(Ai);
-//        vbox.getChildren().add(Human);
-
-
-//            viewgetBorderPane().setRight(vbox);
         for (int x = 0; x< playingTable.getCardRows()[0].size(); x++ ) {
             Image img2 = playingTable.getCardRows()[0].get(x).getImage();
             ImageView imgv = new ImageView(img2);
@@ -94,9 +81,38 @@ public class HboxBuilder {
         ForthRow.getChildren().clear();
 
         rows.getChildren().removeAll(rows.getChildren());
+
+//        vbox.getChildren().removeAll();
+        refreshDmg(playingTable);
         buildRows(playingTable);
         return rows;
     }
+
+
+    public VBox buildDmgPoints(PlayingTable playingTable ){
+
+        HBox Aipoints= new HBox();
+        HBox HumanPoints= new HBox();
+
+        Label Human= new Label(String.valueOf(playingTable.getPlayers()[0].getCounterPoints()));
+        Label Ai= new Label(String.valueOf(playingTable.getPlayers()[1].getCounterPoints()));
+
+        Aipoints.getChildren().add(Ai);
+        HumanPoints.getChildren().add(Human);
+
+        vbox.getChildren().add(Ai);
+        vbox.getChildren().add(Human);
+
+
+        return vbox;
+    }
+
+    public void refreshDmg(PlayingTable playingTable ){
+        vbox.getChildren().clear();
+        buildDmgPoints(playingTable);
+    }
+
+
     public void removefromHand(BorderPane borderPane){
 
 

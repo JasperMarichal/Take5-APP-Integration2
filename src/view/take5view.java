@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import main.FXTake5;
 import model.AiPlayer;
 import model.Card;
+import model.Player;
 import model.PlayingTable;
 
 import javax.swing.text.View;
@@ -85,6 +86,7 @@ public class take5view {
     protected HBox thirdRow= new HBox();
     protected HBox ForthRow= new HBox();
     protected  VBox cardHolder= new VBox();
+    VBox dmg= new VBox();
 
 
 
@@ -127,6 +129,8 @@ public class take5view {
 
     }
 
+    Label timeLable= new Label();
+
     public static HboxBuilder getH1() {
         return h1;
     }
@@ -138,6 +142,13 @@ public class take5view {
 
         rows= h1.buildRows(playingTable);
         getBorderPane().setCenter(rows);
+        dmg= h1.buildDmgPoints(playingTable);
+        getBorderPane().setRight(dmg);
+
+
+
+
+
 
 
         // TODO: clear pane
@@ -185,7 +196,8 @@ public class take5view {
     }
 
 
-    public void refreshHands(PlayingTable playingTable){
+    public void refreshHands(PlayingTable playingTable, int playerWithPriority ){
+
         for (int i=0; i<CardsOfPlayer.size(); i++){
             CardsOfPlayer.remove(i);
         }
@@ -202,10 +214,10 @@ public class take5view {
 
         bottomImages.getChildren().clear();
 
-        for (int i = 0; i < playingTable.getPlayers()[0].getHand().getCards().size(); i++){
+        for (int i = 0; i < playingTable.getPlayers()[playerWithPriority].getHand().getCards().size(); i++){
             System.out.println(playingTable.getPlayers()[0].getHand().getCards().get(i));
 
-            CardsOfPlayer.add(playingTable.getPlayers()[1].getHand().getCards().get(i));
+            CardsOfPlayer.add(playingTable.getPlayers()[0].getHand().getCards().get(i));
             ImageView currentCardViewai =  getImageView( playingTable.getPlayers()[1].getHand().getCards().get(i).getURL());
             ImageView currentCardView =  getImageView( playingTable.getPlayers()[0].getHand().getCards().get(i).getURL());
             javafx.scene.image.Image img= new javafx.scene.image.Image(urlBack);

@@ -12,6 +12,18 @@ import java.util.Collections;
 import java.util.List;
 
 public class PlayingTable {final int cardRowsSize = 4;
+    private int TimerCounter= 0;
+
+
+    public int getTimerCounter() {
+        return TimerCounter;
+    }
+
+    public void setTimerCounter(int timerCounter) {
+        TimerCounter = timerCounter;
+    }
+
+    private TimeCounter timeCounter;
 
     private CardChecker cardChecker= new CardChecker(this);
     static int counterForLatch=0;
@@ -167,13 +179,17 @@ public class PlayingTable {final int cardRowsSize = 4;
 
     }
 
+
     public PlayingTable(Player human, Player AI) {
 //        this.borderPane = borderPane;
+        timeCounter= new TimeCounter(this );
+
         players = new Player[2];
         players[0]= human;
         players[1]= AI;
         players[0].setTable(this);
         players[1].setTable(this);
+
 
         cardRows = new ArrayList[cardRowsSize];
 
@@ -210,23 +226,33 @@ public class PlayingTable {final int cardRowsSize = 4;
         }
     }
 
-    public void dmgCalculation (int rowIndex,Player humanPlayer){
-        DmgCalculator dmgCalculator= new DmgCalculator();
+    public void dmgCalculationHuman (int rowIndex,Player humanPlayer) {
+        DmgCalculator dmgCalculator = new DmgCalculator();
 
-        for (int i=0; i<cardRows[rowIndex].size(); i++){
-            int bulls= cardRows[rowIndex].get(i).getBulls();
-            dmgCalculator.takeDmg(bulls, humanPlayer);
+        for (int i = 0; i < cardRows[rowIndex].size(); i++) {
+            int bulls = cardRows[rowIndex].get(i).getBulls();
+            dmgCalculator.takeDmgHuman(bulls, this);
             System.out.println(bulls);
         }
+    }
+        public void dmgCalculationAI (int rowIndex,Player AiPlayer){
+            DmgCalculator dmgCalculator= new DmgCalculator();
+
+            for (int i=0; i<cardRows[rowIndex].size(); i++){
+                int bulls= cardRows[rowIndex].get(i).getBulls();
+                dmgCalculator.takeDmgAI(bulls, this);
+                System.out.println(bulls);
+            }
 
 
 
     }
 
-    public Card cardChecker(Card c, Card b){
-        if (c.getNumber()<b.getNumber()){
-            return c;
+    public int cardChecker(Card human, Card AI){
+        if (human.getNumber()<AI.getNumber()){
+            return 0;
         }
-        else return b;
+        else{
+            return 1;
     }
-}
+}}
