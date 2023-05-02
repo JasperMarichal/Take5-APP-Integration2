@@ -1,9 +1,5 @@
 package model;
 
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import view.HboxBuilder;
 import view.take5view;
 
 import java.io.FileNotFoundException;
@@ -256,6 +252,19 @@ if (rowIndex>3 || rowIndex<0 ){
 
     }
 
+
+
+    public int checkWin() {
+        if (getPlayers()[0].getCounterPoints()<=0) {
+            return 0;
+
+        }
+        if (getPlayers()[1].getCounterPoints()<=0){
+            return 1;
+
+        }
+      return 2;
+    }
     public int cardChecker(Card human, Card AI){
         if (human.getNumber()<AI.getNumber()){
             return 0;

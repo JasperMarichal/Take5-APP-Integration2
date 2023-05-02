@@ -2,7 +2,9 @@ package view;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,6 +22,7 @@ import model.PlayingTable;
 import javax.swing.text.View;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CountDownLatch;
 
 
@@ -196,6 +199,15 @@ public class take5view {
     }
 
 
+    private boolean gameEndingScreen(){
+        final Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("You lost");
+        alert.setTitle("Game Ended");
+        Optional<ButtonType> choice = alert.showAndWait();
+
+        return (ButtonType.OK == choice.get());
+    }
+
     public void refreshHands(PlayingTable playingTable, int playerWithPriority ){
 
         for (int i=0; i<CardsOfPlayer.size(); i++){
@@ -236,6 +248,9 @@ public class take5view {
             HBox.setMargin(currentCardView, new javafx.geometry.Insets(10, 10 , 10, 10));
 
 
+
+
+
 //            AIimages.add(currentCardViewai);
 
 
@@ -249,11 +264,21 @@ public class take5view {
         getBorderPane().setBottom(getBottomImages());
         getBorderPane().setTop(getTopImages());
 
-
         borderPane1= getBorderPane();
+
+
+        if (playingTable.checkWin()==0){
+            gameEndingScreen();
+
     }
 
 }
+
+
+}
+
+
+
 
 
 

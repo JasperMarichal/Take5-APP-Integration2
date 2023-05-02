@@ -18,7 +18,7 @@ public class FXTake5 extends Application {
     public void start(Stage stage) {
 
 
-        HumanPlayer hp= new HumanPlayer("Vasil",64);
+        HumanPlayer hp= new HumanPlayer("Vasil",10);
         AiPlayer AI= new AiPlayer("Bot 1", 64);
 
         PlayingTable playingTable = new PlayingTable(hp, AI);

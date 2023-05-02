@@ -1,5 +1,6 @@
 package view;
 
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -538,6 +539,7 @@ public class CardPresenter {
                            view.refreshHands(model, 1);
 //                            view.borderPane1.setBottom(view.bottomImages);
                            addEventHandlers();
+
 
                        }
                     }}
