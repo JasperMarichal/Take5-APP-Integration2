@@ -346,7 +346,7 @@ public class CardPresenter {
                                        setCounterForLatch(0);
                                        view.getH1().refreshRows(model);
                                        model.showRows();
-                                       view.refreshHands(model,1);
+                                       view.refreshHands(model, 1);
 //                            view.borderPane1.setBottom(view.bottomImages);
                                        addEventHandlers();
 
@@ -366,7 +366,7 @@ public class CardPresenter {
                                        setCounterForLatch(0);
                                        view.getH1().refreshRows(model);
                                        model.showRows();
-                                       view.refreshHands(model,1);
+                                       view.refreshHands(model, 1);
 //                            view.borderPane1.setBottom(view.bottomImages);
                                        addEventHandlers();
 
@@ -384,7 +384,7 @@ public class CardPresenter {
                                        setCounterForLatch(0);
                                        view.getH1().refreshRows(model);
                                        model.showRows();
-                                       view.refreshHands(model,1);
+                                       view.refreshHands(model, 1);
 //                            view.borderPane1.setBottom(view.bottomImages);
                                        addEventHandlers();
 
@@ -403,7 +403,7 @@ public class CardPresenter {
                                        view.getH1().refreshRows(model);
                                        model.showRows();
 
-                                       view.refreshHands(model,1);
+                                       view.refreshHands(model, 1);
 //                            view.borderPane1.setBottom(view.bottomImages);
                                        addEventHandlers();
                                    });
@@ -425,26 +425,121 @@ public class CardPresenter {
                                ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, aiCardRowSelectionForRetrival);
                                view.getH1().refreshRows(model);
                                model.showRows();
+
+
+
+
+                               if (i1 != null) {
+//                            model.getCardRows()[i1].add(model.getCardScanner().scanAndRetrieveCardForPlay(s));
+                                   ((HBox) view.rows.getChildren().get(i1)).getChildren().add(currentImageWithoutClickEvent);
+                                   (model.getPlayers()[0]).playCard(humanIndex, i1);
+                                   view.getH1().refreshRows(model);
+//                    playingTable.CollectCardRows(i1);
+
+
+                               } else {
+                                   setCounterForLatch(1);
+
+                                   Button forFirstRow = new Button();
+                                   Button forSecondRow = new Button();
+                                   Button forThirdRow = new Button();
+                                   Button forFourTHRow = new Button();
+
+
+                                   forFirstRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> {
+                                       model.dmgCalculationHuman(0, model.getPlayers()[0]);
+                                       model.getAllCardsFromRow(0);
+                                       removeChildren(view, forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
+//                                ((HBox)view.rows.getChildren().get(0)).getChildren().removeAll();
+//                                ((HBox)view.rows.getChildren().get(0)).getChildren().add(currentImageWithoutClickEvent);
+                                       (model.getPlayers()[0]).playCard(humanIndex, 0);
+
+
+                                       setCounterForLatch(0);
+                                       view.getH1().refreshRows(model);
+                                       model.showRows();
+                                       view.refreshHands(model, 1);
+//                            view.borderPane1.setBottom(view.bottomImages);
+                                       addEventHandlers();
+
+                                   });
+                                   forSecondRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> {
+                                       model.dmgCalculationHuman(1, model.getPlayers()[0]);
+
+                                       model.getAllCardsFromRow(1);
+
+
+                                       removeChildren(view, forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
+//                                ((HBox)view.rows.getChildren().get(1)).getChildren().clear();
+//                                ((HBox)view.rows.getChildren().get(1)).getChildren().add(currentImageWithoutClickEvent);
+                                       (model.getPlayers()[0]).playCard(humanIndex, 1);
+
+
+                                       setCounterForLatch(0);
+                                       view.getH1().refreshRows(model);
+                                       model.showRows();
+                                       view.refreshHands(model, 1);
+//                            view.borderPane1.setBottom(view.bottomImages);
+                                       addEventHandlers();
+
+                                   });
+                                   forThirdRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> {
+                                       model.dmgCalculationHuman(2, model.getPlayers()[0]);
+
+                                       model.getAllCardsFromRow(2);
+                                       removeChildren(view, forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
+//                                ((HBox)view.rows.getChildren().get(2)).getChildren().clear();
+//                                ((HBox)view.rows.getChildren().get(2)).getChildren().add(currentImageWithoutClickEvent);
+                                       (model.getPlayers()[0]).playCard(humanIndex, 2);
+
+
+                                       setCounterForLatch(0);
+                                       view.getH1().refreshRows(model);
+                                       model.showRows();
+                                       view.refreshHands(model, 1);
+//                            view.borderPane1.setBottom(view.bottomImages);
+                                       addEventHandlers();
+
+                                   });
+                                   forFourTHRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> {
+                                       model.dmgCalculationHuman(3, model.getPlayers()[0]);
+
+                                       model.getAllCardsFromRow(3);
+                                       removeChildren(view, forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
+//                                ((HBox)view.rows.getChildren().get(3)).getChildren().clear();
+//                                ((HBox)view.rows.getChildren().get(3)).getChildren().add(currentImageWithoutClickEvent);
+                                       (model.getPlayers()[0]).playCard(humanIndex, 3);
+
+
+                                       setCounterForLatch(0);
+                                       view.getH1().refreshRows(model);
+                                       model.showRows();
+
+                                       view.refreshHands(model, 1);
+//                            view.borderPane1.setBottom(view.bottomImages);
+                                       addEventHandlers();
+                                   });
+                                   view.addButtons(forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
+
+
+                               }
                            }
 
 
-                       }
-
-
-                        for (int x = 0; x < model.getPlayers()[0].getHand().getCards().size(); x++) {
-                            System.out.println("current hand of player: " + model.getPlayers()[0].getHand().getCards().get(x).getNumber());
-                        }
+                           for (int x = 0; x < model.getPlayers()[0].getHand().getCards().size(); x++) {
+                               System.out.println("current hand of player: " + model.getPlayers()[0].getHand().getCards().get(x).getNumber());
+                           }
 //                        if (model.getPlayers()[0].getHand().getCards().isEmpty()) {
 //                            model.getPlayers()[0].draw(model.getDeck());
 //                            model.getPlayers()[1].draw(model.getDeck());
 //                            for (int x = 0; x < model.getPlayers()[0].getHand().getCards().size(); x++) {
 //                                System.out.println("refreshed hand of player: " + model.getPlayers()[0].getHand().getCards().get(x).getNumber());
 //                            }
-                        view.refreshHands(model,0);
+                           view.refreshHands(model, 1);
 //                            view.borderPane1.setBottom(view.bottomImages);
-                        addEventHandlers();
+                           addEventHandlers();
 
-
+                       }
                     }}
 
             );

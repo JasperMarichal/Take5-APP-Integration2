@@ -57,8 +57,8 @@ public class AiPlayer extends Player {
 
 
     public int cardRowNumberForReplacement() {
-        int min = Integer.MAX_VALUE;
-        for (int i = 0; i < table.cardRowsSize; i++) {
+        int min = 10;
+        for (int i = 0; i <4; i++) {
             if (table.cardRows[i].size() < min && table.cardRows[i].size() < 5){
                 min = i;
             }
@@ -67,6 +67,7 @@ public class AiPlayer extends Player {
         return min;
 
     }
+
 
 
     public Card getCard(int number) {

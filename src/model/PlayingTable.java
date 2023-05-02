@@ -211,10 +211,16 @@ public class PlayingTable {final int cardRowsSize = 4;
 
 
     public void addCard(Card card, int rowIndex){
+        if (rowIndex>3 || rowIndex<0 ){
+            rowIndex=0;
+        }
         cardRows[rowIndex].add(card);
     }
 
     public List<Card> getAllCardsFromRow(int rowIndex){
+        if (rowIndex>3 || rowIndex<0 ){
+            rowIndex=0;
+        }
         List<Card> output = new ArrayList<>(cardRows[rowIndex]);
         cardRows[rowIndex].clear();
         return output;
@@ -237,7 +243,9 @@ public class PlayingTable {final int cardRowsSize = 4;
     }
         public void dmgCalculationAI (int rowIndex,Player AiPlayer){
             DmgCalculator dmgCalculator= new DmgCalculator();
-
+if (rowIndex>3 || rowIndex<0 ){
+    rowIndex=0;
+}
             for (int i=0; i<cardRows[rowIndex].size(); i++){
                 int bulls= cardRows[rowIndex].get(i).getBulls();
                 dmgCalculator.takeDmgAI(bulls, this);

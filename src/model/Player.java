@@ -99,4 +99,5 @@ public abstract class Player{
     public void draw(Deck deck){
         hand.cards.addAll(List.of(deck.get10()));
     }
+
 }
