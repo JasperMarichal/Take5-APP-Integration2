@@ -9,9 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import main.FXTake5;
 import model.AiPlayer;
@@ -123,6 +121,7 @@ public class take5view {
         stage.setHeight(900);
         stage.setWidth(1500);
         stage.show();
+        setBackground();
 //
 //         button.addEventHandler(MouseEvent.MOUSE_CLICKED, event2 ->{
 //
@@ -270,6 +269,12 @@ public class take5view {
         if (playingTable.checkWin()==0){
             gameEndingScreen();
 
+    }
+
+    private void setBackground(){
+        ImageView background = new ImageView(new Image("file:resources/mainMenu/board_background.png"));
+        BackgroundImage backgroundImage = new BackgroundImage(background.getImage(), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        borderPane.setBackground(new Background(backgroundImage));
     }
 
 }
