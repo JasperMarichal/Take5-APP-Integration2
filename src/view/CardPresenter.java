@@ -41,7 +41,9 @@ public class CardPresenter {
         addEventHandlers();
 //        updateView(model);
 
-    }
+        }
+
+
 
 //    public Card getCardFromArrayListOfImageViews(List<ImageView> list , String URL ){
 

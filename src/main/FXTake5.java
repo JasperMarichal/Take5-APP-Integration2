@@ -28,6 +28,12 @@ public class FXTake5 extends Application {
         playingTable.getPlayers()[1].draw(playingTable.getDeck());
 
         CardPresenter cardPresenter = new CardPresenter(playingTable, b1, stage);
+        int loopint=1 ;
+        while (loopint==1 ){
+            b1.getH1().refreshDmg(playingTable);
+            System.out.println("refreshed " );
+        }
+
         for (int i=0; i< AI.getHand().getCards().size(); i++) {
 
 
@@ -35,6 +41,7 @@ public class FXTake5 extends Application {
         }
         playingTable.showRows();
         playingTable.showRows();
+
 
             for (int i=0; i<playingTable.getPlayers().length; i++){
                 System.out.println(playingTable.getPlayers()[i] + "igrach ");
@@ -49,6 +56,7 @@ public class FXTake5 extends Application {
 
             System.out.println(AI.getHand().getCards().get(i).getNumber() + "AI CARDS ");
         }
+
 
 
     }

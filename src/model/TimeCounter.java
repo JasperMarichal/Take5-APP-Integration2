@@ -8,6 +8,8 @@ public class TimeCounter extends java.util.Timer {
     private TimerTask timerTask;
     int secondsLeft= 150;
 
+
+
     public TimeCounter(PlayingTable playingTable) {
         timer = new Timer();
         timerTask = new TimerTask() {
@@ -15,6 +17,7 @@ public class TimeCounter extends java.util.Timer {
             @Override
             public void run() {
                 System.out.println(secondsLeft + "seconds left ");
+
                 secondsLeft--;
                 if (secondsLeft <0){
                     playingTable.setTimerCounter(1);

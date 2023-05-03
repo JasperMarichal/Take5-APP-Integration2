@@ -7,9 +7,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import model.PlayingTable;
 
+
 public class HboxBuilder {
+
+
 
     HBox firstRow= new HBox();
     HBox secondRow= new HBox();
@@ -18,8 +22,10 @@ public class HboxBuilder {
     VBox rows= new VBox();
     take5view view = new take5view();
 
+
     VBox vbox= new VBox();
     public VBox buildRows(PlayingTable playingTable){
+
 
 
 
@@ -99,11 +105,9 @@ public class HboxBuilder {
 
         Aipoints.getChildren().add(Ai);
         HumanPoints.getChildren().add(Human);
-            
-        Label timerLabel= new Label(String.valueOf(playingTable.getTimeCounter().getSecondsLeft())); 
-        HBox forTime = new HBox(); 
-        forTime.getChildren().add(timerLabel);
-        vbox.getChildren().add(forTime);
+
+
+
         vbox.getChildren().add(Aipoints);
         vbox.getChildren().add(HumanPoints);
 
