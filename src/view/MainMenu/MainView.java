@@ -50,17 +50,18 @@ public class MainView extends HBox {
     }
 
     private void setBackground(){
-        ImageView background = new ImageView(new Image("file:resources/mainMenu/background.png"));
+        Image image = new Image("file:resources/mainMenu/background.png");
+        ImageView background = new ImageView(image);
         BackgroundImage backgroundImage = new BackgroundImage(background.getImage(), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         setBackground(new Background(backgroundImage));
     }
 
     private void applyStyle(){
         title.setStyle("-fx-font-family: 'Luckiest Guy'; -fx-font-size: 120px; -fx-padding: 10px 80px; -fx-text-fill: #ffff;");
-        startButton.setStyle("-fx-font-family: 'Luckiest Guy'; -fx-background-radius: 50px; -fx-border-radius: 50px; -fx-font-size: 30px; -fx-padding: 10px 100px; -fx-text-fill: #061424; -fx-background-color: #ffffff;");
-        rulesButton.setStyle("-fx-font-family: 'Luckiest Guy'; -fx-background-radius: 50px; -fx-border-radius: 50px; -fx-font-size: 30px; -fx-padding: 10px 100px; -fx-text-fill: #061424; -fx-background-color: #ffffff; ");
-        exitButton.setStyle("-fx-font-family: 'Luckiest Guy'; -fx-background-radius: 50px; -fx-border-radius: 50px; -fx-font-size: 30px; -fx-padding: 10px 100px; -fx-text-fill: #061424; -fx-background-color: #ffffff; ");
-        loadButton.setStyle("-fx-font-family: 'Luckiest Guy'; -fx-background-radius: 50px; -fx-border-radius: 50px; -fx-font-size: 30px; -fx-padding: 10px 100px; -fx-text-fill: #061424; -fx-background-color: #ffffff;");
+        startButton.setStyle("-fx-font-family: 'Luckiest Guy'; -fx-background-radius: 50px; -fx-border-radius: 50px; -fx-font-size: 30px; -fx-padding: 10px 100px; -fx-text-fill: #122c3f; -fx-background-color: #ffffff;");
+        rulesButton.setStyle("-fx-font-family: 'Luckiest Guy'; -fx-background-radius: 50px; -fx-border-radius: 50px; -fx-font-size: 30px; -fx-padding: 10px 100px; -fx-text-fill: #122C3FFF; -fx-background-color: #ffffff; ");
+        exitButton.setStyle("-fx-font-family: 'Luckiest Guy'; -fx-background-radius: 50px; -fx-border-radius: 50px; -fx-font-size: 30px; -fx-padding: 10px 100px; -fx-text-fill: #122C3FFF; -fx-background-color: #ffffff; ");
+        loadButton.setStyle("-fx-font-family: 'Luckiest Guy'; -fx-background-radius: 50px; -fx-border-radius: 50px; -fx-font-size: 30px; -fx-padding: 10px 100px; -fx-text-fill: #122C3FFF; -fx-background-color: #ffffff;");
 
     }
 
