@@ -32,6 +32,7 @@ public class CardPresenter {
     Stage stage= new Stage();
     public CardPresenter(
             PlayingTable model, take5view view, Stage stage) {
+        int intloop= 1 ;
         this.model = model;
         this.view = view;
         this.stage= stage;
@@ -39,7 +40,6 @@ public class CardPresenter {
 //        addEventHandlersForButton();
         addEventHandlers();
 //        updateView(model);
-
 
     }
 
@@ -93,6 +93,7 @@ public class CardPresenter {
         ((HBox)view.rows.getChildren().get(3)).getChildren().removeAll(button4);
     }
     public void addEventHandlers(){
+
 
         for (int i=0; i<view.PlayerImages.size(); i++){
             System.out.println(i);
@@ -157,6 +158,10 @@ public class CardPresenter {
                                    view.getH1().refreshRows(model);
                                    model.showRows();
                                }
+                               view.refreshHands(model,0);
+//                            view.borderPane1.setBottom(view.bottomImages);
+                               addEventHandlers();
+
                            } else {
                                setCounterForLatch(1);
 
@@ -542,7 +547,9 @@ public class CardPresenter {
 
 
                        }
-                    }}
+                    }
+
+                            model.getTimeCounter().update();}
 
             );
         }

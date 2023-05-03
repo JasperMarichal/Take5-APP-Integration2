@@ -66,6 +66,9 @@ public class PlayingTable {final int cardRowsSize = 4;
         return urlBack;
     }
 
+    public TimeCounter getTimeCounter() {
+        return timeCounter;
+    }
 
     public void CollectCardRows (int index){
         cardRows[index].clear();

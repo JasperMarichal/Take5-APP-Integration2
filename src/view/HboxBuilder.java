@@ -99,9 +99,13 @@ public class HboxBuilder {
 
         Aipoints.getChildren().add(Ai);
         HumanPoints.getChildren().add(Human);
-
-        vbox.getChildren().add(Ai);
-        vbox.getChildren().add(Human);
+            
+        Label timerLabel= new Label(String.valueOf(playingTable.getTimeCounter().getSecondsLeft())); 
+        HBox forTime = new HBox(); 
+        forTime.getChildren().add(timerLabel);
+        vbox.getChildren().add(forTime);
+        vbox.getChildren().add(Aipoints);
+        vbox.getChildren().add(HumanPoints);
 
 
         return vbox;

@@ -198,15 +198,27 @@ public class take5view {
     }
 
 
-    private boolean gameEndingScreen(){
+    private boolean gameEndingScreen(int i){
         final Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setHeaderText("You lost");
-        alert.setTitle("Game Ended");
+        if (i==0){
+            alert.setHeaderText("You lost");
+            alert.setTitle("Game Ended");
+        }
+        if (i==1) {
+            alert.setHeaderText("You won");
+            alert.setTitle("Game Ended");
+        }
+
         Optional<ButtonType> choice = alert.showAndWait();
 
         return (ButtonType.OK == choice.get());
     }
 
+    private void setBackground(){
+        ImageView background = new ImageView(new Image("file:resources/mainMenu/board_background.png"));
+        BackgroundImage backgroundImage = new BackgroundImage(background.getImage(), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        borderPane.setBackground(new Background(backgroundImage));
+    }
     public void refreshHands(PlayingTable playingTable, int playerWithPriority ){
 
         for (int i=0; i<CardsOfPlayer.size(); i++){
@@ -266,16 +278,16 @@ public class take5view {
         borderPane1= getBorderPane();
 
 
-        if (playingTable.checkWin()==0){
-            gameEndingScreen();
+        if (playingTable.checkWin()==0) {
+            gameEndingScreen(0);
 
     }
+        if (playingTable.checkWin()==1){
+            gameEndingScreen(1);
+        }
 
-    private void setBackground(){
-        ImageView background = new ImageView(new Image("file:resources/mainMenu/board_background.png"));
-        BackgroundImage backgroundImage = new BackgroundImage(background.getImage(), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
-        borderPane.setBackground(new Background(backgroundImage));
-    }
+
+
 
 }
 

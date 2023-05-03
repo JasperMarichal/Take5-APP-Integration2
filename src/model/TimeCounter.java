@@ -6,24 +6,36 @@ import java.util.TimerTask;
 public class TimeCounter extends java.util.Timer {
     private Timer timer;
     private TimerTask timerTask;
+    int secondsLeft= 150;
 
     public TimeCounter(PlayingTable playingTable) {
         timer = new Timer();
         timerTask = new TimerTask() {
+
             @Override
             public void run() {
-                System.out.println("Test za timera ");
-                playingTable.setTimerCounter(1);
+                System.out.println(secondsLeft + "seconds left ");
+                secondsLeft--;
+                if (secondsLeft <0){
+                    playingTable.setTimerCounter(1);
+
+                }
             }
 
 
         };
-        timer.schedule(timerTask, 120000);
+        timer.scheduleAtFixedRate(timerTask, 0, 1000);
             }
 
     public void update(){
-        timer.cancel();
-        timer = new Timer();
-        timer.schedule(timerTask, 120000);
+                secondsLeft=150;
+
     }
+
+    public int getSecondsLeft() {
+        return secondsLeft;
+    }
+
+
+
 }
