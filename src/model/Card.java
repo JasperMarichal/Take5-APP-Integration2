@@ -2,12 +2,12 @@ package model;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import view.take5view;
+import view.Take5View;
 
 public class Card {
 
     private int number;
-    take5view take5view = new take5view();
+    Take5View take5view = new Take5View();
     private int bulls;
     String URL;
     ImageView imageView;

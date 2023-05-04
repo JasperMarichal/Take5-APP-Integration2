@@ -1,7 +1,6 @@
 package model;
 
-import javafx.stage.Stage;
-import view.take5view;
+import view.Take5View;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -42,7 +41,7 @@ public class PlayingTable {
 //    VBox CenterImages = new VBox();
 //    HboxBuilder h1b = new HboxBuilder();
 
-    take5view take5view= new take5view();
+    Take5View take5view= new Take5View();
 
     public  int getCounterForLatch() {
         return counterForLatch;

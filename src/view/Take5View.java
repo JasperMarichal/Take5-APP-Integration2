@@ -2,31 +2,22 @@ package view;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import main.FXTake5;
-import model.AiPlayer;
 import model.Card;
-import model.Player;
 import model.PlayingTable;
 import view.EndingScreen.EndingScreenPresenter;
 import view.EndingScreen.EndingScreenView;
 
-import javax.swing.text.View;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.CountDownLatch;
 
-
-public class take5view {
+public class Take5View {
 
     BorderPane borderPane = new BorderPane();
     HBox bottomImages = new HBox();
@@ -35,7 +26,6 @@ public class take5view {
 
     HBox HumanImagesForRightPartOfTheBorderPane = new HBox();
     HBox AIImagesForRightPartOfTheBorderPane = new HBox();
-
 
     public BorderPane getBorderPane() {
         return borderPane;
@@ -69,7 +59,6 @@ public class take5view {
     protected static List<Card> CardsOfPlayer = new ArrayList<>();
     protected static List<ImageView> PlayerImages = new ArrayList<>();
 
-
     static BorderPane borderPane1;
     static BorderPane borderPane2;
 
@@ -90,10 +79,8 @@ public class take5view {
     protected VBox cardHolder = new VBox();
     VBox dmg = new VBox();
 
-
     public void getImage(Card card) {
         Image image = new Image(card.getURL());
-
     }
 
     public static ImageView getImageView(String URL) {
@@ -102,7 +89,6 @@ public class take5view {
         ImageView imageView = new ImageView(image);
         imageView.setFitHeight(160);
         imageView.setFitWidth(110);
-
 
         return imageView;
     }
@@ -130,7 +116,6 @@ public class take5view {
 //             buildBorderPane(playingTable);
 //             Scene scene1 = new Scene(getBorderPane1());
 //             stage.setScene(scene1);
-
     }
 
     Label timeLable = new Label();
@@ -150,7 +135,6 @@ public class take5view {
         dmg = h1.buildDmgPoints(playingTable);
         getBorderPane().setRight(dmg);
 
-
         // TODO: clear pane
         // append player one cards
         int counterForLatch = 0;
@@ -165,7 +149,6 @@ public class take5view {
             Card c = playingTable.getPlayers()[1].getHand().getCards().get(i);
             PlayerImages.add(currentCardView);
 
-
             ImageView opponentsCards = new ImageView(img);
             opponentsCards.setFitHeight(160);
             opponentsCards.setFitWidth(110);
@@ -173,7 +156,6 @@ public class take5view {
             getTopImages().getChildren().add(opponentsCards);
 
             HBox.setMargin(currentCardView, new javafx.geometry.Insets(10, 10, 10, 10));
-
 
             AIimages.add(currentCardViewai);
         }
@@ -184,15 +166,12 @@ public class take5view {
         getBorderPane().setBottom(getBottomImages());
         getBorderPane().setTop(getTopImages());
 
-
         borderPane1 = getBorderPane();
     }
-
 
     public BorderPane getBorderPane1() {
         return borderPane1;
     }
-
 
     private void setBackground() {
         ImageView background = new ImageView(new Image("file:resources/mainMenu/board_background.png"));
@@ -237,12 +216,8 @@ public class take5view {
 
             HBox.setMargin(currentCardView, new javafx.geometry.Insets(10, 10, 10, 10));
 
-
 //            AIimages.add(currentCardViewai);
-
-
         }
-
 
         getBottomImages().getChildren().addAll(PlayerImages);
 
@@ -267,14 +242,8 @@ public class take5view {
             } else { loser = 1; }
             playingTable.getDbManager().updateGameTableEnd(playingTable.getPlayer(loser).hashCode(), playingTable.getPlayer(loser).getName(), playingTable.getPlayer(winner).hashCode(), playingTable.getPlayer(winner).getName(), String.valueOf(playingTable.getHashCode()) );
             playingTable.getDbManager().closeConnection();
-
         }
-
-
-
     }
-
-
 }
 
 

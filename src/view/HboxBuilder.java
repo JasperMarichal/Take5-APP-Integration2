@@ -7,29 +7,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import model.PlayingTable;
 
-
 public class HboxBuilder {
-
-
-
     HBox firstRow= new HBox();
     HBox secondRow= new HBox();
     HBox thirdRow= new HBox();
     HBox ForthRow= new HBox();
     VBox rows= new VBox();
-    take5view view = new take5view();
-
-
+    Take5View view = new Take5View();
     VBox vbox= new VBox();
     public VBox buildRows(PlayingTable playingTable){
-
-
-
-
-
         for (int x = 0; x< playingTable.getCardRows()[0].size(); x++ ) {
             Image img2 = playingTable.getCardRows()[0].get(x).getImage();
             ImageView imgv = new ImageView(img2);
@@ -38,9 +26,6 @@ public class HboxBuilder {
             firstRow.getChildren().add(imgv);
 
             HBox.setMargin(firstRow, new Insets(0,10,0,0));
-
-
-
         }
         for (int x = 0; x< playingTable.getCardRows()[1].size(); x++ ) {
             Image img2 = playingTable.getCardRows()[1].get(x).getImage();
@@ -69,9 +54,7 @@ public class HboxBuilder {
         HBox[] hboxes= new HBox[4];
         hboxes[0]=firstRow;
         hboxes[1]=secondRow;
-
         hboxes[2]=thirdRow;
-
         hboxes[3]=ForthRow;
         rows.getChildren().addAll(hboxes);
         return rows;
@@ -80,36 +63,33 @@ public class HboxBuilder {
     public VBox refreshRows(PlayingTable playingTable){
         firstRow.getChildren().clear();
         secondRow.getChildren().clear();
-
         thirdRow.getChildren().clear();
-
         ForthRow.getChildren().clear();
-
         rows.getChildren().removeAll(rows.getChildren());
-
 
         refreshDmg(playingTable);
         buildRows(playingTable);
         return rows;
     }
 
-
     public VBox buildDmgPoints(PlayingTable playingTable ){
-
         HBox Aipoints= new HBox();
         HBox HumanPoints= new HBox();
 
         Label Human= new Label(String.valueOf(playingTable.getPlayers()[0].getCounterPoints()));
         Label Ai= new Label(String.valueOf(playingTable.getPlayers()[1].getCounterPoints()));
 
+        Human.setStyle("-fx-font-size: 20px;");
+        Ai.setStyle("-fx-font-size: 20px;");
+
         Aipoints.getChildren().add(Ai);
         HumanPoints.getChildren().add(Human);
 
-
+        Aipoints.setPrefWidth(200);
+        HumanPoints.setPrefWidth(200);
 
         vbox.getChildren().add(Aipoints);
         vbox.getChildren().add(HumanPoints);
-
 
         return vbox;
     }
@@ -119,11 +99,7 @@ public class HboxBuilder {
         buildDmgPoints(playingTable);
     }
 
-
     public void removefromHand(BorderPane borderPane){
 
-
     }
-
-
 }

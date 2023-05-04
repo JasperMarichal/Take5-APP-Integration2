@@ -5,12 +5,10 @@ import javafx.animation.ScaleTransition;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.AiPlayer;
-import model.HumanPlayer;
 import model.PlayingTable;
 import view.CardPresenter;
 import view.MainMenu.MainPresenter;
-import view.take5view;
+import view.Take5View;
 
 
 public class StartPresenter {
@@ -39,7 +37,7 @@ public class StartPresenter {
         closeStage.close();
         Stage stage = new Stage();
 
-        take5view view = new take5view();
+        Take5View view = new Take5View();
         model.getPlayer(0).setName(this.view.getUsername().getText());
         model.getPlayers()[0].draw(model.getDeck());
         model.getPlayers()[1].draw(model.getDeck());

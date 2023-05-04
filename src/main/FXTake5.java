@@ -2,11 +2,9 @@ package main;
 
 import model.*;
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import view.CardPresenter;
-import view.take5view;
+import view.Take5View;
 
 public class FXTake5 extends Application {
 
@@ -23,7 +21,7 @@ public class FXTake5 extends Application {
 
         PlayingTable playingTable = new PlayingTable(hp, AI);
 
-        take5view b1= new take5view();
+        Take5View b1= new Take5View();
         playingTable.getPlayers()[0].draw(playingTable.getDeck());
         playingTable.getPlayers()[1].draw(playingTable.getDeck());
 
