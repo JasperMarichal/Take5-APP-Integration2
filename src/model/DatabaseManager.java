@@ -17,25 +17,28 @@ public class DatabaseManager {
         }
     }
 
+    private int roundNumer = 1;
+    private int roundId = new Random().nextInt();
     public void updateGameTableEnd(int loser, String loserName, int winner,String name, String gameId){
         try {
             statement.executeUpdate(String.format("INSERT INTO player (player_id, name) SELECT '%s', '%s' WHERE NOT EXISTS (  SELECT 1 FROM player WHERE player_id = '%s' AND name = '%s' );", loser, loserName, loser, loserName ));
             statement.executeUpdate(String.format("INSERT INTO player (player_id, name) SELECT '%s', '%s' WHERE NOT EXISTS (  SELECT 1 FROM player WHERE player_id = '%s' AND name = '%s' );", winner, name, winner, name ));
             statement.executeUpdate(String.format("INSERT INTO game (game_id, start_time, end_time, winner) VALUES('%s', '%s', now(), '%s')", gameId, timestamp, winner));
+            addRound(gameId);
         } catch (SQLException e) {
             System.out.println("Error updateGameTableStart");
             e.printStackTrace();
         }
     }
 
-    private int roundNumer = 1;
-    private int roundId = new Random().nextInt();
     public void addRound(String gameId ){
         try{
             statement.executeUpdate(String.format("INSERT INTO ROUND(game_id, round_id ,start_time,round_number) VALUES ('%s', '%d', now(), %d);", gameId, roundId++, roundNumer++));
         } catch (SQLException e){
             System.out.println("Error addRound: " + e.getMessage());
         }
+
+        System.out.println("CPLLLLL");
     }
 
     int moveNumber = 1;
@@ -47,6 +50,7 @@ public class DatabaseManager {
         } catch (SQLException e){
             System.out.println("Error addMove: " + e.getMessage());
         }
+        System.out.println("Ai doamne mila");
     }
 
     public void closeConnection(){
