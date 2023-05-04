@@ -103,6 +103,8 @@ public class CardPresenter {
             int y=i;
             ImageView currentCard= (view.PlayerImages.get(i));
             ((ImageView)currentCard).addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                ///// TODO hasu
+                model.getDbManager().addMove(String.valueOf(model.getHashCode()),String.valueOf(model.getPlayer(0).hashCode()), model.getPlayer(0).getCounterPoints());
                    if (getCounterForLatch() == 0) {
                        int humanIndex = model.getPlayers()[0].getTheSelectedCardFromHand(c);
 

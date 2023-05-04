@@ -2,6 +2,7 @@ package model;
 
 import java.util.List;
 
+
 public abstract class Player{
     public String name;
     PlayingTable table;
@@ -47,6 +48,9 @@ public abstract class Player{
         if (this.hand.cards.isEmpty()) {
             draw(table.getDeck());
             table.getPlayers()[1].draw(table.getDeck());
+            if(getClass().equals(HumanPlayer.class)){
+                table.getDbManager().addRound(String.valueOf(table.getHashCode()));
+            }
             for (int x = 0; x < table.getPlayers()[0].getHand().getCards().size(); x++) {
                 System.out.println("refreshed hand of player: " + table.getPlayers()[0].getHand().getCards().get(x).getNumber());
             }
@@ -60,6 +64,8 @@ public abstract class Player{
     public void setCounterPoints(int counterPoints) {
         this.counterPoints = counterPoints;
     }
+
+
 
     public String getName() {
         return name;

@@ -213,6 +213,7 @@ public class PlayingTable {
             cardRows[i] = new ArrayList<Card>();
             cardRows[i].add(deck.deal1());
         }
+        dbManager = new DatabaseManager();
 
     }
 
@@ -288,13 +289,9 @@ if (rowIndex>3 || rowIndex<0 ){
             return 0;
         }
         else{
-            return 1;
+            return 1;}
     }
 
 
-}
-    public void startDataBase(){
-        dbManager = new DatabaseManager();
 
-    }
 }

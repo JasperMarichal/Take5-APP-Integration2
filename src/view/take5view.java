@@ -261,7 +261,12 @@ public class take5view {
             stage.setScene(scene);
             stage.show();
             int winner = playingTable.checkWin();
-            playingTable.getDbManager().updateGameTableEnd(playingTable.getPlayer(winner).hashCode(), playingTable.getPlayer(winner).getName(), String.valueOf(playingTable.getHashCode()) );
+            int loser;
+            if(winner == 1){
+                 loser = 0;
+            } else { loser = 1; }
+            playingTable.getDbManager().updateGameTableEnd(playingTable.getPlayer(loser).hashCode(), playingTable.getPlayer(loser).getName(), playingTable.getPlayer(winner).hashCode(), playingTable.getPlayer(winner).getName(), String.valueOf(playingTable.getHashCode()) );
+            playingTable.getDbManager().closeConnection();
 
         }
 

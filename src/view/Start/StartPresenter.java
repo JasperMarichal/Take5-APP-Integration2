@@ -44,7 +44,6 @@ public class StartPresenter {
         model.getPlayers()[0].draw(model.getDeck());
         model.getPlayers()[1].draw(model.getDeck());
         CardPresenter cardPresenter = new CardPresenter(this.model, view, stage);
-        model.startDataBase();
     }
 
     private void addAnimation(){
