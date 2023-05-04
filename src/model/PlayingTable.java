@@ -187,9 +187,22 @@ public class PlayingTable {
 
     }
 
+    Saver saver;
 
+    public void checkDeck() {
+        try {
+            Deck deck1 = new Deck("src/Cards");
+            this.deck=deck1;
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public PlayingTable(Player human, Player AI) {
 //        this.borderPane = borderPane;
+
+        saver= new Saver();
+
 
 
         players = new Player[2];
