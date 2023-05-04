@@ -1,9 +1,7 @@
 package model;
 
 public class GameEngine {
-    PlayingTable playingTable;
+    // This class exists because someone can't respect a Design Pattern
 
-    public void play(){
 
-    }
 }

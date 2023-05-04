@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.util.Duration;
+import model.PlayingTable;
 import view.Rules.RulesPresenter;
 import view.Rules.RulesView;
 import view.Start.StartPresenter;
@@ -14,13 +15,15 @@ import view.Start.StartView;
 import java.util.Optional;
 
 public class MainPresenter {
-    private static  MainView view = null;
+    private static  MainView view;
+    private PlayingTable model;
 
     public static MainView getMainView() {
         return view;
     }
 
-    public MainPresenter(MainView view){
+    public MainPresenter(MainView view, PlayingTable model){
+        this.model = model;
         this.view = view;
         addEventHandlers();
     }
@@ -57,7 +60,7 @@ public class MainPresenter {
 
     private void setPlayerView(){
         StartView startView = new StartView();
-        StartPresenter startPresenter = new StartPresenter(startView);
+        StartPresenter startPresenter = new StartPresenter(startView, model);
         view.getScene().setRoot(startView);
         startView.getScene().getWindow().sizeToScene();
     }

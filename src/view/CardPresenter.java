@@ -16,7 +16,6 @@ import model.AiPlayer;
 import model.Card;
 import model.PlayingTable;
 
-import javax.swing.*;
 import javax.swing.text.View;
 import java.util.Arrays;
 import java.util.List;
@@ -38,13 +37,41 @@ public class CardPresenter {
         this.view = view;
         this.stage= stage;
         view.buildScene1(model,stage);
+//        addEventHandlersForButton();
         addEventHandlers();
+//        updateView(model);
 
         }
 
 
 
+//    public Card getCardFromArrayListOfImageViews(List<ImageView> list , String URL ){
 
+    //        for (int i=0; i<list.size(); i++){
+//            Card c;
+//                String s1URL=
+//            String s1 = c.getURL();
+//            String s2;
+//            if ()
+//            s1 = s2.toLowerCase();
+//            s2 = s2.toLowerCase();
+//
+//            // check if length is same
+//            if (s2.length() == s2.length()) {
+//
+//                // convert strings to char array
+//                char[] charArray1 = s1.toCharArray();
+//                char[] charArray2 = s2.toCharArray();
+//
+//                // if sorted char arrays are same
+//                // then the string is anagram
+//                boolean result = Arrays.equals(charArray1, charArray2);
+//
+//                if (result == true) {
+//                    c = deck.getCards().get(i);
+//                }
+//        }
+//    }
     public void setCounterForLatch(int counterForLatch) {
         this.counterForLatch = counterForLatch;
     }
@@ -76,7 +103,6 @@ public class CardPresenter {
             int y=i;
             ImageView currentCard= (view.PlayerImages.get(i));
             ((ImageView)currentCard).addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-
                    if (getCounterForLatch() == 0) {
                        int humanIndex = model.getPlayers()[0].getTheSelectedCardFromHand(c);
 
@@ -88,7 +114,10 @@ public class CardPresenter {
                        ImageView currentImageWithoutClickEvent2 = new ImageView(imgForCenter);
                        currentImageWithoutClickEvent2.setFitWidth(150);
                        currentImageWithoutClickEvent2.setFitHeight(180);
+//            view.cardHolder.getChildren().add(currentImageWithoutClickEvent);
                        VBox vBox = new VBox(currentImageWithoutClickEvent2);
+//                        model.getBorderPane().setRight();
+
 
                        Integer i1 = model.getPlayableRows(model.getCardScanner().scanAndRetrieveCardForPlay(s));
                        view.getBottomImages().getChildren().remove(currentCard);
@@ -108,28 +137,30 @@ public class CardPresenter {
 
 
                            if (i1 != null) {
-
+//                            model.getCardRows()[i1].add(model.getCardScanner().scanAndRetrieveCardForPlay(s));
                                ((HBox) view.rows.getChildren().get(i1)).getChildren().add(currentImageWithoutClickEvent);
                                (model.getPlayers()[0]).playCard(humanIndex, i1);
                                view.getH1().refreshRows(model);
+//                    playingTable.CollectCardRows(i1);
 
-                               Integer i4 = model.getPlayableRows(cAI);
-                               if (i4 != null) {
+                               if (i2 != null) {
                                    System.out.println(aiCardRowSelectionForRetrival + "Proverka");
-
-                                   ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, i4);
+//                                model.getCardRows()[i2].add(model.getCardScanner().scanAndRetrieveCardForPlay(aistring));
+//                                ((HBox)view.rows.getChildren().get(i2)).getChildren().add(AIimgview);
+                                   ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, i2);
                                    view.getH1().refreshRows(model);
                                } else {
                                    model.dmgCalculationAI(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
                                    model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
                                    System.out.println(aiCardRowSelectionForRetrival + "Proverka");
-
+//                                ((HBox)view.rows.getChildren().get(aiCardRowSelectionForRetrival)).getChildren().clear();
+//                                ((HBox)view.rows.getChildren().get(aiCardRowSelectionForRetrival)).getChildren().add(AIimgview);
                                    ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, aiCardRowSelectionForRetrival);
                                    view.getH1().refreshRows(model);
                                    model.showRows();
                                }
-                               model.checkDeck();
                                view.refreshHands(model,0);
+//                            view.borderPane1.setBottom(view.bottomImages);
                                addEventHandlers();
 
                            } else {
@@ -145,29 +176,31 @@ public class CardPresenter {
                                    model.dmgCalculationHuman(0, model.getPlayers()[0]);
                                    model.getAllCardsFromRow(0);
                                    removeChildren(view, forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
-
+//                                ((HBox)view.rows.getChildren().get(0)).getChildren().removeAll();
+//                                ((HBox)view.rows.getChildren().get(0)).getChildren().add(currentImageWithoutClickEvent);
                                    (model.getPlayers()[0]).playCard(humanIndex, 0);
-                                   Integer i4 = model.getPlayableRows(cAI);
 
-                                   if (i4 != null) {
 
-                                       ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, i4);
+                                   if (i2 != null) {
+//                                    model.getCardRows()[i2].add(model.getCardScanner().scanAndRetrieveCardForPlay(aistring));
+//                                    ((HBox)view.rows.getChildren().get(i2)).getChildren().add(AIimgview);
+                                       ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, i2);
 
                                    } else {
                                        model.dmgCalculationAI(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
 
                                        model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
                                        System.out.println(aiCardRowSelectionForRetrival + "Proverka");
-
+//                                    ((HBox)view.rows.getChildren().get(aiCardRowSelectionForRetrival)).getChildren().clear();
+//                                    ((HBox)view.rows.getChildren().get(aiCardRowSelectionForRetrival)).getChildren().add(AIimgview);
                                        ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, aiCardRowSelectionForRetrival);
 
                                    }
                                    setCounterForLatch(0);
                                    view.getH1().refreshRows(model);
                                    model.showRows();
-                                   model.checkDeck();
                                    view.refreshHands(model,0);
-
+//                            view.borderPane1.setBottom(view.bottomImages);
                                    addEventHandlers();
 
                                });
@@ -178,29 +211,31 @@ public class CardPresenter {
 
 
                                    removeChildren(view, forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
-
+//                                ((HBox)view.rows.getChildren().get(1)).getChildren().clear();
+//                                ((HBox)view.rows.getChildren().get(1)).getChildren().add(currentImageWithoutClickEvent);
                                    (model.getPlayers()[0]).playCard(humanIndex, 1);
-                                   Integer i4 = model.getPlayableRows(cAI);
 
-                                   if (i4 != null) {
 
-                                       ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, i4);
+                                   if (i2 != null) {
+//                                    model.getCardRows()[i2].add(model.getCardScanner().scanAndRetrieveCardForPlay(aistring));
+//                                    ((HBox)view.rows.getChildren().get(i2)).getChildren().add(AIimgview);
+                                       ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, i2);
 
                                    } else {
                                        model.dmgCalculationAI(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
 
                                        model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
                                        System.out.println(aiCardRowSelectionForRetrival + "Proverka");
-
+//                                    ((HBox)view.rows.getChildren().get(aiCardRowSelectionForRetrival)).getChildren().clear();
+//                                    ((HBox)view.rows.getChildren().get(aiCardRowSelectionForRetrival)).getChildren().add(AIimgview);
                                        ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, aiCardRowSelectionForRetrival);
                                    }
 
                                    setCounterForLatch(0);
                                    view.getH1().refreshRows(model);
                                    model.showRows();
-                                   model.checkDeck();
                                    view.refreshHands(model,0);
-
+//                            view.borderPane1.setBottom(view.bottomImages);
                                    addEventHandlers();
 
                                });
@@ -209,28 +244,30 @@ public class CardPresenter {
 
                                    model.getAllCardsFromRow(2);
                                    removeChildren(view, forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
-
+//                                ((HBox)view.rows.getChildren().get(2)).getChildren().clear();
+//                                ((HBox)view.rows.getChildren().get(2)).getChildren().add(currentImageWithoutClickEvent);
                                    (model.getPlayers()[0]).playCard(humanIndex, 2);
-                                   Integer i4 = model.getPlayableRows(cAI);
-                                   if (i4 != null) {
 
-                                       model.getPlayers()[1].playCard(aiCardIndex, i4);
+                                   if (i2 != null) {
+//                                    model.getCardRows()[i2].add(model.getCardScanner().scanAndRetrieveCardForPlay(aistring));
+//                                    ((HBox)view.rows.getChildren().get(i2)).getChildren().add(AIimgview);
+                                       model.getPlayers()[1].playCard(aiCardIndex, i2);
 
                                    } else {
                                        model.dmgCalculationAI(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
 
                                        model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
                                        System.out.println(aiCardRowSelectionForRetrival + "Proverka");
-
+//                                    ((HBox)view.rows.getChildren().get(aiCardRowSelectionForRetrival)).getChildren().clear();
+//                                    ((HBox)view.rows.getChildren().get(aiCardRowSelectionForRetrival)).getChildren().add(AIimgview);
                                        ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, aiCardRowSelectionForRetrival);
                                    }
 
                                    setCounterForLatch(0);
                                    view.getH1().refreshRows(model);
                                    model.showRows();
-                                   model.checkDeck();
                                    view.refreshHands(model,0);
-
+//                            view.borderPane1.setBottom(view.bottomImages);
                                    addEventHandlers();
 
                                });
@@ -239,14 +276,16 @@ public class CardPresenter {
 
                                    model.getAllCardsFromRow(3);
                                    removeChildren(view, forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
-
+//                                ((HBox)view.rows.getChildren().get(3)).getChildren().clear();
+//                                ((HBox)view.rows.getChildren().get(3)).getChildren().add(currentImageWithoutClickEvent);
                                    (model.getPlayers()[0]).playCard(humanIndex, 3);
-                                   Integer i4 = model.getPlayableRows(cAI);
 
-                                   if (i4 != null) {
+
+                                   if (i2 != null) {
                                        System.out.println(aiCardRowSelectionForRetrival + "Proverka");
-
-                                       ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, i4);
+//                                       model.getCardRows()[i2].add(model.getCardScanner().scanAndRetrieveCardForPlay(aistring));
+//                                    ((HBox)view.rows.getChildren().get(i2)).getChildren().add(AIimgview);
+                                       ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, i2);
 
 
                                    } else {
@@ -254,7 +293,8 @@ public class CardPresenter {
 
                                        model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
                                        System.out.println(aiCardRowSelectionForRetrival + "Proverka");
-
+//                                    ((HBox)view.rows.getChildren().get(aiCardRowSelectionForRetrival)).getChildren().clear();
+//                                    ((HBox)view.rows.getChildren().get(aiCardRowSelectionForRetrival)).getChildren().add(AIimgview);
                                        ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, aiCardRowSelectionForRetrival);
 
 
@@ -263,9 +303,9 @@ public class CardPresenter {
                                    setCounterForLatch(0);
                                    view.getH1().refreshRows(model);
                                    model.showRows();
-                                   model.checkDeck();
-                                   view.refreshHands(model,0);
 
+                                   view.refreshHands(model,0);
+//                            view.borderPane1.setBottom(view.bottomImages);
                                    addEventHandlers();
                                });
                                view.addButtons(forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
@@ -280,17 +320,16 @@ public class CardPresenter {
                        } else {
                            if (i2 != null) {
                                System.out.println(aiCardRowSelectionForRetrival + "Proverka");
-
+//                                model.getCardRows()[i2].add(model.getCardScanner().scanAndRetrieveCardForPlay(aistring));
+//                                ((HBox)view.rows.getChildren().get(i2)).getChildren().add(AIimgview);
                                ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, i2);
                                view.getH1().refreshRows(model);
-
-
-                               Integer i3 = model.getPlayableRows(model.getCardScanner().scanAndRetrieveCardForPlay(s));
-                               if (i3 != null) {
-
-                                   (model.getPlayers()[0]).playCard(humanIndex, i3);
+                               if (i1 != null) {
+//                            model.getCardRows()[i1].add(model.getCardScanner().scanAndRetrieveCardForPlay(s));
+                                   ((HBox) view.rows.getChildren().get(i1)).getChildren().add(currentImageWithoutClickEvent);
+                                   (model.getPlayers()[0]).playCard(humanIndex, i1);
                                    view.getH1().refreshRows(model);
-
+//                    playingTable.CollectCardRows(i1);
 
 
                                } else {
@@ -306,123 +345,14 @@ public class CardPresenter {
                                        model.dmgCalculationHuman(0, model.getPlayers()[0]);
                                        model.getAllCardsFromRow(0);
                                        removeChildren(view, forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
-
+//                                ((HBox)view.rows.getChildren().get(0)).getChildren().removeAll();
+//                                ((HBox)view.rows.getChildren().get(0)).getChildren().add(currentImageWithoutClickEvent);
                                        (model.getPlayers()[0]).playCard(humanIndex, 0);
 
 
                                        setCounterForLatch(0);
                                        view.getH1().refreshRows(model);
                                        model.showRows();
-                                       model.checkDeck();
-                                       view.refreshHands(model, 1);
-
-                                       addEventHandlers();
-
-                                   });
-                                   forSecondRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> {
-                                       model.dmgCalculationHuman(1, model.getPlayers()[0]);
-
-                                       model.getAllCardsFromRow(1);
-
-
-                                       removeChildren(view, forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
-
-                                       (model.getPlayers()[0]).playCard(humanIndex, 1);
-
-
-                                       setCounterForLatch(0);
-                                       view.getH1().refreshRows(model);
-                                       model.showRows();
-                                       model.checkDeck();
-                                       view.refreshHands(model, 1);
-
-                                       addEventHandlers();
-
-                                   });
-                                   forThirdRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> {
-                                       model.dmgCalculationHuman(2, model.getPlayers()[0]);
-
-                                       model.getAllCardsFromRow(2);
-                                       removeChildren(view, forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
-
-                                       (model.getPlayers()[0]).playCard(humanIndex, 2);
-
-
-                                       setCounterForLatch(0);
-                                       view.getH1().refreshRows(model);
-                                       model.showRows();
-                                       model.checkDeck();
-                                       view.refreshHands(model, 1);
-
-                                       addEventHandlers();
-
-                                   });
-                                   forFourTHRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> {
-                                       model.dmgCalculationHuman(3, model.getPlayers()[0]);
-
-                                       model.getAllCardsFromRow(3);
-                                       removeChildren(view, forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
-
-                                       (model.getPlayers()[0]).playCard(humanIndex, 3);
-
-
-                                       setCounterForLatch(0);
-                                       view.getH1().refreshRows(model);
-                                       model.showRows();
-                                       model.checkDeck();
-                                       view.refreshHands(model, 1);
-
-                                       addEventHandlers();
-                                   });
-                                   view.addButtons(forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
-
-
-                               }
-
-
-                               view.getTopImages().getChildren().remove(0);
-
-
-                           } else {
-                               model.dmgCalculationAI(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
-                               model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
-                               System.out.println(aiCardRowSelectionForRetrival + "Proverka");
-
-                               ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, aiCardRowSelectionForRetrival);
-                               view.getH1().refreshRows(model);
-                               model.showRows();
-
-
-
-                               Integer i3 = model.getPlayableRows(model.getCardScanner().scanAndRetrieveCardForPlay(s));
-                               if (i3 != null) {
-
-                                   (model.getPlayers()[0]).playCard(humanIndex, i3);
-                                   view.getH1().refreshRows(model);
-
-
-
-                               } else {
-                                   setCounterForLatch(1);
-
-                                   Button forFirstRow = new Button();
-                                   Button forSecondRow = new Button();
-                                   Button forThirdRow = new Button();
-                                   Button forFourTHRow = new Button();
-
-
-                                   forFirstRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> {
-                                       model.dmgCalculationHuman(0, model.getPlayers()[0]);
-                                       model.getAllCardsFromRow(0);
-                                       removeChildren(view, forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
-
-                                       (model.getPlayers()[0]).playCard(humanIndex, 0);
-
-
-                                       setCounterForLatch(0);
-                                       view.getH1().refreshRows(model);
-                                       model.showRows();
-                                       model.checkDeck();
                                        view.refreshHands(model, 1);
 //                            view.borderPane1.setBottom(view.bottomImages);
                                        addEventHandlers();
@@ -435,16 +365,16 @@ public class CardPresenter {
 
 
                                        removeChildren(view, forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
-
+//                                ((HBox)view.rows.getChildren().get(1)).getChildren().clear();
+//                                ((HBox)view.rows.getChildren().get(1)).getChildren().add(currentImageWithoutClickEvent);
                                        (model.getPlayers()[0]).playCard(humanIndex, 1);
 
 
                                        setCounterForLatch(0);
                                        view.getH1().refreshRows(model);
                                        model.showRows();
-                                       model.checkDeck();
                                        view.refreshHands(model, 1);
-
+//                            view.borderPane1.setBottom(view.bottomImages);
                                        addEventHandlers();
 
                                    });
@@ -453,16 +383,16 @@ public class CardPresenter {
 
                                        model.getAllCardsFromRow(2);
                                        removeChildren(view, forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
-
+//                                ((HBox)view.rows.getChildren().get(2)).getChildren().clear();
+//                                ((HBox)view.rows.getChildren().get(2)).getChildren().add(currentImageWithoutClickEvent);
                                        (model.getPlayers()[0]).playCard(humanIndex, 2);
 
 
                                        setCounterForLatch(0);
                                        view.getH1().refreshRows(model);
                                        model.showRows();
-                                       model.checkDeck();
                                        view.refreshHands(model, 1);
-
+//                            view.borderPane1.setBottom(view.bottomImages);
                                        addEventHandlers();
 
                                    });
@@ -471,17 +401,128 @@ public class CardPresenter {
 
                                        model.getAllCardsFromRow(3);
                                        removeChildren(view, forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
-
+//                                ((HBox)view.rows.getChildren().get(3)).getChildren().clear();
+//                                ((HBox)view.rows.getChildren().get(3)).getChildren().add(currentImageWithoutClickEvent);
                                        (model.getPlayers()[0]).playCard(humanIndex, 3);
 
 
                                        setCounterForLatch(0);
                                        view.getH1().refreshRows(model);
                                        model.showRows();
-                                       model.checkDeck();
 
                                        view.refreshHands(model, 1);
+//                            view.borderPane1.setBottom(view.bottomImages);
+                                       addEventHandlers();
+                                   });
+                                   view.addButtons(forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
 
+
+                               }
+
+
+                               view.getTopImages().getChildren().remove(0);
+
+                           } else {
+                               model.dmgCalculationAI(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
+                               model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
+                               System.out.println(aiCardRowSelectionForRetrival + "Proverka");
+//                                ((HBox)view.rows.getChildren().get(aiCardRowSelectionForRetrival)).getChildren().clear();
+//                                ((HBox)view.rows.getChildren().get(aiCardRowSelectionForRetrival)).getChildren().add(AIimgview);
+                               ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, aiCardRowSelectionForRetrival);
+                               view.getH1().refreshRows(model);
+                               model.showRows();
+
+
+
+
+                               if (i1 != null) {
+//                            model.getCardRows()[i1].add(model.getCardScanner().scanAndRetrieveCardForPlay(s));
+                                   ((HBox) view.rows.getChildren().get(i1)).getChildren().add(currentImageWithoutClickEvent);
+                                   (model.getPlayers()[0]).playCard(humanIndex, i1);
+                                   view.getH1().refreshRows(model);
+//                    playingTable.CollectCardRows(i1);
+
+
+                               } else {
+                                   setCounterForLatch(1);
+
+                                   Button forFirstRow = new Button();
+                                   Button forSecondRow = new Button();
+                                   Button forThirdRow = new Button();
+                                   Button forFourTHRow = new Button();
+
+
+                                   forFirstRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> {
+                                       model.dmgCalculationHuman(0, model.getPlayers()[0]);
+                                       model.getAllCardsFromRow(0);
+                                       removeChildren(view, forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
+//                                ((HBox)view.rows.getChildren().get(0)).getChildren().removeAll();
+//                                ((HBox)view.rows.getChildren().get(0)).getChildren().add(currentImageWithoutClickEvent);
+                                       (model.getPlayers()[0]).playCard(humanIndex, 0);
+
+
+                                       setCounterForLatch(0);
+                                       view.getH1().refreshRows(model);
+                                       model.showRows();
+                                       view.refreshHands(model, 1);
+//                            view.borderPane1.setBottom(view.bottomImages);
+                                       addEventHandlers();
+
+                                   });
+                                   forSecondRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> {
+                                       model.dmgCalculationHuman(1, model.getPlayers()[0]);
+
+                                       model.getAllCardsFromRow(1);
+
+
+                                       removeChildren(view, forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
+//                                ((HBox)view.rows.getChildren().get(1)).getChildren().clear();
+//                                ((HBox)view.rows.getChildren().get(1)).getChildren().add(currentImageWithoutClickEvent);
+                                       (model.getPlayers()[0]).playCard(humanIndex, 1);
+
+
+                                       setCounterForLatch(0);
+                                       view.getH1().refreshRows(model);
+                                       model.showRows();
+                                       view.refreshHands(model, 1);
+//                            view.borderPane1.setBottom(view.bottomImages);
+                                       addEventHandlers();
+
+                                   });
+                                   forThirdRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> {
+                                       model.dmgCalculationHuman(2, model.getPlayers()[0]);
+
+                                       model.getAllCardsFromRow(2);
+                                       removeChildren(view, forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
+//                                ((HBox)view.rows.getChildren().get(2)).getChildren().clear();
+//                                ((HBox)view.rows.getChildren().get(2)).getChildren().add(currentImageWithoutClickEvent);
+                                       (model.getPlayers()[0]).playCard(humanIndex, 2);
+
+
+                                       setCounterForLatch(0);
+                                       view.getH1().refreshRows(model);
+                                       model.showRows();
+                                       view.refreshHands(model, 1);
+//                            view.borderPane1.setBottom(view.bottomImages);
+                                       addEventHandlers();
+
+                                   });
+                                   forFourTHRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> {
+                                       model.dmgCalculationHuman(3, model.getPlayers()[0]);
+
+                                       model.getAllCardsFromRow(3);
+                                       removeChildren(view, forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
+//                                ((HBox)view.rows.getChildren().get(3)).getChildren().clear();
+//                                ((HBox)view.rows.getChildren().get(3)).getChildren().add(currentImageWithoutClickEvent);
+                                       (model.getPlayers()[0]).playCard(humanIndex, 3);
+
+
+                                       setCounterForLatch(0);
+                                       view.getH1().refreshRows(model);
+                                       model.showRows();
+
+                                       view.refreshHands(model, 1);
+//                            view.borderPane1.setBottom(view.bottomImages);
                                        addEventHandlers();
                                    });
                                    view.addButtons(forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
@@ -491,22 +532,27 @@ public class CardPresenter {
                            }
 
 
+
+
                            for (int x = 0; x < model.getPlayers()[0].getHand().getCards().size(); x++) {
                                System.out.println("current hand of player: " + model.getPlayers()[0].getHand().getCards().get(x).getNumber());
                            }
-
-
-                           model.checkDeck();
+//                        if (model.getPlayers()[0].getHand().getCards().isEmpty()) {
+//                            model.getPlayers()[0].draw(model.getDeck());
+//                            model.getPlayers()[1].draw(model.getDeck());
+//                            for (int x = 0; x < model.getPlayers()[0].getHand().getCards().size(); x++) {
+//                                System.out.println("refreshed hand of player: " + model.getPlayers()[0].getHand().getCards().get(x).getNumber());
+//                            }
                            view.refreshHands(model, 1);
 
-
+//                            view.borderPane1.setBottom(view.bottomImages);
                            addEventHandlers();
 
 
                        }
                     }
 
-                      }
+                            }
 
             );
         }

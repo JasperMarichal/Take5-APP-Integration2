@@ -2,9 +2,7 @@ package view.Start;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
-import javafx.application.Platform;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.AiPlayer;
@@ -12,14 +10,16 @@ import model.HumanPlayer;
 import model.PlayingTable;
 import view.CardPresenter;
 import view.MainMenu.MainPresenter;
-import view.MainMenu.MainView;
 import view.take5view;
 
 
 public class StartPresenter {
-    private final StartView view;
 
-    public StartPresenter(StartView view) {
+    private final StartView view;
+    private PlayingTable model;
+
+    public StartPresenter(StartView view, PlayingTable model) {
+        this.model = model;
         this.view = view;
         addEventListeners();
         addAnimation();
@@ -35,20 +35,16 @@ public class StartPresenter {
     }
 
     private void startGame(MouseEvent e){
-        HumanPlayer hp= new HumanPlayer(view.getUsername().getText(),64);
-        AiPlayer AI = new AiPlayer("Bot 1", 64);
-
         Stage closeStage = (Stage) view.getScene().getWindow();
         closeStage.close();
         Stage stage = new Stage();
 
-        // TODO: VASIL FIX THIS
-        PlayingTable playingTable = new PlayingTable(hp, AI);
-        take5view b1= new take5view();
-
-        playingTable.getPlayers()[0].draw(playingTable.getDeck());
-        playingTable.getPlayers()[1].draw(playingTable.getDeck());
-        CardPresenter cardPresenter = new CardPresenter(playingTable, b1, stage);
+        take5view view = new take5view();
+        model.getPlayer(0).setName(this.view.getUsername().getText());
+        model.getPlayers()[0].draw(model.getDeck());
+        model.getPlayers()[1].draw(model.getDeck());
+        CardPresenter cardPresenter = new CardPresenter(this.model, view, stage);
+        model.startDataBase();
     }
 
     private void addAnimation(){

@@ -40,12 +40,16 @@ public abstract class Player{
 
     }
     public void playCard(int index, int cardrow) {
+//        int index = getTheSelectedCardFromHand(card);
         Card c = this.getHand().getCards().get(index);
         table.addCard(c, cardrow);
         this.getHand().getCards().remove(c);
         if (this.hand.cards.isEmpty()) {
             draw(table.getDeck());
             table.getPlayers()[1].draw(table.getDeck());
+            for (int x = 0; x < table.getPlayers()[0].getHand().getCards().size(); x++) {
+                System.out.println("refreshed hand of player: " + table.getPlayers()[0].getHand().getCards().get(x).getNumber());
+            }
         }
     }
 
@@ -63,6 +67,14 @@ public abstract class Player{
 
     public Hand getHand() {
 
+//        System.out.println("This is the hand of player:" + getName());
+//        for (int i= 0; i<hand.cards.size(); i++) {
+//
+//            System.out.print(hand.cards.get(i).getNumber()+ "   ");
+//            System.out.print(hand.cards.get(i).getBulls());
+//            System.out.println();
+//
+//        }
         return hand;
     }
 
@@ -88,4 +100,8 @@ public abstract class Player{
         hand.cards.addAll(List.of(deck.get10()));
     }
 
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
 }
