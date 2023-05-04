@@ -505,7 +505,7 @@ public class CardPresenter {
 
 
 
-                                    model.getSaver().initializeDatabaseSave(model);
+//                                    model.getSaver().initializeDatabaseSave(model);
 
                                 }
                             }
