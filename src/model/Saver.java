@@ -14,7 +14,7 @@ public class Saver{
             //Connection to database
             System.out.println("INFO: Connecting to database...");
             Connection connection = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/game"
+                    "jdbc:postgresql://10.134.178.10:5432/"
                     , "game"
                     , "7sur7"
             );
@@ -27,11 +27,11 @@ public class Saver{
 
             PreparedStatement pstmt2 = connection.prepareStatement(Query2);
             statement = connection.createStatement();
-            
+
             for (int i=0; i<playingTable.getDeck().getCards().size(); i++){
 
 
-                pstmt2.executeQuery("INSERT INTO  \"deck\"  (card_number) values "+"("+ playingTable.getDeck().getCards().get(i).getNumber() + "#"  + playingTable.getDeck().getCards().get(i).getBulls() +")");
+                statement.executeQuery("INSERT INTO  deck  (card_number) values "+"("+ playingTable.getDeck().getCards().get(i).getNumber() + "#"  + playingTable.getDeck().getCards().get(i).getBulls() +")");
             }
             for (int i=0; i<3; i++) {
 
