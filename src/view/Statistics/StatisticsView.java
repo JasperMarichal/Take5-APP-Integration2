@@ -24,17 +24,25 @@ public class StatisticsView extends BorderPane {
 
     public void initialiseNodes(){
         //Chart
-        lineChart = new LineChart <>(new NumberAxis(), new NumberAxis());
+        NumberAxis xAxis = new NumberAxis();
+        xAxis.setTickUnit(1);
+        xAxis.setAnimated(true);
+        xAxis.setMinorTickCount(0);
+        xAxis.setLabel("Move Number");
+
+        NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("Seconds");
+        lineChart = new LineChart <>(xAxis, yAxis);
         series1.setName("Durations of moves");
 
         //Text on the left
         average_move_duration = new Text();
 
         //Nodes that are inside the HBox ( at the bottom of the page )
-        hbox = new HBox(15);
-        most_profit = new Text();
-        outliers_rounds = new Text();
-        hbox.getChildren().addAll(most_profit, outliers_rounds);
+       // hbox = new HBox(15);
+        //most_profit = new Text();
+        //outliers_rounds = new Text();
+        //hbox.getChildren().addAll(most_profit, outliers_rounds);
 
     }
 
@@ -53,15 +61,15 @@ public class StatisticsView extends BorderPane {
         lineChart.getXAxis().setStyle("-fx-border-color: #0095ff transparent transparent; -fx-border-width:3");
         lineChart.getYAxis().setStyle("-fx-border-color: transparent #0095ff transparent transparent; -fx-border-width:3");
         setLeft(average_move_duration);
-        // HBox
-        most_profit.setId("most-profit");
-        outliers_rounds.setId("most-profit");
-        setAlignment(most_profit, Pos.CENTER);
-        hbox.setId("hbox");
-        setBottom(hbox);
-        setMargin(hbox, new Insets(30,30,30,30));
-        hbox.setPadding(new Insets(10,10,10,10));
-        series1.setName("Moves timing");
+//        // HBox
+//        most_profit.setId("most-profit");
+//        outliers_rounds.setId("most-profit");
+//        setAlignment(most_profit, Pos.CENTER);
+//        hbox.setId("hbox");
+//        setBottom(hbox);
+//        setMargin(hbox, new Insets(30,30,30,30));
+//        hbox.setPadding(new Insets(10,10,10,10));
+//        series1.setName("Moves timing");
 
     }
 

@@ -9,10 +9,10 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="postgresql-42.5.4" level="project" />
     <orderEntry type="library" exported="" name="JavaFX" level="application" />
     <orderEntry type="library" exported="" name="JavaFx" level="application" />
     <orderEntry type="library" name="postgresql-42.2.27.jre7" level="application" />
+    <orderEntry type="library" name="postgresql-42.5.4" level="project" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_FOLDERS">

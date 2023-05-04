@@ -22,17 +22,17 @@ public class Statistics {
     }
 
     // Methods to retrieve data from database
-    public String getAverageMoveDuration(){
+    public String getAverageMoveDuration(String gameId){
         String average_move_duration = null;
         try {
-            ResultSet resultSet = statement.executeQuery("WITH move_times AS (\n" +
+            ResultSet resultSet = statement.executeQuery(String.format("WITH move_times AS (\n" +
                     "    SELECT end_time - LAG(end_time) OVER (ORDER BY end_time) AS move_time\n" +
                     "    FROM move\n" +
-                    "    WHERE game_id = '-1693412144'\n" +
+                    "    WHERE game_id = '%s'\n" +
                     ")\n" +
                     "SELECT extract('seconds' from AVG(move_time)) || ' seconds' AS avg_move_time\n" +
                     "FROM move_times\n" +
-                    "WHERE move_time IS NOT NULL;");
+                    "WHERE move_time IS NOT NULL;", gameId));
             while(resultSet.next()){
                 average_move_duration = resultSet.getString(1);
             }
@@ -44,15 +44,19 @@ public class Statistics {
 
         return average_move_duration;
     }
-    public Map<Integer, Integer> getMoveChartValues(){
+    public Map<Integer, Integer> getMoveChartValues(String gameId){
         Map<Integer, Integer> move_dur_map = new HashMap<>();
         try{
-            ResultSet resultSet = statement.executeQuery("""
-                    select extract('minutes' from end_time-start_time)*60 + extract('seconds' from end_time-start_time)
-                    from move
-                    where game_id  = '1'
-                    order by move_id;""");
-            int i = 1;
+            ResultSet resultSet = statement.executeQuery(String.format("WITH move_times AS (\n" +
+                    "    SELECT end_time - LAG(end_time) OVER (ORDER BY end_time) AS move_time\n" +
+                    "    FROM move\n" +
+                    "    WHERE game_id = '%s'\n" +
+                    "    ORDER BY move_id\n" +
+                    ")\n" +
+                    "SELECT extract('minutes' from move_time)*60 + extract('seconds' from move_time)\n" +
+                    "FROM move_times\n" +
+                    "WHERE move_times IS NOT NULL;", gameId));
+            int i = 0;
             while(resultSet.next()){
                 move_dur_map.put(i++, resultSet.getInt(1));
             }
