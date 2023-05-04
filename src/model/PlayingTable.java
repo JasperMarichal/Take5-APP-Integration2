@@ -98,6 +98,15 @@ public class PlayingTable {final int cardRowsSize = 4;
 //        return h1b;
 //    }
 
+    public void checkDeck() {
+        try {
+            Deck deck1 = new Deck("src/Cards");
+            this.deck=deck1;
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public Integer getPlayableRows(Card card) {
         Integer[] checkedNumbers = new Integer[4];
