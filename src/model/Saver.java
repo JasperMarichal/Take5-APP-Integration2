@@ -20,14 +20,29 @@ public class Saver{
             );
 
             Statement statement;
-
-            statement = connection.createStatement();
             String Query = "insert into \"Cards For Hands\" (game_number, card_number, player, card_bulls) values (?, ?, ?, ? )";
+
             PreparedStatement pstmt = connection.prepareStatement(Query);
+            String Query2 = "INSERT INTO  \"cardrows\"  (card_row_number,card_number, card_bulls ) values (?, ?, ?, ? )";
+
+            PreparedStatement pstmt2 = connection.prepareStatement(Query2);
+            statement = connection.createStatement();
+            
             for (int i=0; i<playingTable.getDeck().getCards().size(); i++){
 
 
-                statement.executeQuery("INSERT INTO  \"deck\"  (card_number) values "+"("+ playingTable.getDeck().getCards().get(i).getNumber() + "#"  + playingTable.getDeck().getCards().get(i).getBulls() +")");
+                pstmt2.executeQuery("INSERT INTO  \"deck\"  (card_number) values "+"("+ playingTable.getDeck().getCards().get(i).getNumber() + "#"  + playingTable.getDeck().getCards().get(i).getBulls() +")");
+            }
+            for (int i=0; i<3; i++) {
+
+
+                for (int y = 0; y < playingTable.cardRows[i].size(); y++) {
+
+                    pstmt2.setInt(1, i);
+                    pstmt2.setInt(2, playingTable.cardRows[i].get(y).getNumber());
+                    pstmt2.setInt(3, playingTable.cardRows[i].get(y).getBulls());
+                    pstmt2.executeUpdate();
+                }
             }
             for (int i=0; i<playingTable.getPlayers()[0].getHand().getCards().size(); i++){
 
