@@ -51,7 +51,7 @@ public class CardScanner {
             }
         }
 
-        System.out.println(c1 + "Proverena karta");
+
         return c1;
     }
 }

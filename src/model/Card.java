@@ -63,12 +63,3 @@ public class Card {
     }
 
 }
-//
-//public void print() {
-//    for (int i = 0; i < listDeck2.size(); i++) {
-//
-//        System.out.println(getNumber(listDeck2.get(i)) + "and " + getBulls(deck1.listDeck2.get(i)));
-//    }
-//}
-//    }
-//

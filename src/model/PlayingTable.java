@@ -30,13 +30,8 @@ public class PlayingTable {final int cardRowsSize = 4;
     ArrayList<Card>[] cardRows;
     String urlBack = "file:resources/take5prototipfx/bacground1Finished.jpg";
     ArrayList<Card>[] chosenCards;
-//     BorderPane borderPane;
-//     HBox bottomImages = new HBox();
-//     HBox topImages = new HBox();
-//    VBox CenterImages = new VBox();
-//    HboxBuilder h1b = new HboxBuilder();
 
-    take5view take5view= new take5view();
+
 
     public  int getCounterForLatch() {
         return counterForLatch;
@@ -77,26 +72,6 @@ public class PlayingTable {final int cardRowsSize = 4;
     public ArrayList<Card>[] getChosenCards() {
         return chosenCards;
     }
-
-//    public BorderPane getBorderPane() {
-//        return borderPane;
-//    }
-
-//    public HBox getBottomImages() {
-//        return bottomImages;
-//    }
-//
-//    public HBox getTopImages() {
-//        return topImages;
-//    }
-
-//    public VBox getCenterImages() {
-//        return CenterImages;
-//    }
-
-//    public HboxBuilder getH1b() {
-//        return h1b;
-//    }
 
     public void checkDeck() {
         try {
@@ -159,7 +134,6 @@ public class PlayingTable {final int cardRowsSize = 4;
                 if (cardRows[i].get(cardRows[i].size() - 1).getNumber() == maximumNumberOfCard) {
                     thatWeNeed = i;
                 }
-//            System.out.println(thatWeNeed);
             }
             return thatWeNeed;
         }
@@ -181,11 +155,7 @@ public class PlayingTable {final int cardRowsSize = 4;
         return deck;
     }
 
-    public void refreshPane(){
 
-//        view.take5view.buildBorderPane(this);
-
-    }
 
 
     public PlayingTable(Player human, Player AI) {

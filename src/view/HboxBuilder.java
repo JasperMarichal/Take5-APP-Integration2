@@ -36,12 +36,11 @@ public class HboxBuilder {
             imgv.setFitWidth(80);
             imgv.setFitHeight(100);
             firstRow.getChildren().add(imgv);
-//               CenterImages.getChildren().add(imgv);
-//               rows.getChildren().add(imgv);
+
             HBox.setMargin(firstRow, new Insets(0,10,0,0));
 
 
-//            VBox.setMargin(rows, new Insets(10, 0, 0, 0));
+
         }
         for (int x = 0; x< playingTable.getCardRows()[1].size(); x++ ) {
             Image img2 = playingTable.getCardRows()[1].get(x).getImage();
@@ -88,7 +87,7 @@ public class HboxBuilder {
 
         rows.getChildren().removeAll(rows.getChildren());
 
-//        vbox.getChildren().removeAll();
+
         refreshDmg(playingTable);
         buildRows(playingTable);
         return rows;

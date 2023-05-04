@@ -115,19 +115,14 @@ public class take5view {
     public void buildScene1(PlayingTable playingTable, Stage stage){
         BorderPane borderPane = new BorderPane();
         buildBorderPane(playingTable);
-//        borderPane2=borderPane;
+
         Scene sceneForMenu= new Scene(getBorderPane1());
         stage.setScene(sceneForMenu);
         stage.setHeight(900);
         stage.setWidth(1500);
         stage.show();
         setBackground();
-//
-//         button.addEventHandler(MouseEvent.MOUSE_CLICKED, event2 ->{
-//
-//             buildBorderPane(playingTable);
-//             Scene scene1 = new Scene(getBorderPane1());
-//             stage.setScene(scene1);
+
 
     }
 
@@ -153,8 +148,7 @@ public class take5view {
 
 
 
-        // TODO: clear pane
-        // append player one cards
+
         int counterForLatch=0;
         CountDownLatch latch = new CountDownLatch(counterForLatch);
 
@@ -224,16 +218,12 @@ public class take5view {
         for (int i=0; i<CardsOfPlayer.size(); i++){
             CardsOfPlayer.remove(i);
         }
-//        for (int i=0; i<PlayerImages.size(); i++){
-//            PlayerImages.remove(i);
-//        }
+
         PlayerImages.clear();
         AIimages.clear();
         getTopImages().getChildren().clear();
 
-//        for (int i=0; i<bottomImages.getChildren().size(); i++){
-//            bottomImages.getChildren().remove(i);
-//        }
+
 
         bottomImages.getChildren().clear();
 
@@ -241,7 +231,7 @@ public class take5view {
 
                 System.out.println(playingTable.getPlayers()[0].getHand().getCards().size() + "razmer na rukata");
                 CardsOfPlayer.add(playingTable.getPlayers()[0].getHand().getCards().get(i));
-//                ImageView currentCardViewai = getImageView(playingTable.getPlayers()[1].getHand().getCards().get(i).getURL());
+
                 ImageView currentCardView = getImageView(playingTable.getPlayers()[0].getHand().getCards().get(i).getURL());
                 javafx.scene.image.Image img = new javafx.scene.image.Image(urlBack);
                 Card c = playingTable.getPlayers()[0].getHand().getCards().get(i);
@@ -262,7 +252,7 @@ public class take5view {
 
 
 
-//            AIimages.add(currentCardViewai);
+
 
 
         }
