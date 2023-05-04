@@ -189,6 +189,15 @@ public class PlayingTable {
 
     Saver saver;
 
+
+    public Saver getSaver() {
+        return saver;
+    }
+
+    public void setDeck(Deck deck) {
+        this.deck = deck;
+    }
+
     public void checkDeck() {
         try {
             Deck deck1 = new Deck("src/Cards");

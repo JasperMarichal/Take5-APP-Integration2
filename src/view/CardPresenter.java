@@ -28,6 +28,7 @@ public class CardPresenter {
     private PlayingTable model;
     int counterForLatch=0;
 
+
     private take5view view;
     Stage stage= new Stage();
     public CardPresenter(
@@ -503,6 +504,9 @@ public class CardPresenter {
                                     addEventHandlers();
 
 
+
+                                    model.getSaver().initializeDatabaseSave(model);
+
                                 }
                             }
 
@@ -513,4 +517,3 @@ public class CardPresenter {
 
         }}
 
-    
