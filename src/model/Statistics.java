@@ -25,11 +25,14 @@ public class Statistics {
     public String getAverageMoveDuration(){
         String average_move_duration = null;
         try {
-            ResultSet resultSet = statement.executeQuery("""
-                    select extract('minutes' from avg(end_time - start_time)) || ' minutes and ' ||
-                           to_char(extract('seconds' from avg(end_time - start_time)), '99.99') || ' seconds'
-                    from move
-                    where game_id = '1';""");
+            ResultSet resultSet = statement.executeQuery("WITH move_times AS (\n" +
+                    "    SELECT end_time - LAG(end_time) OVER (ORDER BY end_time) AS move_time\n" +
+                    "    FROM move\n" +
+                    "    WHERE game_id = '-1693412144'\n" +
+                    ")\n" +
+                    "SELECT extract('seconds' from AVG(move_time)) || ' seconds' AS avg_move_time\n" +
+                    "FROM move_times\n" +
+                    "WHERE move_time IS NOT NULL;");
             while(resultSet.next()){
                 average_move_duration = resultSet.getString(1);
             }
