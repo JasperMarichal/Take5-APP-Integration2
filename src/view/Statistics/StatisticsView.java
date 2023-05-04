@@ -7,12 +7,16 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.control.*;
+import javafx.scene.text.TextAlignment;
 
 
 public class StatisticsView extends BorderPane {
     private LineChart<Number, Number> lineChart;
     private XYChart.Series<Number, Number> series1 = new XYChart.Series<>();
+    private VBox vboxTop;
     private HBox hbox;
     private Text average_move_duration;
     private Text most_profit;
@@ -35,8 +39,11 @@ public class StatisticsView extends BorderPane {
         lineChart = new LineChart <>(xAxis, yAxis);
         series1.setName("Durations of moves");
 
-        //Text on the left
+        //Text on top
         average_move_duration = new Text();
+
+        //VBox top
+        vboxTop = new VBox();
 
         //Nodes that are inside the HBox ( at the bottom of the page )
        // hbox = new HBox(15);
@@ -47,20 +54,23 @@ public class StatisticsView extends BorderPane {
     }
 
     public void layoutNodes(){
-        //BorderPane
-        setCenter(average_move_duration);
-        average_move_duration.maxWidth(100);
-        setMargin(this.average_move_duration, new Insets(10,10,10,10));
-        setAlignment(average_move_duration, Pos.CENTER);
-        average_move_duration.setId("avg-mv-dur");
+        //Top
+        vboxTop.getChildren().addAll(average_move_duration, lineChart);
+        vboxTop.setAlignment(Pos.CENTER);
+        vboxTop.setSpacing(30);
+        setTop(vboxTop);
+        vboxTop.setPadding(new Insets(10,10,10,10));
 
-        //Chart
-        setCenter(this.lineChart);
+            //AVG MOVE
+        average_move_duration.minWidth(1000);
+        average_move_duration.setStyle("-fx-font-family: 'Luckiest Guy'; -fx-font-size: 30px; -fx-padding: 10px; -fx-text-fill: #4d71ff;");
+        average_move_duration.setTextAlignment(TextAlignment.CENTER);
+
+            //Chart
         lineChart.setMaxHeight(300);
         lineChart.setMaxWidth(600);
-        lineChart.getXAxis().setStyle("-fx-border-color: #0095ff transparent transparent; -fx-border-width:3");
-        lineChart.getYAxis().setStyle("-fx-border-color: transparent #0095ff transparent transparent; -fx-border-width:3");
-        setLeft(average_move_duration);
+        lineChart.getXAxis().setStyle("-fx-border-color: #4d71ff rgba(168,24,24,0) transparent; -fx-border-width:3");
+        lineChart.getYAxis().setStyle("-fx-border-color: transparent #4d71ff transparent transparent; -fx-border-width:3");
 //        // HBox
 //        most_profit.setId("most-profit");
 //        outliers_rounds.setId("most-profit");

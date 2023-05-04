@@ -28,7 +28,7 @@ public class StatisticsPresenter {
         view.setLineChart();
 
         // Show the other statistic ( Avg move duration, Most profitable moves, Outliers moves)
-        view.getAverage_move_duration().setText(String.format("  Congrats you scored %s points \n your average move duration was: \n    %s",model.getFinalScore(), model.getAverageMoveDuration(playingTable.getHashCode())));
+        view.getAverage_move_duration().setText(String.format("  Congrats you scored %s points \n your average move duration was: \n    %s",playingTable.getPlayer(0).getCounterPoints(), model.getAverageMoveDuration(playingTable.getHashCode())));
         //view.getMost_profit().setText(model.getMostProfitableMoves());
         //view.getOutliers_rounds().setText("Outliers moves based on the score: " + model.getOutliersRounds());
     }

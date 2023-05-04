@@ -17,8 +17,8 @@ public class TestMain extends Application {
     }
     @Override
     public void start(Stage stage) {
-        HumanPlayer player = new HumanPlayer(null,6);
-        AiPlayer AI = new AiPlayer("Bot 1", 6);
+        HumanPlayer player = new HumanPlayer(null,0);
+        AiPlayer AI = new AiPlayer("Bot 1", 0);
         PlayingTable model = new PlayingTable(player, AI);
         MainView mainView = new MainView();
         MainPresenter mainPresenter = new MainPresenter(mainView, model);
