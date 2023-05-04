@@ -19,7 +19,6 @@ public class PlayingTable {final int cardRowsSize = 4;
         TimerCounter = timerCounter;
     }
 
-    private TimeCounter timeCounter;
 
     private CardChecker cardChecker= new CardChecker(this);
     static int counterForLatch=0;
@@ -61,9 +60,7 @@ public class PlayingTable {final int cardRowsSize = 4;
         return urlBack;
     }
 
-    public TimeCounter getTimeCounter() {
-        return timeCounter;
-    }
+
 
     public void CollectCardRows (int index){
         cardRows[index].clear();
@@ -159,8 +156,7 @@ public class PlayingTable {final int cardRowsSize = 4;
 
 
     public PlayingTable(Player human, Player AI) {
-//        this.borderPane = borderPane;
-        timeCounter= new TimeCounter(this );
+
 
         players = new Player[2];
         players[0]= human;

@@ -499,14 +499,14 @@ public class CardPresenter {
                            model.checkDeck();
                            view.refreshHands(model, 1);
 
-                           
+
                            addEventHandlers();
 
 
                        }
                     }
 
-                            model.getTimeCounter().update();}
+                      }
 
             );
         }
