@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import view.CardPresenter;
 import view.Take5View;
 
 import static view.CardPresenter.addEventHandlers;
@@ -46,55 +45,123 @@ public class EventHandler implements javafx.event.EventHandler<ActionEvent> {
             Button forFourthRow = new Button();
 
             forFirstRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> {
-                fix2(model, view
+                fixForHuman(model, view
                         , forFirstRow, forSecondRow
                         , forThirdRow, forFourthRow
                         , humanIndex, 0);
+                initialize(model,view,1);
             });
             forSecondRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> {
-                fix2(model, view
+                fixForHuman(model, view
                         , forFirstRow, forSecondRow
                         , forThirdRow, forFourthRow
                         , humanIndex, 1);
+                initialize(model,view,1);
             });
             forThirdRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> {
-                fix2(model, view
+                fixForHuman(model, view
                         , forFirstRow, forSecondRow
                         , forThirdRow, forFourthRow
                         , humanIndex, 2);
-
+                initialize(model,view,1);
             });
             forFourthRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> {
-                fix2(model, view
+                fixForHuman(model, view
                         , forFirstRow, forSecondRow
                         , forThirdRow, forFourthRow
                         , humanIndex, 3);
+
+                initialize(model,view,1);
             });
             view.addButtons(forFirstRow, forSecondRow, forThirdRow, forFourthRow);
         }
     }
 
-    public static void fix2(PlayingTable model, Take5View view
+    //fix2
+    public static void fixForHuman(PlayingTable model, Take5View view
             , Button forFirstRow, Button forSecondRow
             , Button forThirdRow, Button forFourthRow
             , int humanIndex, int rowIndex) {
 
         model.dmgCalculationHuman(rowIndex, model.getPlayers()[0]);
-
         model.getAllCardsFromRow(rowIndex);
         removeChildren(view, forFirstRow, forSecondRow, forThirdRow, forFourthRow);
-
         (model.getPlayers()[0]).playCard(humanIndex, rowIndex);
-
+    }
+    //fix3
+    public static void fixForAI(PlayingTable model, Card cAI, int aiCardIndex, int aiCardRowSelectionForRetrival) {
+        Integer i4 = model.getPlayableRows(cAI);
+        if (i4 != null) {
+            System.out.println(aiCardRowSelectionForRetrival + "Proverka");
+            ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, i4);
+        } else {
+            model.dmgCalculationAI(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
+            model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
+            System.out.println(aiCardRowSelectionForRetrival + "Proverka");
+            ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, aiCardRowSelectionForRetrival);
+        }
+    }
+    //fix4
+    public static void initialize(PlayingTable model, Take5View view, int playerWithPriority){
         setCounterForLatch(0);
         view.getH1().refreshRows(model);
         model.showRows();
         model.checkDeck();
-        view.refreshHands(model, 1);
+        view.refreshHands(model, playerWithPriority);
+        //playerWithPriority for Human ==1 AI==0
 
         addEventHandlers();
     }
-    public static void fix3() {
 
+    public static void fix1b(PlayingTable model, Take5View view
+            , int humanIndex
+            , Card cAI, int aiCardIndex, int aiCardRowSelectionForRetrival){
+
+        setCounterForLatch(1);
+
+        Button forFirstRow = new Button();
+        Button forSecondRow = new Button();
+        Button forThirdRow = new Button();
+        Button forFourthRow = new Button();
+
+        forFirstRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> {
+            fixForHuman(model, view
+                    , forFirstRow, forSecondRow
+                    , forThirdRow, forFourthRow
+                    , humanIndex, 0);
+
+            fixForAI(model, cAI, aiCardIndex, aiCardRowSelectionForRetrival);
+
+            EventHandler.initialize(model,view,0);
+        });
+        forSecondRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> {
+            fixForHuman(model, view
+                    , forFirstRow, forSecondRow
+                    , forThirdRow, forFourthRow
+                    , humanIndex, 1);
+            fixForAI(model, cAI, aiCardIndex, aiCardRowSelectionForRetrival);
+            EventHandler.initialize(model,view,0);
+        });
+        forThirdRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> {
+            fixForHuman(model, view
+                    , forFirstRow, forSecondRow
+                    , forThirdRow, forFourthRow
+                    , humanIndex, 2);
+
+            fixForAI(model, cAI, aiCardIndex, aiCardRowSelectionForRetrival);
+
+            EventHandler.initialize(model,view,0);
+        });
+        forFourthRow.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> {
+            fixForHuman(model, view
+                    , forFirstRow, forSecondRow
+                    , forThirdRow, forFourthRow
+                    , humanIndex, 3);
+
+            fixForAI(model, cAI, aiCardIndex, aiCardRowSelectionForRetrival);
+
+            EventHandler.initialize(model,view,0);
+        });
+        view.addButtons(forFirstRow, forSecondRow, forThirdRow, forFourthRow);
     }
 }

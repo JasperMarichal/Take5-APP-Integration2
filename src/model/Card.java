@@ -5,7 +5,6 @@ import javafx.scene.image.ImageView;
 import view.Take5View;
 
 public class Card {
-
     private int number;
     Take5View take5view = new Take5View();
     private int bulls;
