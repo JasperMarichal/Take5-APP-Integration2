@@ -10,7 +10,7 @@ import view.MainMenu.MainPresenter;
 import view.MainMenu.MainView;
 
 
-public class TestMain extends Application {
+public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
