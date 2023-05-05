@@ -5,9 +5,6 @@ public class CardChecker {
 
     public CardChecker(PlayingTable model){
         this.model= model;
-
-
-
     }
 
 

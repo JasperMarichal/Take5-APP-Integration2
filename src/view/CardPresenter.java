@@ -1,12 +1,9 @@
 package view;
 
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.AiPlayer;
 import model.Card;
@@ -20,37 +17,24 @@ public class CardPresenter {
     private static PlayingTable model;
     static int counterForLatch=0;
     private static Take5View view;
-    Stage stage= new Stage();
+    Stage stage;
     public CardPresenter(PlayingTable model, Take5View view, Stage stage) {
-        int intloop= 1 ;
-        this.model = model;
-        this.view = view;
+        CardPresenter.model = model;
+        CardPresenter.view = view;
         this.stage= stage;
         view.buildScene1(model,stage);
         addEventHandlers();
     }
 
-    public static void setCounterForLatch(int counterForLatch) {
-        counterForLatch = counterForLatch;
-    }
-
     public static int getCounterForLatch() {
             return counterForLatch;
     }
-    public void addEventHandlersForButton(){
-        view.button.addEventHandler(MouseEvent.MOUSE_CLICKED, event2 ->{
-            view.buildBorderPane(model);
-            Scene scene1 = new Scene(view.getBorderPane1());
-            stage.setScene(scene1);
-            addEventHandlers();
-        });
-    }
+
     public static void addEventHandlers(){
-        for (int i=0; i<view.PlayerImages.size(); i++){
+        for (int i = 0; i< Take5View.PlayerImages.size(); i++){
             Card c= model.getPlayers()[0].getHand().getCards().get(i);
-            int y=i;
-            ImageView currentCard= (view.PlayerImages.get(i));
-            ((ImageView)currentCard).addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            ImageView currentCard= (Take5View.PlayerImages.get(i));
+            currentCard.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
                 model.getDbManager().addMove(model.getHashCode(), String.valueOf(model.getPlayer(0).hashCode()), model.getPlayer(0).getCounterPoints());
                 if (getCounterForLatch() == 0) {
                     int humanIndex = model.getPlayers()[0].getTheSelectedCardFromHand(c);
@@ -61,7 +45,6 @@ public class CardPresenter {
                      ImageView currentImageWithoutClickEvent2 = new ImageView(imgForCenter);
                      currentImageWithoutClickEvent2.setFitWidth(150);
                      currentImageWithoutClickEvent2.setFitHeight(180);
-                     VBox vBox = new VBox(currentImageWithoutClickEvent2);
 
                      Integer i1 = model.getPlayableRows(model.getCardScanner().scanAndRetrieveCardForPlay(s));
                      view.getBottomImages().getChildren().remove(currentCard);
@@ -72,8 +55,7 @@ public class CardPresenter {
                      ImageView AIimgview = getImageView(((AiPlayer) (model.getPlayers()[1])).getCard(aiCardIndex).getURL());
                      AIimgview.setFitHeight(100);
                      AIimgview.setFitWidth(80);
-                     String aistring = AIimgview.getImage().getUrl();
-                     Card cAI = ((AiPlayer) (model.getPlayers()[1])).getHand().getCards().get(aiCardIndex);
+                     Card cAI = model.getPlayers()[1].getHand().getCards().get(aiCardIndex);
 
                      Integer i2 = model.getPlayableRows(cAI);
                      int aiCardRowSelectionForRetrival = ((AiPlayer) (model.getPlayers()[1])).cardRowNumberForReplacement();
@@ -82,7 +64,7 @@ public class CardPresenter {
                          if (i1 != null) {
                              ((HBox) view.rows.getChildren().get(i1)).getChildren().add(currentImageWithoutClickEvent);
                              (model.getPlayers()[0]).playCard(humanIndex, i1);
-                             view.getH1().refreshRows(model);
+                             Take5View.getH1().refreshRows(model);
 
                              fixForAI(model, cAI, aiCardIndex, aiCardRowSelectionForRetrival);
 
@@ -94,8 +76,8 @@ public class CardPresenter {
                          view.getTopImages().getChildren().remove(0);
                      } else {
                          if (i2 != null) {
-                             ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, i2);
-                             view.getH1().refreshRows(model);
+                             model.getPlayers()[1].playCard(aiCardIndex, i2);
+                             Take5View.getH1().refreshRows(model);
 
                              fix1(model, view, humanIndex,s);
                              view.getTopImages().getChildren().remove(0);
@@ -105,8 +87,8 @@ public class CardPresenter {
                              model.dmgCalculationAI(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
                              model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
 
-                             ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, aiCardRowSelectionForRetrival);
-                             view.getH1().refreshRows(model);
+                             model.getPlayers()[1].playCard(aiCardIndex, aiCardRowSelectionForRetrival);
+                             Take5View.getH1().refreshRows(model);
                              model.showRows();
 
                              fix1(model, view, humanIndex,s);

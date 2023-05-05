@@ -1,31 +1,15 @@
 package model;
 
-import java.awt.*;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class CardScanner {
     Deck deck;
-    Player player;
-    Button button;
-    List<Button> buttonList;
-    ArrayList<Integer> listOfNumbers;
-    PlayingTable playingTable;
-    List<Card> carsScanned;
-    public void scan(){
-        for (int i= 0; i<4; i++) {
-            int number= playingTable.cardRows[i].get(playingTable.cardRows[i].size()-1).getNumber();
-            listOfNumbers.add(number);
-        }
-    }
 
     public Card scanAndRetrieveCardForPlay(String url){
         Card c1 = null;
         try {
-            Deck deck1 = new Deck("src/Cards");
-            this.deck=deck1;
+            this.deck= new Deck("src/Cards");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -50,8 +34,6 @@ public class CardScanner {
                 }
             }
         }
-
-
         return c1;
     }
 }

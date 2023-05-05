@@ -15,9 +15,6 @@ public class EventHandler implements javafx.event.EventHandler<ActionEvent> {
         counterForLatch = counterForLatch;
     }
 
-    public int getCounterForLatch() {
-        return counterForLatch;
-    }
     Button button;
     static void removeChildren(Take5View view, Button button1, Button button2, Button button3, Button button4){
         ((HBox)view.rows.getChildren().get(0)).getChildren().removeAll(button1);
@@ -36,7 +33,7 @@ public class EventHandler implements javafx.event.EventHandler<ActionEvent> {
         Integer i3 = model.getPlayableRows(model.getCardScanner().scanAndRetrieveCardForPlay(s));
         if (i3 != null) {
             (model.getPlayers()[0]).playCard(humanIndex, i3);
-            view.getH1().refreshRows(model);
+            Take5View.getH1().refreshRows(model);
         } else {
             setCounterForLatch(1);
             Button forFirstRow = new Button();
@@ -93,18 +90,18 @@ public class EventHandler implements javafx.event.EventHandler<ActionEvent> {
         Integer i4 = model.getPlayableRows(cAI);
         if (i4 != null) {
             System.out.println(aiCardRowSelectionForRetrival + "Proverka");
-            ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, i4);
+            model.getPlayers()[1].playCard(aiCardIndex, i4);
         } else {
             model.dmgCalculationAI(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
             model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
             System.out.println(aiCardRowSelectionForRetrival + "Proverka");
-            ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, aiCardRowSelectionForRetrival);
+            model.getPlayers()[1].playCard(aiCardIndex, aiCardRowSelectionForRetrival);
         }
     }
     //fix4
     public static void initialize(PlayingTable model, Take5View view, int playerWithPriority){
         setCounterForLatch(0);
-        view.getH1().refreshRows(model);
+        Take5View.getH1().refreshRows(model);
         model.showRows();
         model.checkDeck();
         view.refreshHands(model, playerWithPriority);

@@ -3,30 +3,22 @@ package view;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import model.Card;
 import model.PlayingTable;
-import view.EndingScreen.EndingScreenPresenter;
 import view.EndingScreen.EndingScreenView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
-
 
 public class Take5View {
 
     BorderPane borderPane = new BorderPane();
     HBox bottomImages = new HBox();
     HBox topImages = new HBox();
-    VBox CenterImages = new VBox();
-
-    HBox HumanImagesForRightPartOfTheBorderPane = new HBox();
-    HBox AIImagesForRightPartOfTheBorderPane = new HBox();
 
     public BorderPane getBorderPane() {
         return borderPane;
@@ -40,32 +32,11 @@ public class Take5View {
         return topImages;
     }
 
-    public VBox getCenterImages() {
-        return CenterImages;
-    }
-
-    public static List<ImageView> getAIimages() {
-        return AIimages;
-    }
-
-    public static List<Card> getCardsOfPlayer() {
-        return CardsOfPlayer;
-    }
-
-    public static List<ImageView> getPlayerImages() {
-        return PlayerImages;
-    }
-
     protected static List<ImageView> AIimages = new ArrayList<>();
     protected static List<Card> CardsOfPlayer = new ArrayList<>();
     protected static List<ImageView> PlayerImages = new ArrayList<>();
 
     static BorderPane borderPane1;
-    static BorderPane borderPane2;
-
-    public BorderPane getBorderPane2() {
-        return borderPane2;
-    }
 
     static String urlBack = "file:resources/take5prototipfx/bacground1Finished.jpg";
     static HboxBuilder h1 = new HboxBuilder();
@@ -73,16 +44,7 @@ public class Take5View {
     public VBox rows = new VBox();
     Button button = new Button();
 
-    protected HBox firstRow = new HBox();
-    protected HBox secondRow = new HBox();
-    protected HBox thirdRow = new HBox();
-    protected HBox ForthRow = new HBox();
-    protected VBox cardHolder = new VBox();
     VBox dmg = new VBox();
-
-    public void getImage(Card card) {
-        Image image = new Image(card.getURL());
-    }
 
     public static ImageView getImageView(String URL) {
 
@@ -102,7 +64,6 @@ public class Take5View {
     }
 
     public void buildScene1(PlayingTable playingTable, Stage stage) {
-        BorderPane borderPane = new BorderPane();
         buildBorderPane(playingTable);
 //        borderPane2=borderPane;
         Scene sceneForMenu = new Scene(getBorderPane1());
@@ -111,22 +72,10 @@ public class Take5View {
         stage.setWidth(1500);
         stage.show();
         setBackground();
-//
-//         button.addEventHandler(MouseEvent.MOUSE_CLICKED, event2 ->{
-//
-//             buildBorderPane(playingTable);
-//             Scene scene1 = new Scene(getBorderPane1());
-//             stage.setScene(scene1);
     }
-
-    Label timeLable = new Label();
 
     public static HboxBuilder getH1() {
         return h1;
-    }
-
-    public void updateRowsInPane(VBox rows) {
-        this.rows = rows;
     }
 
     public void buildBorderPane(PlayingTable playingTable) {
@@ -138,8 +87,6 @@ public class Take5View {
 
         // TODO: clear pane
         // append player one cards
-        int counterForLatch = 0;
-        CountDownLatch latch = new CountDownLatch(counterForLatch);
 
         for (int i = 0; i < playingTable.getPlayers()[0].getHand().getCards().size(); i++) {
             System.out.println(playingTable.getPlayers()[0].getHand().getCards().get(i));
@@ -147,7 +94,6 @@ public class Take5View {
             ImageView currentCardViewai = getImageView(playingTable.getPlayers()[1].getHand().getCards().get(i).getURL());
             ImageView currentCardView = getImageView(playingTable.getPlayers()[0].getHand().getCards().get(i).getURL());
             javafx.scene.image.Image img = new javafx.scene.image.Image(urlBack);
-            Card c = playingTable.getPlayers()[1].getHand().getCards().get(i);
             PlayerImages.add(currentCardView);
 
             ImageView opponentsCards = new ImageView(img);
@@ -185,16 +131,10 @@ public class Take5View {
         for (int i = 0; i < CardsOfPlayer.size(); i++) {
             CardsOfPlayer.remove(i);
         }
-//        for (int i=0; i<PlayerImages.size(); i++){
-//            PlayerImages.remove(i);
-//        }
         PlayerImages.clear();
         AIimages.clear();
         getTopImages().getChildren().clear();
 
-//        for (int i=0; i<bottomImages.getChildren().size(); i++){
-//            bottomImages.getChildren().remove(i);
-//        }
 
         bottomImages.getChildren().clear();
 
@@ -204,7 +144,6 @@ public class Take5View {
 //                ImageView currentCardViewai = getImageView(playingTable.getPlayers()[1].getHand().getCards().get(i).getURL());
             ImageView currentCardView = getImageView(playingTable.getPlayers()[0].getHand().getCards().get(i).getURL());
             javafx.scene.image.Image img = new javafx.scene.image.Image(urlBack);
-            Card c = playingTable.getPlayers()[0].getHand().getCards().get(i);
             PlayerImages.add(currentCardView);
 
 
@@ -231,7 +170,6 @@ public class Take5View {
         if (playingTable.checkWin() == 1 || playingTable.checkWin() == 0) {
 
             EndingScreenView view = new EndingScreenView();
-            EndingScreenPresenter presenter = new EndingScreenPresenter(view, playingTable);
             Stage stage = new Stage();
             Scene scene = new Scene(view);
             stage.setScene(scene);
