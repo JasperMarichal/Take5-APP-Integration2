@@ -1,7 +1,6 @@
 package model;
 
 public class DmgCalculator {
-    int lifePoints;
 
     public void takeDmgHuman(int bullPoints, PlayingTable playingTable){
      int cpnow=playingTable.getPlayers()[0].getCounterPoints();

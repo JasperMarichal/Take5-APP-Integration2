@@ -7,16 +7,8 @@ public class HumanPlayer extends Player {
 
     @Override
     Card chooseCard(int chosen) {
-        Card c = this.getHand().cards.get(chosen);
-        return c;
+        return this.getHand().cards.get(chosen);
     }
-
-//    @Override
-//    classes.Card chooseCard() {
-//
-//        return null;
-//    }
-
 
     public int getTheSelectedCardFromHand(Card card) {
         int y = 0;
@@ -27,9 +19,6 @@ public class HumanPlayer extends Player {
 
                 return i;
             }
-
-
-
         }
         System.out.println(y);
         return 0;
@@ -41,11 +30,8 @@ public class HumanPlayer extends Player {
             if (card.getNumber() == this.hand.cards.get(i).getNumber()) {
                 index = i;
             }
-
         }
         return index;
-
-
     }
 
     public void setName(String name) {
@@ -62,6 +48,4 @@ public class HumanPlayer extends Player {
     void placeCardOnSide(Card card) {
         table.chosenCards[0].add(card);
     }
-
-
 }
