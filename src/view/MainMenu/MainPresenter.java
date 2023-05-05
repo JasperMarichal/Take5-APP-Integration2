@@ -81,12 +81,4 @@ public class MainPresenter {
 
         return (ButtonType.OK == choice.get());
     }
-
-
-
-
-
-
-
-
 }

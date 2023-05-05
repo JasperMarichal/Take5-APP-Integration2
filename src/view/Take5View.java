@@ -70,7 +70,7 @@ public class Take5View {
     static String urlBack = "file:resources/take5prototipfx/bacground1Finished.jpg";
     static HboxBuilder h1 = new HboxBuilder();
 
-    protected VBox rows = new VBox();
+    public VBox rows = new VBox();
     Button button = new Button();
 
     protected HBox firstRow = new HBox();
@@ -246,9 +246,3 @@ public class Take5View {
         }
     }
 }
-
-
-
-
-
-

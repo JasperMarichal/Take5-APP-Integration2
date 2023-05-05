@@ -22,7 +22,6 @@ public class AiPlayer extends Player {
                 lowestIndex = i;
             }
         }
-
         return lowestIndex;
     }
 
