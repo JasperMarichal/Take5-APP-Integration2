@@ -9,6 +9,7 @@ import java.util.Map;
 public class Statistics {
     private Statement statement;
     private Connection connection;
+    private String gameId;
 
     // Constructor
     public Statistics(){
@@ -41,6 +42,7 @@ public class Statistics {
             System.out.println("Error executing the more_avg method");
             e.printStackTrace();
         }
+        this.gameId = gameId;
 
         return average_move_duration;
     }
@@ -70,15 +72,16 @@ public class Statistics {
     public String getMostProfitableMoves() {
         Map<Integer, String> prof_moves_map = new HashMap<>();
         try {
-            ResultSet resultSet = statement.executeQuery("""
-                    SELECT round_id, move_number
+            ResultSet resultSet = statement.executeQuery(String.format("""
+                    SELECT round.round_number, move_number
                     FROM (SELECT round_id, points, move_number, ROW_NUMBER() OVER (ORDER BY round_id,move_number) AS row_num
                           FROM move
-                          where game_id = '1') t1
+                          where game_id = '%s') t1
+                    join round on round.round_id = t1.round_id
                     WHERE points = (SELECT points
                                     FROM (SELECT points, ROW_NUMBER() OVER (ORDER BY round_id,t1.move_number) AS row_num
                                           FROM move) t2
-                                    WHERE t1.row_num = t2.row_num + 1)""");
+                                    WHERE t1.row_num = t2.row_num +1);""", gameId));
 
             while (resultSet.next()) {
                 if (prof_moves_map.containsKey(resultSet.getInt(1))) {
@@ -95,7 +98,7 @@ public class Statistics {
 
         StringBuilder str = new StringBuilder();
         for (Map.Entry<Integer, String> entry : prof_moves_map.entrySet()) {
-            str.append("Round: ").append(entry.getKey()).append("--> Profitable moves: ").append(entry.getValue()).append("\n");
+            str.append("Round: ").append(entry.getKey()).append("--> Move(s): ").append(entry.getValue()).append("\n");
         }
 
         return str.toString();
@@ -103,16 +106,16 @@ public class Statistics {
     public String getOutliersRounds(){
         StringBuilder outliers_moves;
         List<Double> input = new ArrayList<>();
-        List<Integer> round_of_move = new ArrayList<>();
+        List<String> id_of_move = new ArrayList<>();
         try{
-            ResultSet resultSet = statement.executeQuery("""
+            ResultSet resultSet = statement.executeQuery(String.format("""
                     select move_id, points
                     from move
-                    where game_id = '1'
-                    order by 1;""");
+                    where game_id = '%s'
+                    order by end_time;""", gameId));
 
             while (resultSet.next()){
-                round_of_move.add(resultSet.getInt(1));
+                id_of_move.add(resultSet.getString(1));
                 input.add(resultSet.getDouble(2));
             }
             connection.close();
@@ -124,28 +127,11 @@ public class Statistics {
         outliers_moves = new StringBuilder();
         List<Double> outliers = OutlierDetector.getOutliers(input);
         for (Double outlier : outliers){
-            outliers_moves.append(round_of_move.get(input.indexOf(outlier))).append(", ");
+            outliers_moves.append(id_of_move.get(input.indexOf(outlier))).append(", ");
         }
 
         return String.valueOf(outliers_moves);
 
-    }
-    public String getFinalScore(){
-        String final_score = null;
-        try {
-            ResultSet resultSet = statement.executeQuery("""
-                    select points
-                    from move
-                    where game_id = '1'
-                    order by move_id desc fetch first row only;""");
-
-            while(resultSet.next()){
-                final_score = resultSet.getString(1);
-            }
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-        return final_score;
     }
 
 }

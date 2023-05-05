@@ -261,7 +261,6 @@ public class PlayingTable {
 
     public void showRows(){
         for (int i = 0; i < cardRowsSize; i++) {
-            System.out.println(cardRows[i].get(0).getNumber());
         }
     }
 

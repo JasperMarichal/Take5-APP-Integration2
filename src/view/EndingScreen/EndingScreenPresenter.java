@@ -26,8 +26,9 @@ public class EndingScreenPresenter {
             Statistics model = new Statistics();
             StatisticsView view = new StatisticsView();
             new StatisticsPresenter(model, view, this.model);
-            Scene scene = new Scene(view);
+            Scene scene = new Scene(view, 1100, 700);
             Stage stage = new Stage();
+            stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
         });

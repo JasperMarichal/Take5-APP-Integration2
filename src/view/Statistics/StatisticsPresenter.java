@@ -28,8 +28,17 @@ public class StatisticsPresenter {
         view.setLineChart();
 
         // Show the other statistic ( Avg move duration, Most profitable moves, Outliers moves)
-        view.getAverage_move_duration().setText(String.format("  Congrats you scored %s points \n your average move duration was: \n    %s",playingTable.getPlayer(0).getCounterPoints(), model.getAverageMoveDuration(playingTable.getHashCode())));
-        //view.getMost_profit().setText(model.getMostProfitableMoves());
-        //view.getOutliers_rounds().setText("Outliers moves based on the score: " + model.getOutliersRounds());
+        view.getAverage_move_duration().setText(String.format("  Congrats you finished with %s points \n your average move duration was:  %s",playingTable.getPlayer(0).getCounterPoints(), model.getAverageMoveDuration(playingTable.getHashCode())));
+        if(model.getMostProfitableMoves().length() < 1){
+            view.getMost_profit().setText("You had no profitable moves :( ");
+        } else {
+            view.getMost_profit().setText(model.getMostProfitableMoves());
+        }
+        if(model.getOutliersRounds().length() < 1){
+            view.getOutliers_rounds().setText("NO REMARKABLE MOVES TO SEE");
+        } else{
+            view.getOutliers_rounds().setText( model.getOutliersRounds());
+        }
+
     }
 }

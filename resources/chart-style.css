@@ -1,0 +1,16 @@
+.chart-line-symbol {
+    -fx-background-color: #5601ff, white;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+}
+.chart-series-line {
+    -fx-stroke: #5601ff;
+    -fx-stroke-width: 4px;
+    -fx-effect: dropshadow( two-pass-box , rgba(0,0,0,0.3) , 8, 0.0 , 0 , 3 );
+}
+
+.label{
+    -fx-fill: rgba(255,255,255);
+}
+.default-color0.chart-line-symbol { -fx-background-color: #5601ff, white; }

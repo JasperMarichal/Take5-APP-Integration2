@@ -51,7 +51,6 @@ public class CardPresenter {
     }
     public void addEventHandlers(){
         for (int i=0; i<view.PlayerImages.size(); i++){
-            System.out.println(i);
             Card c= model.getPlayers()[0].getHand().getCards().get(i);
             int y=i;
             ImageView currentCard= (view.PlayerImages.get(i));
@@ -80,7 +79,6 @@ public class CardPresenter {
                      Card cAI = ((AiPlayer) (model.getPlayers()[1])).getHand().getCards().get(aiCardIndex);
                      Integer i2 = model.getPlayableRows(cAI);
                      int aiCardRowSelectionForRetrival = ((AiPlayer) (model.getPlayers()[1])).cardRowNumberForReplacement();
-                     System.out.println(aiCardRowSelectionForRetrival + "Proverka");
                      if ((model.cardChecker(model.getPlayers()[0].getHand().getCards().get(humanIndex),
                              model.getPlayers()[1].getHand().getCards().get(aiCardIndex))) == 0) {
                          if (i1 != null) {
@@ -90,14 +88,12 @@ public class CardPresenter {
 
                              Integer i4 = model.getPlayableRows(cAI);
                              if (i4 != null) {
-                                 System.out.println(aiCardRowSelectionForRetrival + "Proverka");
 
                                  ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, i4);
                                  view.getH1().refreshRows(model);
                              } else {
                                  model.dmgCalculationAI(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
                                  model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
-                                 System.out.println(aiCardRowSelectionForRetrival + "Proverka");
 
                                  ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, aiCardRowSelectionForRetrival);
                                  view.getH1().refreshRows(model);
@@ -127,7 +123,6 @@ public class CardPresenter {
                                      model.dmgCalculationAI(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
 
                                      model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
-                                     System.out.println(aiCardRowSelectionForRetrival + "Proverka");
                                      ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, aiCardRowSelectionForRetrival);
                                  }
                                  setCounterForLatch(0);
@@ -148,7 +143,6 @@ public class CardPresenter {
                                  } else {
                                      model.dmgCalculationAI(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
                                      model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
-                                     System.out.println(aiCardRowSelectionForRetrival + "Proverka");
                                      ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, aiCardRowSelectionForRetrival);
                                  }
                                  setCounterForLatch(0);
@@ -169,7 +163,6 @@ public class CardPresenter {
                                  } else {
                                      model.dmgCalculationAI(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
                                      model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
-                                     System.out.println(aiCardRowSelectionForRetrival + "Proverka");
                                      ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, aiCardRowSelectionForRetrival);
                                  }
                                  setCounterForLatch(0);
@@ -186,12 +179,10 @@ public class CardPresenter {
                                  (model.getPlayers()[0]).playCard(humanIndex, 3);
                                  Integer i4 = model.getPlayableRows(cAI);
                                  if (i4 != null) {
-                                     System.out.println(aiCardRowSelectionForRetrival + "Proverka");
                                      ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, i4);
                                  } else {
                                      model.dmgCalculationAI(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
                                      model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
-                                     System.out.println(aiCardRowSelectionForRetrival + "Proverka");
                                      ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, aiCardRowSelectionForRetrival);
                                  }
                                  setCounterForLatch(0);
@@ -206,7 +197,6 @@ public class CardPresenter {
                          view.getTopImages().getChildren().remove(0);
                      } else {
                          if (i2 != null) {
-                             System.out.println(aiCardRowSelectionForRetrival + "Proverka");
                              ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, i2);
                              view.getH1().refreshRows(model);
                              Integer i3 = model.getPlayableRows(model.getCardScanner().scanAndRetrieveCardForPlay(s));
@@ -285,7 +275,6 @@ public class CardPresenter {
                          } else {
                              model.dmgCalculationAI(aiCardRowSelectionForRetrival, model.getPlayers()[1]);
                              model.getAllCardsFromRow(aiCardRowSelectionForRetrival);
-                             System.out.println(aiCardRowSelectionForRetrival + "Proverka");
 
                              ((AiPlayer) (model.getPlayers()[1])).playCard(aiCardIndex, aiCardRowSelectionForRetrival);
                              view.getH1().refreshRows(model);
@@ -357,9 +346,6 @@ public class CardPresenter {
                                  });
                                  view.addButtons(forFirstRow, forSecondRow, forThirdRow, forFourTHRow);
                              }
-                         }
-                         for (int x = 0; x < model.getPlayers()[0].getHand().getCards().size(); x++) {
-                             System.out.println("current hand of player: " + model.getPlayers()[0].getHand().getCards().get(x).getNumber());
                          }
                          model.checkDeck();
                          view.refreshHands(model, 1);

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
+
 public class Take5View {
 
     BorderPane borderPane = new BorderPane();
@@ -199,7 +200,6 @@ public class Take5View {
 
         for (int i = 0; i < playingTable.getPlayers()[0].getHand().getCards().size(); i++) {
 
-            System.out.println(playingTable.getPlayers()[0].getHand().getCards().size() + "razmer na rukata");
             CardsOfPlayer.add(playingTable.getPlayers()[0].getHand().getCards().get(i));
 //                ImageView currentCardViewai = getImageView(playingTable.getPlayers()[1].getHand().getCards().get(i).getURL());
             ImageView currentCardView = getImageView(playingTable.getPlayers()[0].getHand().getCards().get(i).getURL());
@@ -229,6 +229,7 @@ public class Take5View {
         borderPane1 = getBorderPane();
 
         if (playingTable.checkWin() == 1 || playingTable.checkWin() == 0) {
+
             EndingScreenView view = new EndingScreenView();
             EndingScreenPresenter presenter = new EndingScreenPresenter(view, playingTable);
             Stage stage = new Stage();

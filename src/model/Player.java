@@ -51,9 +51,7 @@ public abstract class Player{
             if(getClass().equals(HumanPlayer.class)){
                 table.getDbManager().addRound(String.valueOf(table.getHashCode()));
             }
-            for (int x = 0; x < table.getPlayers()[0].getHand().getCards().size(); x++) {
-                System.out.println("refreshed hand of player: " + table.getPlayers()[0].getHand().getCards().get(x).getNumber());
-            }
+
         }
     }
 
