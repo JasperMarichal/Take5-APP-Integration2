@@ -1,7 +1,5 @@
 package model;
 
-import view.Take5View;
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,21 +10,7 @@ import java.util.Random;
 public class PlayingTable {
 
     final int cardRowsSize = 4;
-    private int TimerCounter= 0;
-    private DatabaseManager dbManager;
-
-
-    public int getTimerCounter() {
-        return TimerCounter;
-    }
-
-    public void setTimerCounter(int timerCounter) {
-        TimerCounter = timerCounter;
-    }
-
-
-
-    private CardChecker cardChecker= new CardChecker(this);
+    private final DatabaseManager dbManager;
     static int counterForLatch=0;
     Deck deck;
     Integer maximumNumberOfCard=null;
@@ -35,21 +19,7 @@ public class PlayingTable {
     ArrayList<Card>[] cardRows;
     String urlBack = "file:resources/take5prototipfx/bacground1Finished.jpg";
     ArrayList<Card>[] chosenCards;
-//     BorderPane borderPane;
-//     HBox bottomImages = new HBox();
-//     HBox topImages = new HBox();
-//    VBox CenterImages = new VBox();
-//    HboxBuilder h1b = new HboxBuilder();
 
-    Take5View take5view= new Take5View();
-
-    public  int getCounterForLatch() {
-        return counterForLatch;
-    }
-
-    public  void setCounterForLatch(int counterForLatch) {
-        PlayingTable.counterForLatch = counterForLatch;
-    }
 
     public int getCardRowsSize() {
         return cardRowsSize;
@@ -86,27 +56,6 @@ public class PlayingTable {
         return chosenCards;
     }
 
-//    public BorderPane getBorderPane() {
-//        return borderPane;
-//    }
-
-//    public HBox getBottomImages() {
-//        return bottomImages;
-//    }
-//
-//    public HBox getTopImages() {
-//        return topImages;
-//    }
-
-//    public VBox getCenterImages() {
-//        return CenterImages;
-//    }
-
-//    public HboxBuilder getH1b() {
-//        return h1b;
-//    }
-
-
     public Integer getPlayableRows(Card card) {
         Integer[] checkedNumbers = new Integer[4];
         int cnumber = card.getNumber();
@@ -114,8 +63,6 @@ public class PlayingTable {
         int numberForChecking2=-5;
         int numberForChecking3=-5;
         int numberForChecking4=-5;
-
-
 
         if (cardRows[0].size()<5){
             numberForChecking1 = cardRows[0].get(cardRows[0].size()-1).getNumber();
@@ -273,21 +220,17 @@ public class PlayingTable {
             System.out.println(bulls);
         }
     }
-        public void dmgCalculationAI (int rowIndex,Player AiPlayer){
-            DmgCalculator dmgCalculator= new DmgCalculator();
-if (rowIndex>3 || rowIndex<0 ){
-    rowIndex=0;
-}
-            for (int i=0; i<cardRows[rowIndex].size(); i++){
-                int bulls= cardRows[rowIndex].get(i).getBulls();
-                dmgCalculator.takeDmgAI(bulls, this);
-                System.out.println(bulls);
-            }
-
-
-
+    public void dmgCalculationAI (int rowIndex,Player AiPlayer){
+        DmgCalculator dmgCalculator= new DmgCalculator();
+        if (rowIndex>3 || rowIndex<0 ){
+            rowIndex=0;
+        }
+        for (int i=0; i<cardRows[rowIndex].size(); i++){
+            int bulls= cardRows[rowIndex].get(i).getBulls();
+            dmgCalculator.takeDmgAI(bulls, this);
+            System.out.println(bulls);
+        }
     }
-
 
     public Player getPlayer(int i ){
         return players[i];
@@ -296,11 +239,9 @@ if (rowIndex>3 || rowIndex<0 ){
     public int checkWin() {
         if (getPlayers()[0].getCounterPoints()<=0) {
             return 1;
-
         }
         if (getPlayers()[1].getCounterPoints()<=0){
             return 0;
-
         }
       return 2;
     }
@@ -311,7 +252,4 @@ if (rowIndex>3 || rowIndex<0 ){
         else{
             return 1;}
     }
-
-
-
 }

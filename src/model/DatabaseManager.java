@@ -1,7 +1,6 @@
 package model;
 
 import java.sql.*;
-import java.util.Random;
 import java.util.UUID;
 
 public class DatabaseManager {

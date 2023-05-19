@@ -17,8 +17,9 @@ public class Main extends Application {
     }
     @Override
     public void start(Stage stage) {
-        HumanPlayer player = new HumanPlayer(null,64);
-        AiPlayer AI = new AiPlayer("Bot 1", 64);
+        int counterPoints = 10;
+        HumanPlayer player = new HumanPlayer(null,counterPoints);
+        AiPlayer AI = new AiPlayer("Bot 1", counterPoints);
         PlayingTable model = new PlayingTable(player, AI);
         MainView mainView = new MainView();
         MainPresenter mainPresenter = new MainPresenter(mainView, model);

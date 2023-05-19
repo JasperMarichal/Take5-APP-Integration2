@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Scanner;
 public class Deck {
-    private LinkedList<Card> cards = new LinkedList<>();
+    private final LinkedList<Card> cards = new LinkedList<>();
     String fileName;
     public Deck(String fileName) throws FileNotFoundException {
         this.fileName = fileName;

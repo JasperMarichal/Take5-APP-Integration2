@@ -22,7 +22,6 @@ public class AiPlayer extends Player {
                 lowestIndex = i;
             }
         }
-
         return lowestIndex;
     }
 
@@ -55,7 +54,6 @@ public class AiPlayer extends Player {
         return minCardHandIndex;
     }
 
-
     public int cardRowNumberForReplacement() {
         int min = 10;
         for (int i = 0; i <4; i++) {
@@ -63,17 +61,11 @@ public class AiPlayer extends Player {
                 min = i;
             }
         }
-
         return min;
-
     }
-
-
 
     public Card getCard(int number) {
         return this.getHand().getCards().get(number);
-
-
     }
     @Override
     void placeCardOnSide (Card card){

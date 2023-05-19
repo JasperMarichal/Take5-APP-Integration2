@@ -7,7 +7,6 @@ public abstract class Player{
     public String name;
     PlayingTable table;
     Hand hand;
-    Card card;
     private int counterPoints;
 
     public void setTable(PlayingTable table) {
@@ -70,15 +69,6 @@ public abstract class Player{
     }
 
     public Hand getHand() {
-
-//        System.out.println("This is the hand of player:" + getName());
-//        for (int i= 0; i<hand.cards.size(); i++) {
-//
-//            System.out.print(hand.cards.get(i).getNumber()+ "   ");
-//            System.out.print(hand.cards.get(i).getBulls());
-//            System.out.println();
-//
-//        }
         return hand;
     }
 

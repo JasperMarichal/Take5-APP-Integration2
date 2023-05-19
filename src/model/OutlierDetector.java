@@ -41,9 +41,6 @@ public class OutlierDetector {
                 outliers.add(d);
             }
         }
-        List<Double> output = outliers;
-        return output;
+        return outliers;
     }
-
 }
-
