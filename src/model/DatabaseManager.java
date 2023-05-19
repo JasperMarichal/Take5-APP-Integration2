@@ -16,6 +16,49 @@ public class DatabaseManager {
             System.out.println("Connection failed\n");
             e.printStackTrace();
         }
+        createTables();
+    }
+
+    public void createTables(){
+        try{
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS player\n" +
+                    "(\n" +
+                    "    player_id VARCHAR(255) PRIMARY KEY,\n" +
+                    "    name      VARCHAR(255) NOT NULL\n" +
+                    ");\n" +
+                    "\n" +
+                    "CREATE TABLE IF NOT EXISTS game\n" +
+                    "(\n" +
+                    "    game_id    VARCHAR(255) PRIMARY KEY,\n" +
+                    "    start_time TIMESTAMP NOT NULL,\n" +
+                    "    end_time   TIMESTAMP,\n" +
+                    "    winner     VARCHAR(255)\n" +
+                    ");\n" +
+                    "\n" +
+                    "ALTER TABLE game\n" +
+                    "    ADD CONSTRAINT fk_player FOREIGN KEY (winner) REFERENCES player (player_id);\n" +
+                    "\n" +
+                    "CREATE TABLE IF NOT EXISTS round\n" +
+                    "(\n" +
+                    "    round_id     VARCHAR(255) PRIMARY KEY,\n" +
+                    "    game_id      VARCHAR(255) NOT NULL,\n" +
+                    "    round_number INTEGER      NOT NULL,\n" +
+                    "    start_time   TIMESTAMP    NOT NULL\n" +
+                    ");\n" +
+                    "\n" +
+                    "CREATE TABLE IF NOT EXISTS move\n" +
+                    "(\n" +
+                    "    move_id     VARCHAR(255) PRIMARY KEY,\n" +
+                    "    game_id     VARCHAR(255) NOT NULL,\n" +
+                    "    round_id    VARCHAR(255) NOT NULL,\n" +
+                    "    player_id   VARCHAR(255) NOT NULL,\n" +
+                    "    move_number INTEGER      NOT NULL,\n" +
+                    "    points      INTEGER,\n" +
+                    "    end_time    TIMESTAMP    NOT NULL\n" +
+                    ");\n");
+        } catch (Exception e){
+            System.out.println("Error when creating tables" + e.getMessage());
+        }
     }
 
     private int roundNumer = 1;
@@ -25,6 +68,14 @@ public class DatabaseManager {
             statement.executeUpdate(String.format("INSERT INTO player (player_id, name) SELECT '%s', '%s' WHERE NOT EXISTS (  SELECT 1 FROM player WHERE player_id = '%s' AND name = '%s' );", loser, loserName, loser, loserName ));
             statement.executeUpdate(String.format("INSERT INTO player (player_id, name) SELECT '%s', '%s' WHERE NOT EXISTS (  SELECT 1 FROM player WHERE player_id = '%s' AND name = '%s' );", winner, name, winner, name ));
             statement.executeUpdate(String.format("INSERT INTO game (game_id, start_time, end_time, winner) VALUES('%s', '%s', now(), '%s')", gameId, timestamp, winner));
+            statement.executeUpdate(String.format("ALTER TABLE round\n" +
+                    "    ADD CONSTRAINT fk_game FOREIGN KEY (game_id) REFERENCES game (game_id) ON DELETE CASCADE;\n" +
+                    "ALTER TABLE move\n" +
+                    "    ADD CONSTRAINT fk_game FOREIGN KEY (game_id) REFERENCES game (game_id) ON DELETE CASCADE;\n" +
+                    "ALTER TABLE move\n" +
+                    "    ADD CONSTRAINT fk_round FOREIGN KEY (round_id) REFERENCES round (round_id) ON DELETE CASCADE;\n" +
+                    "ALTER TABLE move\n" +
+                    "    ADD CONSTRAINT fk_player FOREIGN KEY (player_id) REFERENCES player (player_id) ON DELETE CASCADE;"));
             addRound(gameId);
         } catch (SQLException e) {
             System.out.println("Error updateGameTableStart: " + e.getMessage());
